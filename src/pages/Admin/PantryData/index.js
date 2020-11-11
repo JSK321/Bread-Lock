@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function FoodBank() {
+export default function PantryData() {
     return (
         <div>
-            <h1>Food Bank Page</h1>
+            <h1>Pantry Database</h1>
         </div>
     )
 }
