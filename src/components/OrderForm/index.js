@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
+import foods from '../../foods.json';
 import './styles.css'
 
 export default class OrderForm extends Component {
+    state = {
+        foodList: foods,
+        basketList: [],
+        selectedFood: [],
+    }
+    
 
     render() {
         return (
