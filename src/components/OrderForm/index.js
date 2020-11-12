@@ -11,7 +11,26 @@ export default class OrderForm extends Component {
     
     handleSelectClick = event => {
         console.log("Select clicked!")
-        
+        let value = event.target.value
+        console.log(value)
+        let foodsList = this.state.selectedFood
+        // check if the item is already in my selectedFood array
+        const clickedFood = foodsList.includes(value)
+        // if it's not added to array, add it
+        if (!clickedFood) {
+            foodsList.push(value)
+            console.log(foodsList)
+        } else {
+        // if it is added, find where it is in array!
+            console.log(foodsList)
+            let foodPointer = foodsList.indexOf(value)
+        // and remove it from the array!
+            foodsList.splice(foodPointer)
+        }
+        // set the new state!
+        this.setState({
+            selectedFood: foodsList
+        })
     }
 
     handleFormSubmit = event => {
@@ -27,7 +46,7 @@ export default class OrderForm extends Component {
                         <div class="uk-card-title">Food Available</div>
                         <ul>
                         {this.state.foodList.map(item =>
-                            <li><input className="uk-checkbox" type="checkbox" onClick={this.handleSelectClick}/>{item.food}</li>
+                            <li><input className="uk-checkbox" type="checkbox" value={item.food} onClick={this.handleSelectClick}/>{item.food}</li>
                         )}
                         </ul>
                         <button className="addBtn" onClick={this.handleFormSubmit}>Add to Basket!</button>
