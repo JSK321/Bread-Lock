@@ -1,3 +1,7 @@
 ul{
     list-style:none;
 }
+
+.uk-card-body {
+    width: 200px;
+}

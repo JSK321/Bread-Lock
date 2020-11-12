@@ -8,7 +8,7 @@ export default class OrderForm extends Component {
         basketList: [],
         selectedFood: [],
     }
-    
+
     handleSelectClick = event => {
         console.log("Select clicked!")
         let value = event.target.value
@@ -21,10 +21,10 @@ export default class OrderForm extends Component {
             foodsList.push(value)
             console.log(foodsList)
         } else {
-        // if it is added, find where it is in array!
+            // if it is added, find where it is in array!
             console.log(foodsList)
             let foodPointer = foodsList.indexOf(value)
-        // and remove it from the array!
+            // and remove it from the array!
             foodsList.splice(foodPointer)
         }
         // set the new state!
@@ -50,18 +50,20 @@ export default class OrderForm extends Component {
                     <form>
                         <div class="uk-card-title">Food Available</div>
                         <ul>
-                        {this.state.foodList.map(item =>
-                            <li><input className="uk-checkbox" type="checkbox" value={item.food} onClick={this.handleSelectClick}/>{item.food}</li>
-                        )}
+                            {this.state.foodList.map(item =>
+                                <li><input className="uk-checkbox" type="checkbox" value={item.food} onClick={this.handleSelectClick} /> {item.food}</li>
+                            )}
                         </ul>
                         <button className="addBtn" onClick={this.handleFormSubmit}>Add to Basket!</button>
                     </form>
                 </div>
 
                 <div className="uk-card uk-card-default uk-card-body " uk-grid>
-                <div class="uk-card-title">Basket</div>
+                    <div class="uk-card-title">Basket</div>
                     <ul>
-                      
+                        {this.state.basketList.map(basket =>
+                            <li><input className="uk-checkbox" type="checkbox" value={basket.food} /> {basket}</li>
+                        )}
                     </ul>
                 </div>
             </div>
