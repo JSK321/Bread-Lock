@@ -36,6 +36,11 @@ export default class OrderForm extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         console.log("Button clicked!")
+        let basket = this.state.selectedFood
+        this.setState({
+            basketList: basket,
+            selectedFood: []
+        })
     }
 
     render() {
