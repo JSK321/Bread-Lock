@@ -9,6 +9,15 @@ export default class OrderForm extends Component {
         selectedFood: [],
     }
     
+    handleSelectClick = event => {
+        console.log("Select clicked!")
+        
+    }
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        console.log("Button clicked!")
+    }
 
     render() {
         return (
@@ -18,10 +27,10 @@ export default class OrderForm extends Component {
                         <div class="uk-card-title">Food Available</div>
                         <ul>
                         {this.state.foodList.map(item =>
-                            <li><input className="uk-checkbox" type="checkbox" />{item.food}</li>
+                            <li><input className="uk-checkbox" type="checkbox" onClick={this.handleSelectClick}/>{item.food}</li>
                         )}
                         </ul>
-                        <button className="addBtn">Add to Basket!</button>
+                        <button className="addBtn" onClick={this.handleFormSubmit}>Add to Basket!</button>
                     </form>
                 </div>
 
