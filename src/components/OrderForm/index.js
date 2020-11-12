@@ -17,7 +17,9 @@ export default class OrderForm extends Component {
                     <form>
                         <div class="uk-card-title">Food Available</div>
                         <ul>
-                          
+                        {this.state.foodList.map(item =>
+                            <li><input className="uk-checkbox" type="checkbox" />{item.food}</li>
+                        )}
                         </ul>
                         <button className="addBtn">Add to Basket!</button>
                     </form>
