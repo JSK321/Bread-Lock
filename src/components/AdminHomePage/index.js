@@ -10,12 +10,24 @@ export default class AdminHomePage extends Component {
         phone: "",
         email: "",
         operationHours: "",
+        showData: false,
     }
 
     handleInputChange = event => {
         const { name,value } = event.target
         this.setState ({
             [name]: value
+        })
+    }
+
+    handleFormSubmit = event => {
+        event.preventDefault()
+        if(!this.state.streetAddress || !this.state.city || !this.state.state || !this.state.zipcode || !this.state.phone || !this.state.email || !this.state.operationHours) {
+            alert("Please fill every entry in form")
+        }
+
+        this.setState({
+            showData:true
         })
     }
 
@@ -59,13 +71,28 @@ export default class AdminHomePage extends Component {
                                     <input className="uk-input uk-form-width-1-2" name="operationHours" onChange={this.handleInputChange} type="text" placeholder="Operation Hours" />
                                 </div>
                                 <div style={{ textAlign: "center" }}>
-                                    <button>Update</button>
+                                    <button onClick={this.handleFormSubmit}>Update</button>
                                 </div>
                                 <br></br>
                             </form>
                         </div>
                         <div class="uk-card uk-card-default uk-margin-left uk-width-expand">
                             <h4 style={{ textAlign: "center" }}>Website Information</h4>
+                            <ul>
+                                <li>Address: {this.state.showData?(this.state.streetAddress):null}</li>
+                                <br></br>
+                                <li>City: {this.state.showData?(this.state.city):null}</li>
+                                <br></br>
+                                <li>State: {this.state.showData?(this.state.state):null}</li>
+                                <br></br>
+                                <li>ZipCode: {this.state.showData?(this.state.zipcode):null}</li>
+                                <br></br>
+                                <li>Phone: {this.state.showData?(this.state.phone):null}</li>
+                                <br></br>
+                                <li>Email: {this.state.showData?(this.state.email):null}</li>
+                                <br></br>
+                                <li>Hours: {this.state.showData?(this.state.operationHours):null}</li>
+                            </ul>
                         </div>
                     </div>
                     <div className="uk-card-footer" style={{ textAlign: "center" }}>
