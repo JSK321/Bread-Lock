@@ -1,9 +1,10 @@
 import React from 'react'
+import AdminHomePage from '../../../components/AdminHomePage'
 
 export default function AdminHome() {
     return (
         <div>
-            <h1 style={{textAlign:"center"}}>Food Bank Admin Home Page</h1>
+            <AdminHomePage />
         </div>
     )
 }
