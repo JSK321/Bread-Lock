@@ -27,7 +27,7 @@ export default function Map() {
 
 
                     //custom icon setting for food bank locations
-                    {/* var patchIcon = L.icon({
+                    var fBankIcon = L.icon({
                         iconUrl: '',
                         iconSize: [50, 50],
                         iconAnchor: [22, 94],
@@ -35,11 +35,11 @@ export default function Map() {
                         shadowUrl: '',
                         shadowSize: [0, 0],
                         shadowAnchor: [22, 94]
-                    }); */}
+                    });
                     //add markers for multiple garden locations:
-                    {/* {{#each gardenPins }}
-                    L.marker([{{ location }}], { icon: patchIcon }).addTo(mymap).bindPopup(" <a href = /gardens/{{this.id}}>{{this.name}}</a>").openPopup();
-                    {{/each}} */}
+                    {{#each BankPins }}
+                    L.marker([{{ location }}], { icon: fBankIcon }).addTo(mymap).bindPopup(" ").openPopup();
+                    {{/each}}
 
                 
 
@@ -56,3 +56,40 @@ export default function Map() {
 
     )
 }
+
+//code to link to foodbank page TBD
+// <a href = {/foodBanks/{{this.id}}>{{this.name}}</a>
+
+
+
+//
+
+
+
+
+
+
+
+//map foodbanks location
+
+// router.get("/map", async function (req, res) {
+//     let mapData = {};
+//   
+
+//         const foodBanks = await db.foodbank.findAll()
+//         mapData.fBankPins = foodBanks.map(foodBank => {
+//             foodBankJSON = foodBank.toJSON();
+//             return {
+//                 location: [foodBankJSON.latitude, foodBankJSON.longitude],
+//                 name: foodBankJSON.name,
+//                 id: foodBankJSON.id
+//             }
+//         })
+
+//        res.render("map", mapData)
+//     }
+
+//     catch (err) {
+//         console.log(err)
+//         res.status(500).end()
+//     }
