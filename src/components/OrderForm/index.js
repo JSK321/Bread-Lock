@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import foods from '../../foods.json';
 import './styles.css'
 
+
 export default class OrderForm extends Component {
     state = {
         foodList: foods,
@@ -43,6 +44,11 @@ export default class OrderForm extends Component {
         })
     }
 
+    deleteItem = event => {
+        let value = event.target.value
+        console.log("ID:", value)
+    }
+
     render() {
         return (
             <div className="uk-flex uk-flex-center">
@@ -62,7 +68,7 @@ export default class OrderForm extends Component {
                     <div class="uk-card-title">Basket</div>
                     <ul>
                         {this.state.basketList.map(basket =>
-                            <li><input className="uk-checkbox" type="checkbox" value={basket.food} /> {basket}</li>
+                            <li><span uk-icon="minus-circle" onClick={this.deleteItem}></span> {basket}</li>
                         )}
                     </ul>
                 </div>
