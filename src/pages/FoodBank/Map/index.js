@@ -1,14 +1,13 @@
-
 import React from 'react';
 import { Marker, Popup, TileLayer, MapContainer } from "react-leaflet";
-
+import 'leaflet/dist/leaflet.css';
 
 
 export default function Map() {
     return (
       
       
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+      <MapContainer center={[47.6, 122.2]} zoom={13} scrollWheelZoom={false} style={{ height: '50vh', width: '50vh' }}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -22,13 +21,6 @@ export default function Map() {
  
     )
 }
-
-//code to link to foodbank page TBD
-// <a href = {/foodBanks/{{this.id}}>{{this.name}}</a>
-
-
-
-//
 
 
 
