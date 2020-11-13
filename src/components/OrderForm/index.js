@@ -44,33 +44,20 @@ export default class OrderForm extends Component {
         })
     }
 
-    deleteItem = event => {
-        let value = event.target.value
-        console.log(value)
-    }
-
     render() {
         return (
             <div className="uk-flex uk-flex-center">
                 <div className="uk-card uk-card-default uk-card-body" uk-grid>
                     <form>
-                        <div class="uk-card-title">Food Available</div>
+                        <div class="uk-card-title">Basket</div>
                         <ul>
                             {this.state.foodList.map(item =>
-                                <li><input className="uk-checkbox" type="checkbox" value={item.food} onClick={this.handleSelectClick} /> {item.food}</li>
+                                <li className="foodOrderList"><input className="uk-checkbox" type="checkbox" value={item.food} onClick={this.handleSelectClick} /> {item.food}</li>
                             )}
                         </ul>
-                        <button className="addBtn" onClick={this.handleFormSubmit}>Add to Basket!</button>
+                        <br></br>
+                        <button className="addBtn" onClick={this.handleFormSubmit}>Order Basket!</button>
                     </form>
-                </div>
-
-                <div className="uk-card uk-card-default uk-card-body" uk-grid>
-                    <div class="uk-card-title">Basket</div>
-                    <ul>
-                        {this.state.basketList.map(basket =>
-                            <li><span uk-icon="minus-circle" value={this.state.basketList} onClick={this.deleteItem}></span> {basket}</li>
-                        )}
-                    </ul>
                 </div>
             </div>
         )
