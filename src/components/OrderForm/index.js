@@ -40,19 +40,19 @@ export default class OrderForm extends Component {
         let basket = this.state.selectedFood
         this.setState({
             basketList: basket,
-            selectedFood: []
+            
         })
     }
 
     deleteItem = event => {
         let value = event.target.value
-        console.log("ID:", value)
+        console.log(value)
     }
 
     render() {
         return (
             <div className="uk-flex uk-flex-center">
-                <div className="uk-card uk-card-default uk-card-body " uk-grid>
+                <div className="uk-card uk-card-default uk-card-body" uk-grid>
                     <form>
                         <div class="uk-card-title">Food Available</div>
                         <ul>
@@ -64,11 +64,11 @@ export default class OrderForm extends Component {
                     </form>
                 </div>
 
-                <div className="uk-card uk-card-default uk-card-body " uk-grid>
+                <div className="uk-card uk-card-default uk-card-body" uk-grid>
                     <div class="uk-card-title">Basket</div>
                     <ul>
                         {this.state.basketList.map(basket =>
-                            <li><span uk-icon="minus-circle" onClick={this.deleteItem}></span> {basket}</li>
+                            <li><span uk-icon="minus-circle" value={this.state.basketList} onClick={this.deleteItem}></span> {basket}</li>
                         )}
                     </ul>
                 </div>
