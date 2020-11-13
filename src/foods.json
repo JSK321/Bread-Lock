@@ -1,0 +1,43 @@
+[
+    {
+        "id":1,
+        "food": "Butter",
+        "isClicked": false
+    },
+    {
+        "id":2,
+        "food": "Chicken",
+        "isClicked": false
+    },
+    {
+        "id":3,
+        "food": "Turkey",
+        "isClicked": false
+    },
+    {
+        "id":4,
+        "food": "Rice",
+        "isClicked": false
+    },
+    {
+        "id":5,
+        "food": "Cheese",
+        "isClicked": false
+    },
+    {
+        "id":6,
+        "food": "Tomatoes",
+        "isClicked": false
+    },
+    {
+        "id":7,
+        "food": "Onions",
+        "isClicked": false
+    },
+    {
+        "id":8,
+        "food": "Bread",
+        "isClicked": false
+    }
+
+]
