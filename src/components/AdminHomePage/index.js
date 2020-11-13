@@ -11,6 +11,15 @@ export default class AdminHomePage extends Component {
         email: "",
         operationHours: "",
         showData: false,
+        currentLog: {
+            streetAddress:"",
+            city: "",
+            state: "",
+            zipcode: "",
+            phone: "",
+            email: "",
+            operationHours: "",
+        }
     }
 
     handleInputChange = event => {
@@ -24,12 +33,27 @@ export default class AdminHomePage extends Component {
         event.preventDefault()
         if(!this.state.streetAddress || !this.state.city || !this.state.state || !this.state.zipcode || !this.state.phone || !this.state.email || !this.state.operationHours) {
             alert("Please fill every entry in form")
-        } 
-          
-        document.getElementById('updateForm').value = ''
-        this.setState({
-            showData:true,
-        })
+        } else {
+            this.setState({
+                streetAddress:"",
+                city: "",
+                state: "",
+                zipcode: "",
+                phone: "",
+                email: "",
+                operationHours: "",
+                showData:true,
+                currentLog:{
+                    streetAddress: this.state.streetAddress,
+                    city: this.state.city,
+                    state: this.state.state,
+                    zipcode: this.state.zipcode,
+                    phone: this.state.phone,
+                    email: this.state.email,
+                    operationHours: this.state.operationHours
+                }
+            })
+        }
     }
 
     render() {
@@ -51,25 +75,25 @@ export default class AdminHomePage extends Component {
                             <h4 style={{ textAlign: "center" }}>Update Website Information</h4>
                             <form>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" name="streetAddress" onChange={this.handleInputChange} type="text" placeholder="Street Address" />
+                                    <input className="uk-input uk-form-width-1-2" value={this.state.streetAddress} name="streetAddress" onChange={this.handleInputChange} type="text" placeholder="Street Address" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" name="city" onChange={this.handleInputChange} type="text" placeholder="City" />
+                                    <input className="uk-input uk-form-width-1-2" value={this.state.city} name="city" onChange={this.handleInputChange} type="text" placeholder="City" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" name="state" onChange={this.handleInputChange} type="text" placeholder="State" />
+                                    <input className="uk-input uk-form-width-1-2" value={this.state.state} name="state" onChange={this.handleInputChange} type="text" placeholder="State" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" name="zipcode" onChange={this.handleInputChange} type="text" placeholder="ZipCode" />
+                                    <input className="uk-input uk-form-width-1-2" value={this.state.zipcode} name="zipcode" onChange={this.handleInputChange} type="text" placeholder="ZipCode" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" name="phone" onChange={this.handleInputChange} type="text" placeholder="Phone" />
+                                    <input className="uk-input uk-form-width-1-2" value={this.state.phone} name="phone" onChange={this.handleInputChange} type="text" placeholder="Phone" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" name="email" onChange={this.handleInputChange} type="text" placeholder="Email" />
+                                    <input className="uk-input uk-form-width-1-2" value={this.state.email} name="email" onChange={this.handleInputChange} type="text" placeholder="Email" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" name="operationHours" onChange={this.handleInputChange} type="text" placeholder="Operation Hours" />
+                                    <input className="uk-input uk-form-width-1-2" value={this.state.operationHours} name="operationHours" onChange={this.handleInputChange} type="text" placeholder="Operation Hours" />
                                 </div>
                                 <div style={{ textAlign: "center" }}>
                                     <button onClick={this.handleFormSubmit}>Update</button>
@@ -80,19 +104,19 @@ export default class AdminHomePage extends Component {
                         <div class="uk-card uk-card-default uk-margin-left uk-width-expand">
                             <h4 style={{ textAlign: "center" }}>Website Information</h4>
                             <ul>
-                                <li>Address: {this.state.showData?(this.state.streetAddress):null}</li>
+                                <li>Address: {this.state.showData?(this.state.currentLog.streetAddress):null}</li>
                                 <br></br>
-                                <li>City: {this.state.showData?(this.state.city):null}</li>
+                                <li>City: {this.state.showData?(this.state.currentLog.city):null}</li>
                                 <br></br>
-                                <li>State: {this.state.showData?(this.state.state):null}</li>
+                                <li>State: {this.state.showData?(this.state.currentLog.state):null}</li>
                                 <br></br>
-                                <li>ZipCode: {this.state.showData?(this.state.zipcode):null}</li>
+                                <li>ZipCode: {this.state.showData?(this.state.currentLog.zipcode):null}</li>
                                 <br></br>
-                                <li>Phone: {this.state.showData?(this.state.phone):null}</li>
+                                <li>Phone: {this.state.showData?(this.state.currentLog.phone):null}</li>
                                 <br></br>
-                                <li>Email: {this.state.showData?(this.state.email):null}</li>
+                                <li>Email: {this.state.showData?(this.state.currentLog.email):null}</li>
                                 <br></br>
-                                <li>Hours: {this.state.showData?(this.state.operationHours):null}</li>
+                                <li>Hours: {this.state.showData?(this.state.currentLog.operationHours):null}</li>
                             </ul>
                         </div>
                     </div>
