@@ -12,7 +12,12 @@ export default class AdminHomePage extends Component {
         operationHours: "",
     }
 
-    
+    handleInputChange = event => {
+        const { name,value } = event.target
+        this.setState ({
+            [name]: value
+        })
+    }
 
     render() {
         return (
@@ -33,25 +38,25 @@ export default class AdminHomePage extends Component {
                             <h4 style={{ textAlign: "center" }}>Update Website Information</h4>
                             <form>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Street Address" />
+                                    <input className="uk-input uk-form-width-1-2" name="streetAddress" onChange={this.handleInputChange} type="text" placeholder="Street Address" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="City" />
+                                    <input className="uk-input uk-form-width-1-2" name="city" onChange={this.handleInputChange} type="text" placeholder="City" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="State" />
+                                    <input className="uk-input uk-form-width-1-2" name="state" onChange={this.handleInputChange} type="text" placeholder="State" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="ZipCode" />
+                                    <input className="uk-input uk-form-width-1-2" name="zipcode" onChange={this.handleInputChange} type="text" placeholder="ZipCode" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Phone" />
+                                    <input className="uk-input uk-form-width-1-2" name="phone" onChange={this.handleInputChange} type="text" placeholder="Phone" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Email" />
+                                    <input className="uk-input uk-form-width-1-2" name="email" onChange={this.handleInputChange} type="text" placeholder="Email" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Operation Hours" />
+                                    <input className="uk-input uk-form-width-1-2" name="operationHours" onChange={this.handleInputChange} type="text" placeholder="Operation Hours" />
                                 </div>
                                 <div style={{ textAlign: "center" }}>
                                     <button>Update</button>
