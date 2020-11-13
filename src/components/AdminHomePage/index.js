@@ -2,6 +2,18 @@ import React, { Component } from 'react'
 import './styles.css'
 
 export default class AdminHomePage extends Component {
+    state = {
+        streetAddress:"",
+        city: "",
+        state: "",
+        zipcode: "",
+        phone: "",
+        email: "",
+        operationHours: "",
+    }
+
+    
+
     render() {
         return (
             <div className="uk-flex uk-flex-center">
