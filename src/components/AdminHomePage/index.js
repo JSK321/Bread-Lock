@@ -16,30 +16,30 @@ export default class AdminHomePage extends Component {
                             </div>
                         </div>
                     </div>
-                    <div class="uk-flex">
-                        <div class="uk-card uk-card-default">
+                    <div class="uk-flex uk-flex-center">
+                        <div class="uk-card uk-card-default uk-width-expand">
                             <h4 style={{ textAlign: "center" }}>Update Website Information</h4>
                             <form>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="Street Address" />
+                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Street Address" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="City" />
+                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="City" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="State" />
+                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="State" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="ZipCode" />
+                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="ZipCode" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="Phone" />
+                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Phone" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="Email" />
+                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Email" />
                                 </div>
                                 <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="Operation Hours" />
+                                    <input className="uk-input uk-form-width-1-2" type="text" placeholder="Operation Hours" />
                                 </div>
                                 <div style={{ textAlign: "center" }}>
                                     <button>Update</button>
@@ -47,7 +47,7 @@ export default class AdminHomePage extends Component {
                                 <br></br>
                             </form>
                         </div>
-                        <div class="uk-card uk-card-default  uk-margin-left uk-width-expand">
+                        <div class="uk-card uk-card-default uk-margin-left uk-width-expand">
                             <h4 style={{ textAlign: "center" }}>Website Information</h4>
                         </div>
                     </div>
