@@ -24,10 +24,11 @@ export default class AdminHomePage extends Component {
         event.preventDefault()
         if(!this.state.streetAddress || !this.state.city || !this.state.state || !this.state.zipcode || !this.state.phone || !this.state.email || !this.state.operationHours) {
             alert("Please fill every entry in form")
-        }
-
+        } 
+          
+        document.getElementById('updateForm').value = ''
         this.setState({
-            showData:true
+            showData:true,
         })
     }
 
