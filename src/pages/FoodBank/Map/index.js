@@ -1,18 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 
-// make API call from database  for locations
-// 
+
 
 
 export default function Map() {
     return (
             <div id="mapid" style="height: 600px; position: relative">
 
-                
-
                 <script>
-                    var mymap = L.map('mapid').setView([{{ mapLocation }}], 18);
+                    var mymap = L.map('map').setView([47.6062,122.3321], 18);
 
                     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                         maxZoom: 18,
@@ -27,7 +24,7 @@ export default function Map() {
 
 
                     //custom icon setting for food bank locations
-                    var fBankIcon = L.icon({
+                    {/* var fBankIcon = L.icon({
                         iconUrl: '',
                         iconSize: [50, 50],
                         iconAnchor: [22, 94],
@@ -37,9 +34,9 @@ export default function Map() {
                         shadowAnchor: [22, 94]
                     });
                     //add markers for multiple garden locations:
-                    {{#each BankPins }}
+                    {{#each fBankPins }}
                     L.marker([{{ location }}], { icon: fBankIcon }).addTo(mymap).bindPopup(" ").openPopup();
-                    {{/each}}
+                    {{/each}} */}
 
                 
 
