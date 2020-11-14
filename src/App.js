@@ -9,6 +9,7 @@ import CustomerOrder from './pages/User/CustomerOrder';
 //Food Bank Pages
 import Map from './pages/FoodBank//Map';
 import FoodBank from './pages/FoodBank/FoodBankDetails';
+import FbSignUp from './pages/FoodBank/FoodBankSignUp';
 import PantryPreview from './pages/FoodBank/PantryPreview';
 //Admin Pages
 import AdminHome from './pages/Admin/AdminHome';
@@ -36,6 +37,9 @@ function App() {
         </Router>
         <Router exact path="/foodbank">
           <FoodBank />
+        </Router>
+        <Router exact path="/fbsignup">
+          <FbSignUp />
         </Router>
         <Router exact path="/pantry">
           <PantryPreview />
