@@ -132,7 +132,7 @@ export default class FbSignUp extends Component {
                     </div>
                     <div class="uk-flex uk-flex-center">
                         <div class="uk-card uk-card-default uk-width-expand">
-                            <h4 style={{ textAlign: "center" }}>Update Website Information</h4>
+                            <h4 style={{ textAlign: "center" }}>Food Bank Register</h4>
                             <form>
                                 <div className="uk-margin">
                                     <input className="uk-input uk-form-width-1-2" value={this.state.bankName} name="bankName" onChange={this.handleInputChange} type="text" placeholder="Food Bank Name" />
@@ -159,13 +159,13 @@ export default class FbSignUp extends Component {
                                     <input className="uk-input uk-form-width-1-2" value={this.state.operationHours} name="operationHours" onChange={this.handleInputChange} type="text" placeholder="Operation Hours" />
                                 </div>
                                 <div style={{ textAlign: "center" }}>
-                                    <button onClick={this.handleFormSubmit}>Update</button>
+                                    <button onClick={this.handleFormSubmit}>Sign Up</button>
                                 </div>
                                 <br></br>
                             </form>
                         </div>
                         <div class="uk-card uk-card-default uk-margin-left uk-width-expand">
-                            <h4 style={{ textAlign: "center" }}>Website Information</h4>
+                            <h4 style={{ textAlign: "center" }}>Food Bank Information</h4>
                             <ul>
                                 <li>Food Bank: {this.state.showData?(this.state.currentLog.bankName):null}</li>
                                 <br></br>
