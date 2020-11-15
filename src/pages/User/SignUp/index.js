@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import CustomerSignUp from '../../../components/CustomerSignUp'
+import CustomerSignUpInfo from '../../../components/CustomerSignUpInfo'
 // import './styles.css'
 
 export default class UserSignUp extends Component {
@@ -118,74 +120,31 @@ export default class UserSignUp extends Component {
 
     render() {
         return (
-            <div className="uk-flex uk-flex-center">
-                <div className="uk-card uk-card-default uk-width-1-2@m">
-                    <div className="uk-card-header">
-                        <div className="uk-grid-small uk-flex-middle">
-                            <div className="uk-width-auto" style={{ textAlign: "center" }}>
-                                <img className="uk-border-circle" width="40" height="40" src="https://via.placeholder.com/150" />
-                            </div>
-                            <div className="uk-width-expand">
-                                <h1 className="uk-card-title uk-margin-remove-bottom" style={{ textAlign: "center" }}>Sign Up</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-flex uk-flex-center">
-                        <div class="uk-card uk-card-default uk-width-expand">
-                            <h4 style={{ textAlign: "center" }}>Register</h4>
-                            <form>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.firstName} name="firstName" onChange={this.handleInputChange} type="text" placeholder="First Name" />
-                                </div>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.lastName} name="lastName" onChange={this.handleInputChange} type="text" placeholder="Last Name" />
-                                </div>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.phone} name="phone" onChange={this.handleInputChange} type="text" placeholder="Phone" />
-                                </div>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.email} name="email" onChange={this.handleInputChange} type="text" placeholder="Email" />
-                                </div>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.address} name="address" onChange={this.handleInputChange} type="text" placeholder="Street Address" />
-                                </div>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.cityName} name="cityName" onChange={this.handleInputChange} type="text" placeholder="City" />
-                                </div>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.stateAbr} name="stateAbr" onChange={this.handleInputChange} type="text" placeholder="State" />
-                                </div>
-                                <div className="uk-margin">
-                                    <input className="uk-input uk-form-width-1-2" value={this.state.zipCode} name="zipCode" onChange={this.handleInputChange} type="text" placeholder="ZipCode" />
-                                </div>
-                                <div style={{ textAlign: "center" }}>
-                                    <button onClick={this.handleFormSubmit}>Sign Up</button>
-                                </div>
-                                <br></br>
-                            </form>
-                        </div>
-                        <div class="uk-card uk-card-default uk-margin-left uk-width-expand">
-                            <h4 style={{ textAlign: "center" }}>Profile</h4>
-                            <ul>
-                                <li>First Name: {this.state.showData?(this.state.currentLog.firstName):null}</li>
-                                <br></br>
-                                <li>Last Name: {this.state.showData?(this.state.currentLog.lastName):null}</li>
-                                <br></br>
-                                <li>Phone: {this.state.showData?(this.state.currentLog.phone):null}</li>
-                                <br></br>
-                                <li>Email: {this.state.showData?(this.state.currentLog.email):null}</li>
-                                <br></br>
-                                <li>Street Address: {this.state.showData?(this.state.currentLog.address):null}</li>
-                                <br></br>
-                                <li>City: {this.state.showData?(this.state.currentLog.cityName):null}</li>
-                                <br></br>
-                                <li>State: {this.state.showData?(this.state.currentLog.stateAbr):null}</li>
-                                <br></br>
-                                <li>ZipCode: {this.state.showData?(this.state.currentLog.zipCode):null}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <CustomerSignUp 
+                handleFormSubmit={this.handleFormSubmit}
+                handleInputChange={this.handleInputChange}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
+                phone={this.state.phone}
+                email={this.state.email}
+                address={this.state.address}
+                cityName={this.state.cityName}
+                stateAbr={this.state.stateAbr}
+                zipCode={this.state.zipCode}
+                />
+                <br></br>
+                <CustomerSignUpInfo 
+                showData={this.state.showData}
+                firstName={this.state.currentLog.firstName}
+                lastName={this.state.currentLog.lastName}
+                phone={this.state.currentLog.phone}
+                email={this.state.currentLog.email}
+                address={this.state.currentLog.address}
+                cityName={this.state.currentLog.cityName}
+                stateAbr={this.state.currentLog.stateAbr}
+                zipCode={this.state.currentLog.zipCode}
+                />
             </div>
         )
     }
