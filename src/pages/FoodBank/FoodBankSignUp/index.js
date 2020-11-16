@@ -35,7 +35,7 @@ export default class FbSignUp extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault()
-        if (!this.state.bankName || !this.state.streetAddress || !this.state.cityName || !this.state.stateAbr || !this.state.zipCode || !this.state.phone || !this.state.email || !this.state.operationHours) {
+        if (!this.state.bankName || !this.state.streetAddress || !this.state.cityName || !this.state.stateAbr || !this.state.zipCode || !this.state.phone || !this.state.email) {
             alert("Please fill every entry in form")
         } else {
             // ----------------------------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ export default class FbSignUp extends Component {
                     bankName: this.state.bankName,
                     phone: this.state.phone,
                     email: this.state.email,
-                    address: this.state.streetAddress,
+                    streetAddress: this.state.streetAddress,
                     cityName: this.state.cityName,
                     stateAbr: this.state.stateAbr,
                     zipCode: this.state.zipCode
@@ -82,7 +82,7 @@ export default class FbSignUp extends Component {
                             zipCode: this.state.zipCode,
                             phone: this.state.phone,
                             email: this.state.email,
-                            operationHours: this.state.operationHours
+                            // operationHours: this.state.operationHours
                         }
                     })
                 })
