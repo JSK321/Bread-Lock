@@ -19,12 +19,19 @@ const API = {
     //         }
     //     }).then(res=>res.json()).catch(err=>null)
     // },
-    getAllFoodBanks:function(){
-        return fetch(`${URL_PREFIX}/api/foodbank/get/all`,{
-        }).then(res=>res.json()).catch(err=>null)
+    // getAllFoodBanks:function(){
+    //     return fetch(`${URL_PREFIX}/api/foodbank/get/all`,{
+    //     }).then(res=>res.json()).catch(err=>null)
+    // },
+
+    getFoodbanks:function(){
+        return fetch(
+          `${URL_PREFIX}/api/foodbank/get/all`
+      ,{}).then(res=>res.json()).catch(err=>null)
     },
-    getOneFoodBank:function(foodBankId){
-        return fetch(`${URL_PREFIX}/api/foodbank/get/${foodBankId}`,{
+
+    getOneFoodBank:function(id){
+        return fetch(`${URL_PREFIX}/api/foodbank/get/${id}`,{
         }).then(res=>res.json()).catch(err=>null)
     },
     // deleteFoodBank:function(token,foodBankId){
@@ -43,6 +50,8 @@ const API = {
             return fetch(`${URL_PREFIX}/api/customer/get/${customerId}`,{
             }).then(res=>res.json()).catch(err=>null)
     },
+
+
     // createFish:function(token,fishData){
     //     return fetch(`${URL_PREFIX}/api/fishes`,{
     //         method:"POST",

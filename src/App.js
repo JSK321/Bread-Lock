@@ -32,33 +32,33 @@ function App() {
         <Route exact path="/profile">
           <Profile />
         </Route>
-        <Router exact path="/map">
+        <Route exact path="/map">
           <Map />
-        </Router>
-        <Router exact path="/foodbank">
+        </Route>
+        <Route path="/foodbank/:id">
           <FoodBank />
-        </Router>
-        <Router exact path="/fbsignup">
+        </Route>
+        <Route exact path="/fbsignup">
           <FbSignUp />
-        </Router>
-        <Router exact path="/pantry">
+        </Route>
+        <Route exact path="/pantry">
           <PantryPreview />
-        </Router>
-        <Router exact path="/customerorder">
+        </Route>
+        <Route exact path="/customerorder">
           <CustomerOrder />
-        </Router>
-        <Router exact path="/adminhome">
+        </Route>
+        <Route exact path="/adminhome">
           <AdminHome />
-        </Router>
-        <Router exact path="/customerqueue">
+        </Route>
+        <Route exact path="/customerqueue">
           <CustomerQueue />
-        </Router>
-        <Router exact path="/pantrydata">
+        </Route>
+        <Route exact path="/pantrydata">
           <PantryData />
-        </Router>
-        <Router path="*">
+        </Route>
+        <Route path="*">
           <NoMatch />
-        </Router>
+        </Route>
       </Switch>
     </Router>
   );

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
 import { Marker, Popup, TileLayer, MapContainer } from "react-leaflet";
+import { Link } from "react-router-dom";
 import API from "./API"
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -50,7 +51,7 @@ const [bankState, setBankState] = useState({
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {bankState.dataLoaded?bankState.data.map(entry=><Marker position={[entry.latitude,entry.longitude]}> <Popup>{entry.bankName}</Popup> </Marker>) : <p>hola</p>}
+      {bankState.dataLoaded?bankState.data.map(entry=><Marker position={[entry.latitude,entry.longitude]}> <Popup><Link to = {'/foodbank/'+ entry.id}>{entry.bankName} </Link> </Popup> </Marker>) : <p>map</p>}
     </MapContainer>
  
     )}
