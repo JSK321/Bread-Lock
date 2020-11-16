@@ -1,12 +1,27 @@
 import React from 'react'
-import { PageHeader } from 'antd';
+
 
 export default function NavBar() {
     return (
-       <PageHeader 
-       className="site-page-header"
-       title="NavBar"
-       subTitle="This is ant designs NavBar"
-       />
+        <nav className="uk-navbar-container" uk-navbar>
+            <div className="uk-navbar-left">
+
+                <ul className="uk-navbar-nav">
+                    <li><a href="#">Active</a></li>
+                    <li>
+                        <a href="#">Parent</a>
+                        <div className="uk-dropdown">
+                            <ul className="uk-nav uk-navbar-dropdown-nav">
+                                <li className="uk-active"><a href="#">Active</a></li>
+                                <li><a href="#">Item</a></li>
+                                <li><a href="#">Item</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">Item</a></li>
+                </ul>
+
+            </div>
+        </nav>
     )
 }
