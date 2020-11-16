@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import { Marker, Popup, TileLayer, MapContainer } from "react-leaflet";
 import API from "./API"
-
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
@@ -15,7 +14,7 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-//import './style.css';
+
 
  
 
@@ -41,12 +40,12 @@ export default function Map() {
     return (
       
       
-      <MapContainer center={[47.6,-122.3]} zoom={18} scrollWheelZoom={false} style={{ height: '50vh', width: '50vh' }}>
+      <MapContainer center={[47.6,-122.3]} zoom={15} scrollWheelZoom={false} style={{ height: '50vh', width: '50vh' }}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {bankState.dataLoaded?bankState.data.map(entry=><Marker position={[entry.latutude,entry.longitude]}> <Popup>{entry.bankName}</Popup> </Marker>) : <p>hola</p>}
+      {bankState.dataLoaded?bankState.data.map(entry=><Marker position={[entry.latitude,entry.longitude]}> <Popup>{entry.bankName}</Popup> </Marker>) : <p>hola</p>}
     </MapContainer>
  
     )
