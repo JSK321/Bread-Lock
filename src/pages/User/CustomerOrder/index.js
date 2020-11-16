@@ -70,18 +70,3 @@ export default class CustomerOrder extends Component {
         )
     }
 }
-
-{/* <div className="uk-flex uk-flex-center">
-<div className="uk-card uk-card-default uk-card-body" uk-grid>
-    <form>
-        <div class="uk-card-title">Basket</div>
-        <ul>
-            {this.state.foodList.map(item =>
-                <li className="foodOrderList"><input className="uk-checkbox" type="checkbox" value={item.food} onClick={this.handleSelectClick} /> {item.food}</li>
-            )}
-        </ul>
-        <br></br>
-        <button className="addBtn" onClick={this.handleFormSubmit}>Order Basket!</button>
-    </form>
-</div>
-</div> */}
