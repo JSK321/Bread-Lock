@@ -10,14 +10,14 @@ const API = {
     return axios
     .get(
       `http://localhost:8080/api/foodbank/get/all`
-    );
+          );
   }
 }
 
 module.exports = API;
 
 //set var for location lat and long
-// var lat;
+// var lat;git 
 // var long;
 
 // //map search function to convert address to lat & long code

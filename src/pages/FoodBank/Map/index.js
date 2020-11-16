@@ -1,5 +1,6 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { Marker, Popup, TileLayer, MapContainer } from "react-leaflet";
+import { Link } from "react-router-dom";
 import API from "./API"
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -16,25 +17,30 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 
 
+
  
 
 export default function Map() {
 
-    const [bankState, setBankState] = useState({
+  function loadMap() {
+    API.getFoodbanks().then((res) => {
+      setBankState({
+        data: res.data,
+        dataLoaded: true
+      })
+    });
+  }
+  useEffect(() => {
+    loadMap()
+  }, [])
+    
+const [bankState, setBankState] = useState({
        data:"",
        dataLoaded:false
-     })
-
-  API.getFoodbanks().then((res) => {
-    setBankState({
-      data:res.data,
-      dataLoaded:true
-    })
-  });
+     });
 
 
 
-  // let mapDataWLocation = 
 
 
     return (
@@ -45,11 +51,10 @@ export default function Map() {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {bankState.dataLoaded?bankState.data.map(entry=><Marker position={[entry.latitude,entry.longitude]}> <Popup>{entry.bankName}</Popup> </Marker>) : <p>hola</p>}
+      {bankState.dataLoaded?bankState.data.map(entry=><Marker position={[entry.latitude,entry.longitude]}> <Popup><Link to = {'/foodbank/'+ entry.id}>{entry.bankName} </Link> </Popup> </Marker>) : <p>map</p>}
     </MapContainer>
  
-    )
-}
+    )}
 
 
 
@@ -57,26 +62,4 @@ export default function Map() {
 
 
 
-//map foodbanks location
 
-// router.get("/map", async function (req, res) {
-//     let mapData = {};
-//   
-
-//         const foodBanks = await db.foodbank.findAll()
-//         mapData.fBankPins = foodBanks.map(foodBank => {
-//             foodBankJSON = foodBank.toJSON();
-//             return {
-//                 location: [foodBankJSON.latitude, foodBankJSON.longitude],
-//                 name: foodBankJSON.name,
-//                 id: foodBankJSON.id
-//             }
-//         })
-
-//        res.render("map", mapData)
-//     }
-
-//     catch (err) {
-//         console.log(err)
-//         res.status(500).end()
-//     }
