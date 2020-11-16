@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { Marker, Popup, TileLayer, MapContainer } from "react-leaflet";
 import API from "./API"
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -16,25 +16,30 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 
 
+
  
 
 export default function Map() {
 
-    const [bankState, setBankState] = useState({
+  function loadMap() {
+    API.getFoodbanks().then((res) => {
+      setBankState({
+        data: res.data,
+        dataLoaded: true
+      })
+    });
+  }
+  useEffect(() => {
+    loadMap()
+  }, [])
+    
+const [bankState, setBankState] = useState({
        data:"",
        dataLoaded:false
-     })
-
-  API.getFoodbanks().then((res) => {
-    setBankState({
-      data:res.data,
-      dataLoaded:true
-    })
-  });
+     });
 
 
 
-  // let mapDataWLocation = 
 
 
     return (
@@ -48,8 +53,7 @@ export default function Map() {
       {bankState.dataLoaded?bankState.data.map(entry=><Marker position={[entry.latitude,entry.longitude]}> <Popup>{entry.bankName}</Popup> </Marker>) : <p>hola</p>}
     </MapContainer>
  
-    )
-}
+    )}
 
 
 
@@ -57,26 +61,4 @@ export default function Map() {
 
 
 
-//map foodbanks location
 
-// router.get("/map", async function (req, res) {
-//     let mapData = {};
-//   
-
-//         const foodBanks = await db.foodbank.findAll()
-//         mapData.fBankPins = foodBanks.map(foodBank => {
-//             foodBankJSON = foodBank.toJSON();
-//             return {
-//                 location: [foodBankJSON.latitude, foodBankJSON.longitude],
-//                 name: foodBankJSON.name,
-//                 id: foodBankJSON.id
-//             }
-//         })
-
-//        res.render("map", mapData)
-//     }
-
-//     catch (err) {
-//         console.log(err)
-//         res.status(500).end()
-//     }
