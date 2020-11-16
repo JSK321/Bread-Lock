@@ -54,7 +54,7 @@ export default class FbSignUp extends Component {
                     zipCode: this.state.zipCode
                 })
             };
-            fetch('https://localhost:8080/api/foodbank/post', requestOptions)
+            fetch('http://localhost:8080/api/foodbank/post', requestOptions)
                 .then(async response => {
                     const data = await response.json();
 
