@@ -23,6 +23,7 @@ export default function NavBar() {
                         <div className="uk-navbar-dropdown">
                             <ul className="uk-nav uk-navbar-dropdown-nav">
                                 <li><a href="/profile">Profile Page</a></li>
+                                <li><a href="/foodbank">Food Bank Profile</a></li>
                                 <li><a href="/pantry">Food Bank Pantry</a></li>
                             </ul>
                         </div>
