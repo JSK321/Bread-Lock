@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../../utils/API";
 
-export default function FoodBank() {
+export default function PantryData() {
   const [foodBank, setFoodBank] = useState({});
 
   const { id } = useParams();
