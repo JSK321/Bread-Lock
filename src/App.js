@@ -41,10 +41,13 @@ function App() {
         <Route exact path="/fbsignup">
           <FbSignUp />
         </Route>
-        <Route exact path="/pantry">
+        <Route exact path="/pantry/:id">
           <PantryPreview />
         </Route>
         <Route exact path="/customerorder">
+          <CustomerOrder />
+        </Route>
+        <Route exact path="/customerorder/:id">
           <CustomerOrder />
         </Route>
         <Route exact path="/adminhome">
