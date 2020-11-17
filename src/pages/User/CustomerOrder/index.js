@@ -1,22 +1,39 @@
 import React, { Component, useState } from 'react'
 import { useParams } from "react-router-dom";
 import CustomerOrderForm from '../../../components/CustomerOrderForm'
+import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
 import foods from '../../../foods.json';
 import FoodBank from '../../FoodBank/FoodBankDetails';
 
 
-export default function CustomerOrder()  {
+export default function CustomerOrder() {
     const { id } = useParams();
-    
+
     const [customerOrder, setCustomerOrder] = useState({
         foodList: foods,
         basketList: [],
         selectedFood: [],
         orderDate: "",
+        orderTime: "",
         CustomerId: 1, // change to specific customer order, 
         FoodBankId: id
     })
 
+    const handleSelectDay = event => {
+        let day = event.target.value
+        console.log(day)
+        setCustomerOrder({
+            ...customerOrder,
+            orderDate: day
+        })
+    }
+
+    const handleSelectTime = event => {
+        let time = event.target.value
+        console.log(time)
+
+    }
+    
     const handleSelectClick = event => {
         console.log("Select clicked!")
         let value = event.target.value
@@ -47,14 +64,14 @@ export default function CustomerOrder()  {
         console.log("Button clicked!")
         let basket = customerOrder.selectedFood
         // check to see if at least one item is clicked aka basket is empty
-            if (customerOrder.basketList === []) {
-                alert ("Please select some items to add to your basket")
-            } else {
+        if (customerOrder.basketList === []) {
+            alert("Please select some items to add to your basket")
+        } else {
             // generate a post request for new order
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({         
+                body: JSON.stringify({
                     orderDate: customerOrder.orderDate,
                     recieved: false,
                     CustomerId: customerOrder.CustomerId,
@@ -70,13 +87,13 @@ export default function CustomerOrder()  {
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
-                    
+
                 })
                 .catch(error => {
                     // this.setState({ errorMessage: error.toString() });
                     console.error('There was an error!', error);
                 });
-            }
+        }
 
         // individually check every item in the basket with the stock database
         // if it matches, create a post to order list
@@ -87,6 +104,7 @@ export default function CustomerOrder()  {
             ...customerOrder,
             basketList: basket
         })
+        
     }
 
     return (
@@ -99,6 +117,10 @@ export default function CustomerOrder()  {
                         </div>
                     </div>
                 </div>
+                <CustomerPickUpForm
+                    handleSelectDay={handleSelectDay}
+                    handleSelectTime={handleSelectTime}
+                />
                 {customerOrder.foodList.map(foodObj => (
                     <CustomerOrderForm
                         handleSelectClick={handleSelectClick}
