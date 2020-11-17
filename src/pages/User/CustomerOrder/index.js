@@ -14,6 +14,7 @@ export default function CustomerOrder() {
         foodList: [],
         basketList: [],
         selectedFood: [],
+        selectedStock:[],
         orderDate: "",
         orderTime: "",
         CustomerId: 1, // change to specific customer order, 
@@ -26,10 +27,12 @@ export default function CustomerOrder() {
                 foodList: res,
                 basketList: [],
                 selectedFood: [],
+                selectedStock:[],
                 orderDate: "",
                 orderTime: "",
                 CustomerId: 1, // change to specific customer order, 
-                FoodBankId: id
+                FoodBankId: id,
+                availablePointer: true
             })
         });
     }
@@ -55,32 +58,62 @@ export default function CustomerOrder() {
 
     }
 
+    function changeClaimedPantry(id){
+        let newClaimed; 
+    }
+
+    function addOrderItem(id){
+
+    }
+
+
+    function checkForAvailable(id) {
+        for (let i = 0; i < customerOrder.foodList.length; i++) {
+            if(customerOrder.foodList[i].id === id){
+                if (customerOrder.foodList[i].notClaimed > 0){
+                    return true
+                } else {
+                    setCustomerOrder({
+                        ...customerOrder,
+                        availablePointer: false
+                    })
+                }
+            } else {
+                return false
+            }
+        }
+    }
+
     const handleSelectClick = event => {
         console.log("Select clicked!")
-        let value = event.target.value
-        console.log(value)
-        let foodsList = customerOrder.selectedFood
+        let pantryId = event.target.id
+        let stocker = event.target.value
+        console.log(pantryId)
+        let cartArray = customerOrder.selectedFood
+        let stockArray = customerOrder.selectedStock
         // check if the item is already in my selectedFood array
-        const clickedFood = foodsList.includes(value)
+        const clickedFood = cartArray.includes(pantryId)
         // if it's not added to array, add it
         if (!clickedFood) {
-            foodsList.push(value)
-            console.log(foodsList)
+            cartArray.push(pantryId)
+            stockArray.push(stocker)
+            console.log(cartArray)
         } else {
             // if it is added, find where it is in array!
 
             // Function to check if any selected is empty
 
             // 
-            console.log(foodsList)
-            let foodPointer = foodsList.indexOf(value)
+            console.log(cartArray)
+            let foodPointer = cartArray.indexOf(pantryId)
             // and remove it from the array!
-            foodsList.splice(foodPointer)
+            cartArray.splice(foodPointer)
+            stockArray.splice(foodPointer)
         }
         // set the new state!
         setCustomerOrder({
             ...customerOrder,
-            selectedFood: foodsList
+            selectedFood: cartArray
         })
     }
 
@@ -149,6 +182,7 @@ export default function CustomerOrder() {
                     <CustomerOrderForm
                         handleSelectClick={handleSelectClick}
                         id={foodObj.id}
+                        StockId={foodObj.StockId}
                         food={foodObj.Stock.stockName}
                         available={foodObj.notClaimed}
                     />

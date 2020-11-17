@@ -71,7 +71,7 @@ const API = {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({claimed, notClaimed})
         }).then(response => response.json())
-            .then(data => setPostId(data.id));
+            .catch(err=>null);
     },
 
 
