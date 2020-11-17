@@ -61,16 +61,21 @@ const API = {
             })
         }).then(res=> res.json()).catch(err=>null)
     },
-    putOnePantryItem: function(newClaimed, notClaimed, StockId, FoodBankId ){
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title: 'React Hooks PUT Request Example' })
-        };
-        fetch('', requestOptions)
-            .then(response => response.json())
-            .then(data => setPostId(data.id));
-    }
+
+    // putOnePantryItem: function(newClaimed, notClaimed, StockId, FoodBankId ){
+    //     const requestOptions = {
+    //         method: 'PUT',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({ title: 'React Hooks PUT Request Example' })
+    //     };
+    //     fetch('', requestOptions)
+    //         .then(response => response.json())
+    //         .then(data => setPostId(data.id));
+    // }
+
+
+
+    
     // createFish:function(token,fishData){
     //     return fetch(`${URL_PREFIX}/api/fishes`,{
     //         method:"POST",
