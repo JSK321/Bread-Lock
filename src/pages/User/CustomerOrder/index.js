@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { useParams } from "react-router-dom";
 import CustomerOrderForm from '../../../components/CustomerOrderForm'
 import foods from '../../../foods.json';
@@ -47,7 +47,7 @@ export default function CustomerOrder()  {
         console.log("Button clicked!")
         let basket = customerOrder.selectedFood
         // check to see if at least one item is clicked aka basket is empty
-            if (basketList === []) {
+            if (customerOrder.basketList === []) {
                 alert ("Please select some items to add to your basket")
             } else {
             // generate a post request for new order
