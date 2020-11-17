@@ -2,33 +2,33 @@ const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://augfish-api.herokuapp.com"
 
 const API = {
-    // login:function(userData){
-    //     console.log(userData)
-    //     return fetch(`${URL_PREFIX}/api/users/login`,{
-    //         method:"POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //           },
-    //         body:JSON.stringify(userData)
-    //     }).then(res=> res.json()).catch(err=>null)
-    // },
-    // getProfile:function(token){
-    //     return fetch(`${URL_PREFIX}/api/users/secretProfile`,{
-    //         headers:{
-    //             "authorization": `Bearer ${token}`
-    //         }
-    //     }).then(res=>res.json()).catch(err=>null)
-    // },
-    // getAllFoodBanks:function(){
-    //     return fetch(`${URL_PREFIX}/api/foodbank/get/all`,{
-    //     }).then(res=>res.json()).catch(err=>null)
-    // },
+  // login:function(userData){
+  //     console.log(userData)
+  //     return fetch(`${URL_PREFIX}/api/users/login`,{
+  //         method:"POST",
+  //         headers: {
+  //             'Content-Type': 'application/json'
+  //           },
+  //         body:JSON.stringify(userData)
+  //     }).then(res=> res.json()).catch(err=>null)
+  // },
+  // getProfile:function(token){
+  //     return fetch(`${URL_PREFIX}/api/users/secretProfile`,{
+  //         headers:{
+  //             "authorization": `Bearer ${token}`
+  //         }
+  //     }).then(res=>res.json()).catch(err=>null)
+  // },
+  // getAllFoodBanks:function(){
+  //     return fetch(`${URL_PREFIX}/api/foodbank/get/all`,{
+  //     }).then(res=>res.json()).catch(err=>null)
+  // },
 
-    getFoodbanks: function () {
-        return fetch(
-            `${URL_PREFIX}/api/foodbank/get/all`
-            , {}).then(res => res.json()).catch(err => null)
-    },
+  getFoodbanks: function () {
+    return fetch(`${URL_PREFIX}/api/foodbank/get/all`, {})
+      .then((res) => res.json())
+      .catch((err) => null);
+  },
 
     getOneFoodBank: function (id) {
         return fetch(`${URL_PREFIX}/api/foodbank/get/${id}`, {
@@ -74,27 +74,24 @@ const API = {
             .catch(err=>null);
     },
 
-
-
-    
-    // createFish:function(token,fishData){
-    //     return fetch(`${URL_PREFIX}/api/fishes`,{
-    //         method:"POST",
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             "authorization": `Bearer ${token}`
-    //           },
-    //         body:JSON.stringify(fishData)
-    //     }).then(res=> res.json()).catch(err=>null)
-    // },
-    // deleteFish:function(token,fishId){
-    //     return fetch(`${URL_PREFIX}/api/fishes/${fishId}`,{
-    //         method:"DELETE",
-    //         headers: {
-    //             "authorization": `Bearer ${token}`
-    //           }
-    //     }).then(res=> res.json()).catch(err=>null)
-    // },
-}
+  // createFish:function(token,fishData){
+  //     return fetch(`${URL_PREFIX}/api/fishes`,{
+  //         method:"POST",
+  //         headers: {
+  //             'Content-Type': 'application/json',
+  //             "authorization": `Bearer ${token}`
+  //           },
+  //         body:JSON.stringify(fishData)
+  //     }).then(res=> res.json()).catch(err=>null)
+  // },
+  // deleteFish:function(token,fishId){
+  //     return fetch(`${URL_PREFIX}/api/fishes/${fishId}`,{
+  //         method:"DELETE",
+  //         headers: {
+  //             "authorization": `Bearer ${token}`
+  //           }
+  //     }).then(res=> res.json()).catch(err=>null)
+  // },
+};
 
 module.exports = API;

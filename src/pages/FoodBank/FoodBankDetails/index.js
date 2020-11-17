@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {Link, useParams } from "react-router-dom";
 import API from "../../../utils/API";
+
 
 export default function FoodBank() {
   const [foodBank, setFoodBank] = useState({});
@@ -34,11 +35,12 @@ export default function FoodBank() {
         </ul>
 
         <div style={{ textAlign: "center" }}>
-          <button>View Pantry</button>
+          <Link to= {'/pantry/' + id}>
+            <button>View Pantry</button>
+          </Link>
         </div>
         <br />
       </div>
-      id {id}
     </div>
   );
 }
