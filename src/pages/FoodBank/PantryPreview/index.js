@@ -9,7 +9,7 @@ export default function PantryPreview() {
   const { id } = useParams();
 
   useEffect(() => {
-    API.getOneFoodBank(id).then((res) => {
+    API.getOneFBPantryk(id).then((res) => {
       setFoodBank(res);
     });
   }, []);
