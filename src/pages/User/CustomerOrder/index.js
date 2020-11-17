@@ -21,7 +21,6 @@ export default function CustomerOrder() {
 
     const handleSelectDay = event => {
         let day = event.target.value
-        console.log(day)
         setCustomerOrder({
             ...customerOrder,
             orderDate: day
@@ -30,7 +29,10 @@ export default function CustomerOrder() {
 
     const handleSelectTime = event => {
         let time = event.target.value
-        console.log(time)
+        setCustomerOrder({
+            ...customerOrder,
+            orderTime: time
+        })
 
     }
     
