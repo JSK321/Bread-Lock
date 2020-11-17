@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/map">
           <Map />
         </Route>
-        <Route path="/foodbank/:id">
+        <Route exact path="/foodbank/:id">
           <FoodBank />
         </Route>
         <Route exact path="/fbsignup">

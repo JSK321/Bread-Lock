@@ -22,6 +22,7 @@ export default function Map() {
 
   function loadMap() {
     API.getFoodbanks().then((res) => {
+      console.log(res.data[0])
       setBankState({
         selectedFoodBankId: res.data[0].id,
         data: res.data,
@@ -66,7 +67,7 @@ export default function Map() {
               </div>
             </div>
             
-            <MapContainer center={[47.6, -122.3]} zoom={15} scrollWheelZoom={false} style={{ height: '50vh', width: '50vh' }}>
+            <MapContainer center={[47.6, -122.3]} zoom={12} scrollWheelZoom={false} style={{ height: '50vh', width: '50vh' }}>
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
