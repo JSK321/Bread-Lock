@@ -6,7 +6,7 @@ export default function CustomerOrderForm(props) {
         <div>
             <form>
                 <ul>
-                    <li className="foodOrderList"><input className="uk-checkbox" type="checkbox" value={props.food} onClick={props.handleSelectClick} /> {props.food}</li>
+    <li className="foodOrderList"><input className="uk-checkbox" type="checkbox" value={props.id} onClick={props.handleSelectClick} /> {props.food} Portions Available:{props.available}</li>
                 </ul>
             </form>
         </div>

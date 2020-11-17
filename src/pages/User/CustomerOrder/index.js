@@ -1,16 +1,17 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import CustomerOrderForm from '../../../components/CustomerOrderForm'
 import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
-import foods from '../../../foods.json';
+// import foods from '../../../foods.json';
 import FoodBank from '../../FoodBank/FoodBankDetails';
+import API from "../../../utils/API"
 
 
 export default function CustomerOrder() {
     const { id } = useParams();
 
     const [customerOrder, setCustomerOrder] = useState({
-        foodList: foods,
+        foodList: [],
         basketList: [],
         selectedFood: [],
         orderDate: "",
@@ -18,6 +19,24 @@ export default function CustomerOrder() {
         CustomerId: 1, // change to specific customer order, 
         FoodBankId: id
     })
+
+    function loadPantry() {
+        API.getOneFBPantry(id).then((res) => {
+            setCustomerOrder({
+                foodList: res,
+                basketList: [],
+                selectedFood: [],
+                orderDate: "",
+                orderTime: "",
+                CustomerId: 1, // change to specific customer order, 
+                FoodBankId: id
+            })
+        });
+    }
+
+    useEffect(() => {
+        loadPantry()
+    }, [])
 
     const handleSelectDay = event => {
         let day = event.target.value
@@ -35,7 +54,7 @@ export default function CustomerOrder() {
         })
 
     }
-    
+
     const handleSelectClick = event => {
         console.log("Select clicked!")
         let value = event.target.value
@@ -49,6 +68,10 @@ export default function CustomerOrder() {
             console.log(foodsList)
         } else {
             // if it is added, find where it is in array!
+
+            // Function to check if any selected is empty
+
+            // 
             console.log(foodsList)
             let foodPointer = foodsList.indexOf(value)
             // and remove it from the array!
@@ -89,7 +112,6 @@ export default function CustomerOrder() {
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
-
                 })
                 .catch(error => {
                     // this.setState({ errorMessage: error.toString() });
@@ -106,7 +128,7 @@ export default function CustomerOrder() {
             ...customerOrder,
             basketList: basket
         })
-        
+
     }
 
     return (
@@ -127,7 +149,8 @@ export default function CustomerOrder() {
                     <CustomerOrderForm
                         handleSelectClick={handleSelectClick}
                         id={foodObj.id}
-                        food={foodObj.food}
+                        food={foodObj.Stock.stockName}
+                        available={foodObj.notClaimed}
                     />
                 ))}
                 <div className="uk-card-footer" style={{ textAlign: "center" }}>

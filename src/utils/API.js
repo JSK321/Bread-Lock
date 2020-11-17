@@ -1,5 +1,3 @@
-const { where } = require("sequelize/types")
-
 const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://augfish-api.herokuapp.com"
 
