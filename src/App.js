@@ -44,7 +44,7 @@ function App() {
         <Route exact path="/pantry">
           <PantryPreview />
         </Route>
-        <Route exact path="/customerorder">
+        <Route exact path="/customerorder/:id">
           <CustomerOrder />
         </Route>
         <Route exact path="/adminhome">

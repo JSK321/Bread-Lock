@@ -57,7 +57,8 @@ export default class FbSignUp extends Component {
             fetch('http://localhost:8080/api/foodbank/post', requestOptions)
                 .then(async response => {
                     const data = await response.json();
-
+                    console.log(response)
+                    console.log(data)
                     // check for error response
                     if (!response.ok) {
                         // get error message from body or default to response status
