@@ -1,23 +1,45 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import CustomerOrderForm from '../../../components/CustomerOrderForm'
 import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
-import foods from '../../../foods.json';
+// import foods from '../../../foods.json';
 import FoodBank from '../../FoodBank/FoodBankDetails';
+import API from "../../../utils/API"
 
 
 export default function CustomerOrder() {
     const { id } = useParams();
 
     const [customerOrder, setCustomerOrder] = useState({
-        foodList: foods,
+        foodList: [],
         basketList: [],
         selectedFood: [],
+        selectedStock:[],
         orderDate: "",
         orderTime: "",
         CustomerId: 1, // change to specific customer order, 
         FoodBankId: id
     })
+
+    function loadPantry() {
+        API.getOneFBPantry(id).then((res) => {
+            setCustomerOrder({
+                foodList: res,
+                basketList: [],
+                selectedFood: [],
+                selectedStock:[],
+                orderDate: "",
+                orderTime: "",
+                CustomerId: 1, // change to specific customer order, 
+                FoodBankId: id,
+                availablePointer: true
+            })
+        });
+    }
+
+    useEffect(() => {
+        loadPantry()
+    }, [])
 
     const handleSelectDay = event => {
         let day = event.target.value
@@ -35,29 +57,63 @@ export default function CustomerOrder() {
         })
 
     }
-    
+
+    function changeClaimedPantry(id){
+        let newClaimed; 
+    }
+
+    function addOrderItem(id){
+
+    }
+
+
+    function checkForAvailable(id) {
+        for (let i = 0; i < customerOrder.foodList.length; i++) {
+            if(customerOrder.foodList[i].id === id){
+                if (customerOrder.foodList[i].notClaimed > 0){
+                    return true
+                } else {
+                    setCustomerOrder({
+                        ...customerOrder,
+                        availablePointer: false
+                    })
+                }
+            } else {
+                return false
+            }
+        }
+    }
+
     const handleSelectClick = event => {
         console.log("Select clicked!")
-        let value = event.target.value
-        console.log(value)
-        let foodsList = customerOrder.selectedFood
+        let pantryId = event.target.id
+        let stocker = event.target.value
+        console.log(pantryId)
+        let cartArray = customerOrder.selectedFood
+        let stockArray = customerOrder.selectedStock
         // check if the item is already in my selectedFood array
-        const clickedFood = foodsList.includes(value)
+        const clickedFood = cartArray.includes(pantryId)
         // if it's not added to array, add it
         if (!clickedFood) {
-            foodsList.push(value)
-            console.log(foodsList)
+            cartArray.push(pantryId)
+            stockArray.push(stocker)
+            console.log(cartArray)
         } else {
             // if it is added, find where it is in array!
-            console.log(foodsList)
-            let foodPointer = foodsList.indexOf(value)
+
+            // Function to check if any selected is empty
+
+            // 
+            console.log(cartArray)
+            let foodPointer = cartArray.indexOf(pantryId)
             // and remove it from the array!
-            foodsList.splice(foodPointer)
+            cartArray.splice(foodPointer)
+            stockArray.splice(foodPointer)
         }
         // set the new state!
         setCustomerOrder({
             ...customerOrder,
-            selectedFood: foodsList
+            selectedFood: cartArray
         })
     }
 
@@ -89,7 +145,6 @@ export default function CustomerOrder() {
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
-
                 })
                 .catch(error => {
                     // this.setState({ errorMessage: error.toString() });
@@ -106,7 +161,7 @@ export default function CustomerOrder() {
             ...customerOrder,
             basketList: basket
         })
-        
+
     }
 
     return (
@@ -127,7 +182,9 @@ export default function CustomerOrder() {
                     <CustomerOrderForm
                         handleSelectClick={handleSelectClick}
                         id={foodObj.id}
-                        food={foodObj.food}
+                        StockId={foodObj.StockId}
+                        food={foodObj.Stock.stockName}
+                        available={foodObj.notClaimed}
                     />
                 ))}
                 <div className="uk-card-footer" style={{ textAlign: "center" }}>
