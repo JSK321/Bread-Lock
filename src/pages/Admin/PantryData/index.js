@@ -1,33 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import API from "../../../utils/API";
 
-export default function PantryData() {
-  const [foodBank, setFoodBank] = useState({});
+const URL_PREFIX = "http://localhost:8080";
+// const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
+export default function PantryPreview() {
   const { id } = useParams();
 
-  useEffect(() => {
-    API.getOneFoodBank(id).then((res) => {
-      setFoodBank(res);
+  const [foodBank, setFoodBank] = useState({
+    foodList: [],
+    FoodBankId: id,
+  });
+
+  function loadPantry() {
+    API.getOneFBPantry(id).then((res) => {
+      setFoodBank({
+        foodList: res,
+        FoodBankId: id,
+      });
     });
+  }
+
+  useEffect(() => {
+    loadPantry();
   }, []);
+
   return (
     <div className="uk-flex uk-flex-center">
       <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
-        <h4 style={{ textAlign: "center" }}>Food Bank Information</h4>
+        <h4 style={{ textAlign: "center" }}>Pantry Database</h4>
+        
         <ul>
-          <li>Food Bank: {foodBank.bankName}</li>
-          <br></br>
-       
+          {foodBank.foodList.map((pantryList) => (
+            <li>
+              {pantryList.Stock.stockName} Portion Available:{" "}
+              {pantryList.notClaimed}
+            </li>
+          ))}
         </ul>
 
-        <div style={{ textAlign: "center" }}>
-          <button>View Pantry</button>
-        </div>
-        <br />
       </div>
-      id {id}
     </div>
   );
 }

@@ -45,7 +45,7 @@ export default function PantryPreview() {
           </Link>
 
           <div className="uk-card-footer" style={{ textAlign: "center" }}>
-            <Link to={"/customerorder"}>
+            <Link to={"/customerorder/" + foodBank.FoodBankId}>
               <button>Order Food</button>
             </Link>
           </div>
