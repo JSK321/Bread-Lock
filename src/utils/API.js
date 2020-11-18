@@ -66,7 +66,7 @@ const API = {
         }).then(res=> res).catch(err=>null)
     },
     putOnePantryItem: function(claimed, notClaimed, id){
-    return fetch(`${URL_PREFIX}/api/pantry/get/${id}`,{
+    return fetch(`${URL_PREFIX}/api/pantry/put/${id}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({claimed, notClaimed})
