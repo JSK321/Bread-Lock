@@ -6,6 +6,8 @@ import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
 import FoodBank from '../../FoodBank/FoodBankDetails';
 import API, { postOneOrderItem, putOnePantryItem } from "../../../utils/API"
 
+const URL_PREFIX = "http://localhost:8080"
+// const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
 export default function CustomerOrder() {
     const { id } = useParams();
@@ -81,9 +83,17 @@ export default function CustomerOrder() {
 
 
     function changeClaimedPantry(id) {
-        let newClaimed = customerOrder.foodList[id].claimed + 1;
-        let newNotClaimed = customerOrder.foodList[id].notClaimed - 1;
-        putOnePantryItem(newClaimed, newNotClaimed, id);
+        let foodpointer;
+        let newClaimed;
+        let newNotClaimed;
+        for (let j = 0; j < customerOrder.foodList.length; j++) {
+            if (customerOrder.foodList[j].id === id){
+                foodpointer = j;
+                newClaimed = customerOrder.foodList[j].claimed + 1;
+                newNotClaimed = customerOrder.foodList[j].notClaimed - 1;
+                return putOnePantryItem(newClaimed, newNotClaimed, id);
+            }
+        }
     }
 
 
@@ -103,6 +113,7 @@ export default function CustomerOrder() {
             }
         }
     }
+    
 
     const handleSelectClick = event => {
         console.log("Select clicked!")
@@ -139,17 +150,16 @@ export default function CustomerOrder() {
         let cartArray = customerOrder.selectedFood
         let stockArray = customerOrder.selectedStock
         // check to see if at least one item is clicked aka basket is empty
-        if (customerOrder.basketList === []) {
-            alert("Please select some items to add to your basket")
+        if (customerOrder.cartArray === [] || customerOrder.orderDate === "" || customerOrder.orderTime === "") {
+            alert("Please select some items to add to your basket or set up a time for pickup")
         } else {
             // generate a post request for new order
             // check your cart
             cartArray.forEach(element => {
                 checkForAvailable(element)
             });
-            if (customerOrder.availablePointer) {
-                alert('That foodbank does not have one of your order')
-                break
+            if (!customerOrder.availablePointer) {
+                return alert('That foodbank does not have one of your order')
             } else {
                 cartArray.forEach(element => {
                     changeClaimedPantry(element)
@@ -165,8 +175,10 @@ export default function CustomerOrder() {
                     })
                 }).then(res => {
                     const lastMade = res.id;
+                    // Fix the order ids
+                    console.log(res);
                     stockArray.forEach(element => {
-                        postOneOrderItem(1,lastMade,element);
+                        postOneOrderItem(1, 1, element);
                     });
                     afterOrder();
                 }).catch(err => null)
