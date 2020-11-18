@@ -8,6 +8,7 @@ import API, { postOneOrderItem, putOnePantryItem } from "../../../utils/API"
 
 const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
+const URL_REDIRECT = "http://localhost:3000"
 
 export default function CustomerOrder() {
     const { id } = useParams();
@@ -172,6 +173,9 @@ export default function CustomerOrder() {
                                 postOneOrderItem(1, lastMade, element);
                             });
                             afterOrder();
+                            window.location.href = `${URL_REDIRECT}/`;
+                            // after login
+                            // window.location.href("./profile")
                         }).catch(err => null)
                 }
         }
