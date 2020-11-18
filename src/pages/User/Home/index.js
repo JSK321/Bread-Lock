@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../../images/BreadLockLogo.png";
 
 export default function Home() {
   return (
     <div className="uk-flex uk-flex-center">
-      <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
+      <div className="uk-card uk-card-default uk-width-1-2@m" style ={{padding:"5%"}}>
+      
+        <img className="BreadLock Logo" src={logo} alt="logo" width="80%" />
+     
         <h3>Welcome to BreadLock</h3>
         <h5 style={{ textAlign: "left" }}>
           Bread Lock is an application that connects food banks with the
