@@ -4,8 +4,10 @@ import CustomerOrderForm from '../../../components/CustomerOrderForm'
 import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
 // import foods from '../../../foods.json';
 import FoodBank from '../../FoodBank/FoodBankDetails';
-import API from "../../../utils/API"
+import API, { postOneOrderItem, putOnePantryItem } from "../../../utils/API"
 
+const URL_PREFIX = "http://localhost:8080"
+// const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
 export default function CustomerOrder() {
     const { id } = useParams();
@@ -14,11 +16,13 @@ export default function CustomerOrder() {
         foodList: [],
         basketList: [],
         selectedFood: [],
-        selectedStock:[],
+        selectedStock: [],
         orderDate: "",
         orderTime: "",
         CustomerId: 1, // change to specific customer order, 
-        FoodBankId: id
+        FoodBankId: id,
+        availablePointer: true,
+        lastOrder: 0
     })
 
     function loadPantry() {
@@ -27,12 +31,30 @@ export default function CustomerOrder() {
                 foodList: res,
                 basketList: [],
                 selectedFood: [],
-                selectedStock:[],
+                selectedStock: [],
                 orderDate: "",
                 orderTime: "",
                 CustomerId: 1, // change to specific customer order, 
                 FoodBankId: id,
-                availablePointer: true
+                availablePointer: true,
+                lastOrder: 0
+            })
+        });
+    }
+
+    function afterOrder() {
+        API.getOneFBPantry(id).then((res) => {
+            setCustomerOrder({
+                foodList: res,
+                basketList: [],
+                selectedFood: [],
+                selectedStock: [],
+                orderDate: "",
+                orderTime: "",
+                CustomerId: 1, // change to specific customer order, 
+                FoodBankId: id,
+                availablePointer: true,
+                lastOrder: 0
             })
         });
     }
@@ -58,19 +80,27 @@ export default function CustomerOrder() {
 
     }
 
-    function changeClaimedPantry(id){
-        let newClaimed; 
-    }
 
-    function addOrderItem(id){
 
+    function changeClaimedPantry(id) {
+        let foodpointer;
+        let newClaimed;
+        let newNotClaimed;
+        for (let j = 0; j < customerOrder.foodList.length; j++) {
+            if (customerOrder.foodList[j].id === id){
+                foodpointer = j;
+                newClaimed = customerOrder.foodList[j].claimed + 1;
+                newNotClaimed = customerOrder.foodList[j].notClaimed - 1;
+                return putOnePantryItem(newClaimed, newNotClaimed, id);
+            }
+        }
     }
 
 
     function checkForAvailable(id) {
         for (let i = 0; i < customerOrder.foodList.length; i++) {
-            if(customerOrder.foodList[i].id === id){
-                if (customerOrder.foodList[i].notClaimed > 0){
+            if (customerOrder.foodList[i].id === id) {
+                if (customerOrder.foodList[i].notClaimed > 0) {
                     return true
                 } else {
                     setCustomerOrder({
@@ -83,6 +113,7 @@ export default function CustomerOrder() {
             }
         }
     }
+    
 
     const handleSelectClick = event => {
         console.log("Select clicked!")
@@ -99,11 +130,6 @@ export default function CustomerOrder() {
             stockArray.push(stocker)
             console.log(cartArray)
         } else {
-            // if it is added, find where it is in array!
-
-            // Function to check if any selected is empty
-
-            // 
             console.log(cartArray)
             let foodPointer = cartArray.indexOf(pantryId)
             // and remove it from the array!
@@ -113,43 +139,50 @@ export default function CustomerOrder() {
         // set the new state!
         setCustomerOrder({
             ...customerOrder,
-            selectedFood: cartArray
+            selectedFood: cartArray,
+            selectedStock: stockArray
         })
     }
 
     const handleFormSubmit = event => {
         event.preventDefault();
         console.log("Button clicked!")
-        let basket = customerOrder.selectedFood
+        let cartArray = customerOrder.selectedFood
+        let stockArray = customerOrder.selectedStock
         // check to see if at least one item is clicked aka basket is empty
-        if (customerOrder.basketList === []) {
-            alert("Please select some items to add to your basket")
+        if (customerOrder.cartArray === [] || customerOrder.orderDate === "" || customerOrder.orderTime === "") {
+            alert("Please select some items to add to your basket or set up a time for pickup")
         } else {
             // generate a post request for new order
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    orderDate: customerOrder.orderDate,
-                    recieved: false,
-                    CustomerId: customerOrder.CustomerId,
-                    FoodBankId: customerOrder.FoodBankId
-                })
-            };
-            fetch('http://localhost:8080/api/order/post', requestOptions)
-                .then(async response => {
-                    const data = await response.json();
-                    // check for error response
-                    if (!response.ok) {
-                        // get error message from body or default to response status
-                        const error = (data && data.message) || response.status;
-                        return Promise.reject(error);
-                    }
-                })
-                .catch(error => {
-                    // this.setState({ errorMessage: error.toString() });
-                    console.error('There was an error!', error);
+            // check your cart
+            cartArray.forEach(element => {
+                checkForAvailable(element)
+            });
+            if (!customerOrder.availablePointer) {
+                return alert('That foodbank does not have one of your order')
+            } else {
+                cartArray.forEach(element => {
+                    changeClaimedPantry(element)
                 });
+                fetch(`${URL_PREFIX}/api/order/post`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        orderDate: customerOrder.orderDate,
+                        orderTime: customerOrder.orderTime,
+                        FoodBankId: customerOrder.FoodBankId,
+                        CustomerId: customerOrder.CustomerId
+                    })
+                }).then(res => {
+                    const lastMade = res.id;
+                    // Fix the order ids
+                    console.log(res);
+                    stockArray.forEach(element => {
+                        postOneOrderItem(1, 1, element);
+                    });
+                    afterOrder();
+                }).catch(err => null)
+            }
         }
 
         // individually check every item in the basket with the stock database
@@ -157,10 +190,7 @@ export default function CustomerOrder() {
         // also if it matches, create a put request to update the claimed and unclaimed pantry list ALL in one fuction
         // set the state back to default
 
-        setCustomerOrder({
-            ...customerOrder,
-            basketList: basket
-        })
+
 
     }
 
