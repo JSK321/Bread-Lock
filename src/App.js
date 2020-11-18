@@ -58,7 +58,7 @@ function App() {
         <Route exact path="/customerqueue">
           <CustomerQueue />
         </Route>
-        <Route exact path="/pantrydata">
+        <Route exact path="/pantrydata/:id">
           <PantryData />
         </Route>
         <Route path="*">

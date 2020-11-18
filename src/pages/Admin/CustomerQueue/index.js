@@ -1,9 +1,12 @@
 import React from 'react'
+import CustomerQueueCard from '../../../components/CustomerQueueCard'
 
 export default function CustomerQueue() {
     return (
-        <div>
-            <h1>Customer Queue Page</h1>
-        </div>
+        <CustomerQueueCard 
+            // customerFirstName={props}
+            // customerLastName={props}
+            // customerId={props}
+        />
     )
 }
