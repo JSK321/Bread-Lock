@@ -69,7 +69,10 @@ const API = {
     return fetch(`${URL_PREFIX}/api/pantry/put/${id}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({claimed, notClaimed})
+            body: JSON.stringify({
+                notClaimed: notClaimed,
+                claimed: claimed
+            })
         }).then(response => response.json())
             .catch(err=>null);
     },
