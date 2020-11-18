@@ -75,7 +75,23 @@ const API = {
             })
         }).then(response => response.json())
             .catch(err=>null);
+    }, 
+    getFBOrders: function (id) {
+        return fetch(`${URL_PREFIX}/api/order/get/all/foodbank/${id}`, {})
+          .then((res) => res.json())
+          .catch((err) => null);
+      },
+    getCustomerOrders: function (id) {
+        return fetch(`${URL_PREFIX}/api/order/get/all/customer/${id}`, {})
+          .then((res) => res.json())
+          .catch((err) => null);
     },
+    getOneOrders: function (id) {
+        return fetch(`${URL_PREFIX}/api/order/get/${id}`, {})
+          .then((res) => res.json())
+          .catch((err) => null);
+    },
+   
 
   // createFish:function(token,fishData){
   //     return fetch(`${URL_PREFIX}/api/fishes`,{
