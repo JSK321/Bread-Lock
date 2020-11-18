@@ -216,6 +216,7 @@ export default function CustomerOrder() {
                         StockId={foodObj.StockId}
                         food={foodObj.Stock.stockName}
                         available={foodObj.notClaimed}
+                        checker={customerOrder.selectedFood}
                     />
                 ))}
                 <div className="uk-card-footer" style={{ textAlign: "center" }}>
