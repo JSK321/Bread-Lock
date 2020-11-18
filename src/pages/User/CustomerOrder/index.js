@@ -175,7 +175,7 @@ export default function CustomerOrder() {
                             afterOrder();
                             window.location.href = `${URL_REDIRECT}/`;
                             // after login
-                            // window.location.href("./profile")
+                            // window.location.href= `${URL_REDIRECT}/profile/${customerOrder.CustomerId}`
                         }).catch(err => null)
                 }
         }
