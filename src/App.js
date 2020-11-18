@@ -17,6 +17,8 @@ import CustomerQueue from './pages/Admin/CustomerQueue';
 import PantryData from './pages/Admin/PantryData';
 //No Matches Page
 import NoMatch from './pages/NoMatch';
+//Footer
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -63,6 +65,7 @@ function App() {
           <NoMatch />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }
