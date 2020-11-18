@@ -4,17 +4,19 @@ import API from "../../utils/API";
 
 
 export default function CustomerQueueCard() {
+    const { id } = useParams()
 
     const [customerQueueCard, setCustomerQueueCard] = useState({})
 
     function loadCustomer() {
         // API Call to retrieve customer information
-        // API.getAllProfiles().then(res => {
-        //     res.forEach(data => setCustomerQueueCard({
-        //         customerInfo: data
-        //     }))
+        API.getFBOrders().then(res => {
+            console.log(res)
+            setCustomerQueueCard({
+                customerInfo: res
+            })
 
-        // })
+        })
 
     }
 
