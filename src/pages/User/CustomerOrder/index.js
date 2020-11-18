@@ -173,10 +173,11 @@ export default function CustomerOrder() {
                         FoodBankId: customerOrder.FoodBankId,
                         CustomerId: customerOrder.CustomerId
                     })
-                }).then(res => {
-                    const lastMade = res.id;
+                }).then((response) => response.json())
+                .then((user) => {
+                    const lastMade = user.id;
                     // Fix the order ids
-                    console.log(res);
+                    console.log(lastMade);
                     stockArray.forEach(element => {
                         postOneOrderItem(1, 1, element);
                     });
@@ -215,6 +216,7 @@ export default function CustomerOrder() {
                         StockId={foodObj.StockId}
                         food={foodObj.Stock.stockName}
                         available={foodObj.notClaimed}
+                        checker={customerOrder.selectedFood}
                     />
                 ))}
                 <div className="uk-card-footer" style={{ textAlign: "center" }}>
