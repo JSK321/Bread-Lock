@@ -39,16 +39,7 @@ export default function FoodBankQueueCard() {
                                     <br></br>
                                     Pick Up Time: {data.orderTime}
                                     <br></br>
-
-                                    {/* <button className="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-close-default">Default</button>
-
-                                    <div id="modal-close-default" uk-modal>
-                                        <div className="uk-modal-dialog uk-modal-body">
-                                            <button className="uk-modal-close-default" type="button" uk-close></button>
-                                            <h2 className="uk-modal-title">Default</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                        </div>
-                                    </div> */}
+                                    <button>View Order</button>
                                 </li>
                             ))
                         ) : null
