@@ -39,7 +39,18 @@ export default function FoodBankQueueCard() {
                                     <br></br>
                                     Pick Up Time: {data.orderTime}
                                     <br></br>
-                                    <button>View Order</button>
+                                    <button href="#toggle-animation" class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">View Order</button>
+                                    <div id="toggle-animation" class="uk-card uk-card-default uk-card-body uk-margin-small">
+                                        <ul>
+                                            {foodBankQueueCard.customerInfo != undefined ? (
+                                                foodBankQueueCard.customerInfo.map((data =>
+                                                    data.OrderItems.map((stockObj => 
+                                                        <li>{stockObj.Stock.stockName}</li>
+                                                    ))
+                                                ))) : null
+                                            }
+                                        </ul>
+                                    </div>
                                 </li>
                             ))
                         ) : null
