@@ -63,7 +63,7 @@ const API = {
                 OrderId,
                 StockId
             })
-        }).then(res=> res.json()).catch(err=>null)
+        }).then(res=> res).catch(err=>null)
     },
     putOnePantryItem: function(claimed, notClaimed, id){
     return fetch(`${URL_PREFIX}/api/pantry/get/${id}`,{
