@@ -1,8 +1,9 @@
 import React from "react";
+import Background from '../../images/background.jpg'
 
 export default function NavBar() {
   return (
-    <nav className="uk-navbar-container" uk-navbar="dropbar:true">
+    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={{Background}}>
       <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
           <li>

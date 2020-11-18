@@ -32,16 +32,25 @@ export default function PantryPreview() {
         <h4 style={{ textAlign: "center" }}>Pantry Preview</h4>
         <ul>
           {foodBank.foodList.map((pantryList) => (
-            <li>{pantryList.Stock.stockName}</li>
+            <li>
+              {pantryList.Stock.stockName} Portion Available:{" "}
+              {pantryList.notClaimed}
+            </li>
           ))}
         </ul>
 
-        <div style={{ textAlign: "center" }}>
+        <div className="uk-card-footer" style={{ textAlign: "center" }}>
           <Link to={"/signup"}>
             <button>Sign Up</button>
           </Link>
+
+          <div className="uk-card-footer" style={{ textAlign: "center" }}>
+            <Link to={"/customerorder"}>
+              <button>Order Food</button>
+            </Link>
+          </div>
         </div>
-        <br />
+       
       </div>
     </div>
   );
