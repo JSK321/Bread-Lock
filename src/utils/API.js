@@ -76,13 +76,13 @@ const API = {
         }).then(response => response.json())
             .catch(err=>null);
     }, 
-    getFBOrders: function (id) {
-        return fetch(`${URL_PREFIX}/api/order/get/all/foodbank/${id}`, {})
+    getFBOrders: function (FoodBankId) {
+        return fetch(`${URL_PREFIX}/api/order/get/all/foodbank/${FoodBankId}`, {})
           .then((res) => res.json())
           .catch((err) => null);
       },
-    getCustomerOrders: function (id) {
-        return fetch(`${URL_PREFIX}/api/order/get/all/customer/${id}`, {})
+    getCustomerOrders: function (CustomerId) {
+        return fetch(`${URL_PREFIX}/api/order/get/all/customer/${CustomerId}`, {})
           .then((res) => res.json())
           .catch((err) => null);
     },
