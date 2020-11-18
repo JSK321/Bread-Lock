@@ -2,6 +2,15 @@ import React from 'react'
 import './styles.css'
 
 export default function CustomerOrderForm(props) {
+    
+    let renderPointer = false;
+    props.checker.forEach(element => {
+    if (element === props.id) {
+        renderPointer = true;
+    }
+        
+    });
+
     return (
         <div>
             <form>

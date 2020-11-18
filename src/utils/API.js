@@ -63,16 +63,35 @@ const API = {
                 OrderId,
                 StockId
             })
-        }).then(res=> res.json()).catch(err=>null)
+        }).then(res=> res).catch(err=>null)
     },
     putOnePantryItem: function(claimed, notClaimed, id){
-    return fetch(`${URL_PREFIX}/api/pantry/get/${id}`,{
+    return fetch(`${URL_PREFIX}/api/pantry/put/${id}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({claimed, notClaimed})
+            body: JSON.stringify({
+                notClaimed: notClaimed,
+                claimed: claimed
+            })
         }).then(response => response.json())
             .catch(err=>null);
+    }, 
+    getFBOrders: function (FoodBankId) {
+        return fetch(`${URL_PREFIX}/api/order/get/all/foodbank/${FoodBankId}`, {})
+          .then((res) => res.json())
+          .catch((err) => null);
+      },
+    getCustomerOrders: function (CustomerId) {
+        return fetch(`${URL_PREFIX}/api/order/get/all/customer/${CustomerId}`, {})
+          .then((res) => res.json())
+          .catch((err) => null);
     },
+    getOneOrders: function (id) {
+        return fetch(`${URL_PREFIX}/api/order/get/${id}`, {})
+          .then((res) => res.json())
+          .catch((err) => null);
+    },
+   
 
   // createFish:function(token,fishData){
   //     return fetch(`${URL_PREFIX}/api/fishes`,{

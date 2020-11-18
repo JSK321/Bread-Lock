@@ -11,12 +11,15 @@ import Map from './pages/FoodBank//Map';
 import FoodBank from './pages/FoodBank/FoodBankDetails';
 import FbSignUp from './pages/FoodBank/FoodBankSignUp';
 import PantryPreview from './pages/FoodBank/PantryPreview';
+import FoodBankQueue from './pages/Admin/FoodBankQueue/'
 //Admin Pages
 import AdminHome from './pages/Admin/AdminHome';
-import CustomerQueue from './pages/Admin/CustomerQueue';
+// import CustomerQueue from './pages/Admin/FoodBankQueue';
 import PantryData from './pages/Admin/PantryData';
 //No Matches Page
 import NoMatch from './pages/NoMatch';
+//Footer
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -53,16 +56,20 @@ function App() {
         <Route exact path="/adminhome">
           <AdminHome />
         </Route>
-        <Route exact path="/customerqueue">
+        {/* <Route exact path="/customerqueue/:id">
           <CustomerQueue />
+        </Route> */}
+        <Route exact path="/foodbankqueue/:id">
+          <FoodBankQueue />
         </Route>
-        <Route exact path="/pantrydata">
+        <Route exact path="/pantrydata/:id">
           <PantryData />
         </Route>
         <Route path="*">
           <NoMatch />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }
