@@ -1,9 +1,9 @@
 import React from 'react'
-import CustomerQueueCard from '../../../components/CustomerQueueCard'
+import FoodBankQueueCard from '../../../components/FoodBankQueueCard'
 
-export default function CustomerQueue() {
+export default function FoodBankQueue() {
     return (
-        <CustomerQueueCard 
+        <FoodBankQueueCard 
             // customerFirstName={props}
             // customerLastName={props}
             // customerId={props}
