@@ -36,7 +36,7 @@ export default function FoodBankQueueCard() {
         // console.log(customerRecieved)
         // console.log(setRecievedPointer)
         API.putFBOrders(setRecievedPointer, customerOrderId).then(res => {
-            console.log("im here")
+            // console.log("im here")
             loadFoodBankQueue()
         })
 
@@ -52,13 +52,15 @@ export default function FoodBankQueueCard() {
 
                             foodBankQueueCard.customerInfo.map((data =>
                                 <li>
-                                    <label><input class="uk-checkbox" id={data.id} value={data.recieved} type="checkbox" onChange={handleSelectClick}/> {data.recieved === false ? "Order Pending" : "Order Complete"}</label>
+                                    <label className="uk-text-muted">Click Button to change Order Status</label>
                                     <br></br>
-                                    Name: {data.Customer.firstName} {data.Customer.lastName}
+                                    <button className="uk-button uk-button-default" id={data.id} value={data.recieved} type="button" onClick={handleSelectClick}>{data.recieved === false ? "Order Pending" : "Order Complete"}</button>
+                                    <br></br>
+                                    Name: <strong>{data.Customer.firstName} {data.Customer.lastName}</strong>
                                     <div style={{display: `${data.recieved === false ? "block" : "none"}`}}>
-                                    Date: {data.orderDate}
+                                    Pick Up Date: <strong>{data.orderDate}</strong>
                                         <br></br>
-                                    Pick Up Time: {data.orderTime}
+                                    Pick Up Time: <strong>{data.orderTime}</strong>
 
                                         <br></br>
                                         <button href="#toggle-animation" className="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">View Order</button>
