@@ -26,9 +26,19 @@ export default function FoodBankQueueCard() {
         event.preventDefault()
         let customerOrderId = event.target.id
         let customerRecieved = event.target.value
+        let setRecievedPointer;
+        if (customerRecieved === "true"){
+            setRecievedPointer = false 
+        } else {
+            setRecievedPointer = true
+        }
         // console.log(customerOrderId)
         // console.log(customerRecieved)
-        
+        // console.log(setRecievedPointer)
+        API.putFBOrders(setRecievedPointer, customerOrderId).then(res => {
+            console.log("im here")
+            loadFoodBankQueue()
+        })
 
     }
     
