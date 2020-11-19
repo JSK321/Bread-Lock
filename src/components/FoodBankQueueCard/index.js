@@ -11,7 +11,6 @@ export default function FoodBankQueueCard() {
     function loadFoodBankQueue() {
         // API Call to retrieve customer information
         API.getFBOrders(id).then(res => {
-            console.log(res)
             setFoodBankQueueCard({
                 customerInfo: res
             })
@@ -23,6 +22,16 @@ export default function FoodBankQueueCard() {
         loadFoodBankQueue()
     }, [])
 
+    const handleSelectClick = event => {
+        event.preventDefault()
+        let customerOrderId = event.target.id
+        let customerRecieved = event.target.value
+        // console.log(customerOrderId)
+        // console.log(customerRecieved)
+        
+
+    }
+    
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
@@ -33,23 +42,27 @@ export default function FoodBankQueueCard() {
 
                             foodBankQueueCard.customerInfo.map((data =>
                                 <li>
+                                    <label><input class="uk-checkbox" id={data.id} value={data.recieved} type="checkbox" onChange={handleSelectClick}/> {data.recieved === false ? "Order Pending" : "Order Complete"}</label>
+                                    <br></br>
                                     Name: {data.Customer.firstName} {data.Customer.lastName}
-                                    <br></br>
+                                    <div style={{display: `${data.recieved === false ? "block" : "none"}`}}>
                                     Date: {data.orderDate}
-                                    <br></br>
+                                        <br></br>
                                     Pick Up Time: {data.orderTime}
-                                    <br></br>
-                                    <button href="#toggle-animation" class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">View Order</button>
-                                    <div id="toggle-animation" class="uk-card uk-card-default uk-card-body uk-margin-small">
-                                        <ul>
-                                            {foodBankQueueCard.customerInfo != undefined ? (
-                                                foodBankQueueCard.customerInfo.map((data =>
-                                                    data.OrderItems.map((stockObj => 
-                                                        <li>{stockObj.Stock.stockName}</li>
-                                                    ))
-                                                ))) : null
-                                            }
-                                        </ul>
+
+                                        <br></br>
+                                        <button href="#toggle-animation" className="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">View Order</button>
+                                        <div id="toggle-animation" className="uk-card uk-card-default uk-card-body uk-margin-small">
+                                            <ul>
+                                                {foodBankQueueCard.customerInfo != undefined ? (
+                                                    foodBankQueueCard.customerInfo.map((data =>
+                                                        data.OrderItems.map((stockObj =>
+                                                            <li style={{ display: "inline-block", margin: "2px" }}>{stockObj.Stock.stockName},</li>
+                                                        ))
+                                                    ))) : null
+                                                }
+                                            </ul>
+                                        </div>
                                     </div>
                                 </li>
                             ))
