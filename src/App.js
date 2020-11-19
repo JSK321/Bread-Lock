@@ -36,7 +36,7 @@ function App() {
         <Route exact path="/signin">
           <SignIn />
         </Route>
-        <Route exact path="/userprofile">
+        <Route exact path="/userprofile/:id">
           <UserProfile />
         </Route>
         <Route exact path="/map">

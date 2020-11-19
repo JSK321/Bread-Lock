@@ -8,6 +8,7 @@ export default function Profile() {
 
     const [userProfile, setUserProfile] = useState({})
 
+    // console.log(userProfile.userInfo)
 
     function loadUserProfile(id) {
         API.getOneProfile(id).then(res=> {
@@ -18,13 +19,24 @@ export default function Profile() {
     }
 
     useEffect(()=> {
-       loadUserProfile()
+       loadUserProfile(id)
     }, [])
 
     return (
         <div>
-            <h1>Profile</h1>
-            {/* <CustomerSignUpInfo /> */}
+            {userProfile.userInfo != undefined ? (
+                <CustomerSignUpInfo 
+                    firstName={userProfile.userInfo.firstName}
+                    lastName={userProfile.userInfo.lastName}
+                    phone={userProfile.userInfo.phone}
+                    email={userProfile.userInfo.email}
+                    address={userProfile.userInfo.address}
+                    cityName={userProfile.userInfo.cityName}
+                    stateAbr={userProfile.userInfo.stateAbr}
+                    zipCode={userProfile.userInfo.zipCode}
+                />
+            ) : null
+        }
         </div>
     )
 }
