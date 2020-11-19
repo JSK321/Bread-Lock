@@ -1,7 +1,12 @@
+import background from '../../images/background.jpg'
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Background from '../../images/background.jpg'
 import API from "../../utils/API";
+
+let sectionStyle = {
+  backgroundImage: "url(" +  background  + ")",
+  width: "100%"
+  };
 
 export default function NavBar() {
   const { id } = useParams()
@@ -21,7 +26,7 @@ export default function NavBar() {
   }, [])
 
   return (
-    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={{ Background }}>
+    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={sectionStyle}>
       <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
           <li>
