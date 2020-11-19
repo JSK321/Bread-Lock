@@ -91,6 +91,16 @@ const API = {
           .then((res) => res.json())
           .catch((err) => null);
     },
+    putFBOrders: function(recieved, id){
+        return fetch(`${URL_PREFIX}/api/order/put/foodbankwork/${id}`,{
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    recieved: recieved
+                })
+            }).then(response => response.json())
+                .catch(err=>null);
+        }, 
    
 
   // createFish:function(token,fishData){
