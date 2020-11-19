@@ -4,7 +4,8 @@ import NavBar from './components/NavBar';
 //User pages
 import Home from './pages/User/Home';
 import SignUp from './pages/User/SignUp';
-import Profile from './pages/User/Profile';
+import SignIn from './pages/User/SignIn';
+import UserProfile from './pages/User/UserProfile';
 import CustomerOrder from './pages/User/CustomerOrder';
 //Food Bank Pages
 import Map from './pages/FoodBank//Map';
@@ -32,8 +33,11 @@ function App() {
         <Route exact path="/signup">
           <SignUp />
         </Route>
-        <Route exact path="/profile">
-          <Profile />
+        <Route exact path="/signin">
+          <SignIn />
+        </Route>
+        <Route exact path="/userprofile/:id">
+          <UserProfile />
         </Route>
         <Route exact path="/map">
           <Map />

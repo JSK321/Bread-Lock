@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Background from '../../images/background.jpg'
+import API from "../../utils/API";
 
 export default function NavBar() {
+  const { id } = useParams()
+
+  const [getUserProfile, setUserProfile] = useState({})
+
+  function loadAllUserProfile() {
+    API.getAllProfiles().then(res => {
+      setUserProfile({
+        users: res
+      })
+    })
+  }
+
+  useEffect(() => {
+    loadAllUserProfile()
+  })
+
   return (
-    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={{Background}}>
+    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={{ Background }}>
       <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
           <li>
@@ -13,6 +31,9 @@ export default function NavBar() {
             <a href="/map">Map</a>
           </li>
           <li>
+            <a href="/signin">Sign In</a>
+          </li>
+          {/* <li>
             <a href="#">View Pantry</a>
             <div className="uk-navbar-dropdown">
               <ul className="uk-nav uk-navbar-dropdown-nav">
@@ -27,23 +48,7 @@ export default function NavBar() {
                 </li>
               </ul>
             </div>
-          </li>
-          <li>
-            <a href="#">Profile</a>
-            <div className="uk-navbar-dropdown">
-              <ul className="uk-nav uk-navbar-dropdown-nav">
-                <li>
-                  <a href="/profile">Profile Page</a>
-                </li>
-                <li>
-                  <a href="/foodbank">Food Bank Profile</a>
-                </li>
-                <li>
-                  <a href="/pantry">Food Bank Pantry</a>
-                </li>
-              </ul>
-            </div>
-          </li>
+          </li> */}
           <li>
             <a href="#">Sign Up</a>
             <div className="uk-navbar-dropdown">
@@ -57,6 +62,24 @@ export default function NavBar() {
                 <li>
                   <a href="/signup">Register as Recipient</a>
                 </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="#">Profile</a>
+            <div className="uk-navbar-dropdown">
+              <ul className="uk-nav uk-navbar-dropdown-nav">
+                {getUserProfile.users != undefined ? (
+                  getUserProfile.users.map((data =>
+                    <li><Link to={"/userprofile/" + data.id}>{data.firstName}'s Profile</Link></li>
+                  ))
+                ) : null}
+                {/* <li>
+                  <a href="/foodbank">Food Bank Profile</a>
+                </li>
+                <li>
+                  <a href="/pantry">Food Bank Pantry</a>
+                </li> */}
               </ul>
             </div>
           </li>

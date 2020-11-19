@@ -17,21 +17,21 @@ export default function CustomerSignUpInfo(props) {
                 <div class="uk-flex uk-flex-center">
                     <div class="uk-card uk-card-default uk-width-expand">
                         <ul>
-                            <li>First Name: {props.showData ? (props.firstName) : null}</li>
+                            <li>First Name: <strong>{props.firstName}</strong></li>
                             <br></br>
-                            <li>Last Name: {props.showData ? (props.lastName) : null}</li>
+                            <li>Last Name: <strong>{props.lastName}</strong></li>
                             <br></br>
-                            <li>Phone: {props.showData ? (props.phone) : null}</li>
+                            <li>Phone: <strong>{props.phone}</strong></li>
                             <br></br>
-                            <li>Email: {props.showData ? (props.email) : null}</li>
+                            <li>Email: <strong>{props.email}</strong></li>
                             <br></br>
-                            <li>Street Address: {props.showData ? (props.address) : null}</li>
+                            <li>Street Address: <strong>{props.address}</strong></li>
                             <br></br>
-                            <li>City: {props.showData ? (props.cityName) : null}</li>
+                            <li>City: <strong>{props.cityName}</strong></li>
                             <br></br>
-                            <li>State: {props.showData ? (props.stateAbr) : null}</li>
+                            <li>State: <strong>{props.stateAbr}</strong></li>
                             <br></br>
-                            <li>ZipCode: {props.showData ? (props.zipCode) : null}</li>
+                            <li>ZipCode: <strong>{props.zipCode}</strong></li>
                         </ul>
                     </div>
                 </div>

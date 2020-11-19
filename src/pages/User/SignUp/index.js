@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CustomerSignUp from '../../../components/CustomerSignUp'
-import CustomerSignUpInfo from '../../../components/CustomerSignUpInfo'
+// import CustomerSignUpInfo from '../../../components/CustomerSignUpInfo'
 // import './styles.css'
 
 export default class UserSignUp extends Component {
@@ -134,7 +134,7 @@ export default class UserSignUp extends Component {
                 zipCode={this.state.zipCode}
                 />
                 <br></br>
-                <CustomerSignUpInfo 
+                {/* <CustomerSignUpInfo 
                 showData={this.state.showData}
                 firstName={this.state.currentLog.firstName}
                 lastName={this.state.currentLog.lastName}
@@ -144,7 +144,7 @@ export default class UserSignUp extends Component {
                 cityName={this.state.currentLog.cityName}
                 stateAbr={this.state.currentLog.stateAbr}
                 zipCode={this.state.currentLog.zipCode}
-                />
+                /> */}
             </div>
         )
     }
