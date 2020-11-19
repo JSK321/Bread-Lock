@@ -43,6 +43,10 @@ export default function FoodBank() {
           <Link to={'/pantry/' + id}>
             <button>View Pantry</button>
           </Link>
+          <br></br>
+          <Link to={'/foodbankqueue/' + id}>
+            <button>View Customer Queue</button>
+          </Link>
         </div>
       </div>
     </div>
