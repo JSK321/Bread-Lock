@@ -1,7 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import API from "../../utils/API";
 
 export default function UserSignIn() {
+    const [signInFormState, setSignInFormState] = useState({
+        email:"",
+        password:""
+    })
+
+    const [profileState, setProfileState] = useState({
+        userOrder: [],
+        isLoggedIn: false
+    })
+
+    useEffect(()=> {
+        // use token here
+        // const token = localStorage.getItem("token")
+        // API route to get one profile with token
+        // API.getOneProfile().then(profileData => {
+        //     if(profileData){
+        //         setProfileState({
+        //             name: profileData.name,
+        //             email: profileData.email,
+        //             userOrder: profileData.
+        //         })
+        //     }
+        // })
+    }, [])
+
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-width-1-2@m">
