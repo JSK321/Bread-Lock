@@ -9,6 +9,7 @@ export default function UserSignIn() {
     })
 
     const [profileState, setProfileState] = useState({
+        email: "",
         userOrder: [],
         isLoggedIn: false
     })
@@ -37,6 +38,20 @@ export default function UserSignIn() {
 
     }
 
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        //API call to log in with token
+        // API.function(signInFormState).then(newToken=> {
+        //     API.getOneProfile(newToken.token).then(profileData=> {
+        //         setProfileState({
+        //             email: profileData.email,
+        //             userOrder: profileData.orders,
+        //             isLoggedIn: true
+        //         })
+        //     })
+        // })
+    }
+
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-width-1-2@m">
@@ -49,7 +64,7 @@ export default function UserSignIn() {
                 </div>
                 <div className="uk-flex uk-flex-center">
                     <div className="uk-card-body uk-width-expand">
-                        <form>
+                        <form onSubmit={handleFormSubmit}>
                             <input class="uk-input" type="text" name="email" value={signInFormState.email} onChange={handleInputChange} placeholder="Username" />
                             <input class="uk-input" type="password" name="password" value={signInFormState.password} onChange={handleInputChange} placeholder="Password" />
 
