@@ -4,12 +4,18 @@ import { Link, useParams } from "react-router-dom";
 import API from "../../utils/API";
 
 let sectionStyle = {
-  backgroundImage: "url(" +  background  + ")",
+  backgroundImage: "url(" + background + ")",
   width: "100%"
-  };
+};
 
 export default function NavBar() {
   const { id } = useParams()
+
+  const [userSignIn, setUserSignIn] = useState({
+    email: "",
+    password: "",
+    isLoggedIn: false
+  })
 
   const [getUserProfile, setUserProfile] = useState({})
 
@@ -34,9 +40,6 @@ export default function NavBar() {
           </li>
           <li>
             <a href="/map">Map</a>
-          </li>
-          <li>
-            <a href="/signin">Sign In</a>
           </li>
           {/* <li>
             <a href="#">View Pantry</a>
@@ -70,23 +73,17 @@ export default function NavBar() {
               </ul>
             </div>
           </li>
+        </ul>
+      </div>
+      <div className="uk-navbar-right">
+        <ul class="uk-navbar-nav">
           <li>
-            <a href="#">Profile</a>
-            <div className="uk-navbar-dropdown">
-              <ul className="uk-nav uk-navbar-dropdown-nav">
-                {getUserProfile.users != undefined ? (
-                  getUserProfile.users.map((data =>
-                    <li><Link to={"/userprofile/" + data.id}>{data.firstName}'s Profile</Link></li>
-                  ))
-                ) : null}
-                {/* <li>
-                  <a href="/foodbank">Food Bank Profile</a>
-                </li>
-                <li>
-                  <a href="/pantry">Food Bank Pantry</a>
-                </li> */}
-              </ul>
-            </div>
+            {getUserProfile.users != undefined ? (
+              userSignIn.isLoggedIn ?
+                getUserProfile.users.map((data =>
+                  <Link to={"/userprofile/" + data.id}>My Profile</Link>
+                )) : <a href="/signin">Sign In</a>
+            ) : null}
           </li>
         </ul>
       </div>
