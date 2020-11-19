@@ -38,6 +38,15 @@ export default function PantryPreview() {
     loadPantry();
   }, []);
 
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setFoodBank({
+      ...foodBank,
+      [name]: value
+    })
+
+  }
+
   return (
     <div className="uk-flex uk-flex-center">
       <div className="uk-card uk-card-default uk-width-1-2@m">
@@ -61,8 +70,8 @@ export default function PantryPreview() {
           <div className="uk-card uk-card-default uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
             <h5>Update Portions</h5>
             <form>
-              <input className="uk-input" type="text" placeholder="Food name"/>
-              <input className="uk-input" type="text" placeholder="Amount"/>
+              <input className="uk-input" type="text" onChange={handleInputChange} placeholder="Food name" />
+              <input className="uk-input" type="text" onChange={handleInputChange} placeholder="Amount" />
               <div style={{ textAlign: "center" }}>
                 <br></br>
                 <input type="submit" value="Update" />
@@ -70,16 +79,11 @@ export default function PantryPreview() {
             </form>
           </div>
         </div>
-        {/* <div className="uk-card-footer" style={{ textAlign: "center" }}>
-        <button>Update</button>
-        <Link to={'/pantry/' + id}>
-          <button>View Pantry</button>
-        </Link>
-        <br></br>
-        <Link to={'/foodbankqueue/' + id}>
-          <button>View Customer Queue</button>
-        </Link>
-      </div> */}
+        <div className="uk-card-footer" style={{ textAlign: "center" }}>
+          <Link to={'/foodbankqueue/' + id}>
+            <button>View Customer Queue</button>
+          </Link>
+        </div>
       </div>
     </div>
 
