@@ -23,7 +23,7 @@ export default function NavBar() {
 
   useEffect(() => {
     loadAllUserProfile()
-  })
+  }, [])
 
   return (
     <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={sectionStyle}>
