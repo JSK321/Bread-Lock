@@ -8,8 +8,6 @@ export default function Profile() {
 
     const [userProfile, setUserProfile] = useState({})
 
-    // console.log(userProfile.userInfo)
-
     function loadUserProfile(id) {
         API.getOneProfile(id).then(res=> {
             setUserProfile({
