@@ -15,7 +15,7 @@ import PantryPreview from './pages/FoodBank/PantryPreview';
 import FoodBankQueue from './pages/Admin/FoodBankQueue/'
 //Admin Pages
 import AdminHome from './pages/Admin/AdminHome';
-// import CustomerQueue from './pages/Admin/FoodBankQueue';
+import CustomerQueue from './pages/User/CustomerQueue';
 import PantryData from './pages/Admin/PantryData';
 //No Matches Page
 import NoMatch from './pages/NoMatch';
@@ -60,9 +60,9 @@ function App() {
         <Route exact path="/adminhome">
           <AdminHome />
         </Route>
-        {/* <Route exact path="/customerqueue/:id">
+        <Route exact path="/customerqueue/:id">
           <CustomerQueue />
-        </Route> */}
+        </Route>
         <Route exact path="/foodbankqueue/:id">
           <FoodBankQueue />
         </Route>
