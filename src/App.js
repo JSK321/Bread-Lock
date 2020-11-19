@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 //User pages
 import Home from './pages/User/Home';
 import SignUp from './pages/User/SignUp';
+import SignIn from './pages/User/SignIn';
 import Profile from './pages/User/Profile';
 import CustomerOrder from './pages/User/CustomerOrder';
 //Food Bank Pages
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route exact path="/signup">
           <SignUp />
+        </Route>
+        <Route exact path="/signin">
+          <SignIn />
         </Route>
         <Route exact path="/profile">
           <Profile />

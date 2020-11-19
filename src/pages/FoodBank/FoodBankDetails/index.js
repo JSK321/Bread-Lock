@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import API from "../../../utils/API";
 
 
@@ -15,32 +15,37 @@ export default function FoodBank() {
   }, []);
   return (
     <div className="uk-flex uk-flex-center">
-      <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
-        <h4 style={{ textAlign: "center" }}>Food Bank Information</h4>
-        <ul>
-          <li>Food Bank: {foodBank.bankName}</li>
-          <br></br>
-          <li>Address: {foodBank.address}</li>
-          <br></br>
-          <li>City: {foodBank.cityName}</li>
-          <br></br>
-          <li>State: {foodBank.stateAbr}</li>
-          <br></br>
-          <li>ZipCode: {foodBank.zipCode}</li>
-          <br></br>
-          <li>Phone: {foodBank.phone}</li>
-          <br></br>
-          <li>Email: {foodBank.email}</li>
-          <br></br>
-        </ul>
-
-        <div style={{ textAlign: "center" }}>
-          <Link to= {'/pantry/' + id}>
+      <div className="uk-card uk-card-default uk-width-1-2@m">
+        <div className="uk-card-header">
+          <div className="uk-grid-small uk-flex-middle" uk-grid>
+            <div className="uk-width-expand">
+              <h4 style={{ textAlign: "center" }}>{foodBank.bankName}</h4>
+            </div>
+          </div>
+        </div>
+        <div className="uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
+          <ul>
+            <li>Address: {foodBank.address}</li>
+            <br></br>
+            <li>City: {foodBank.cityName}</li>
+            <br></br>
+            <li>State: {foodBank.stateAbr}</li>
+            <br></br>
+            <li>ZipCode: {foodBank.zipCode}</li>
+            <br></br>
+            <li>Phone: {foodBank.phone}</li>
+            <br></br>
+            <li>Email: {foodBank.email}</li>
+            <br></br>
+          </ul>
+        </div>
+        <div className="uk-card-footer" style={{ textAlign: "center" }}>
+          <Link to={'/pantry/' + id}>
             <button>View Pantry</button>
           </Link>
         </div>
-        <br />
       </div>
     </div>
+
   );
 }

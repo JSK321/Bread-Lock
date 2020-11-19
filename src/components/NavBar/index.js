@@ -13,6 +13,9 @@ export default function NavBar() {
             <a href="/map">Map</a>
           </li>
           <li>
+            <a href="/signin">Sign In</a>
+          </li>
+          {/* <li>
             <a href="#">View Pantry</a>
             <div className="uk-navbar-dropdown">
               <ul className="uk-nav uk-navbar-dropdown-nav">
@@ -43,7 +46,7 @@ export default function NavBar() {
                 </li>
               </ul>
             </div>
-          </li>
+          </li> */}
           <li>
             <a href="#">Sign Up</a>
             <div className="uk-navbar-dropdown">
