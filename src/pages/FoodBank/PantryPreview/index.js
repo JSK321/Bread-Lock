@@ -42,6 +42,19 @@ export default function PantryPreview() {
         </ul>
 
         <div className="uk-card-footer" style={{ textAlign: "center" }}>
+          {/* <div>
+            {getUserProfile.users != undefined ? (
+              userSignIn.isLoggedIn ?
+                getUserProfile.users.map((data =>
+                  <Link to={"/customerorder/" + foodBank.FoodBankId}>
+                    <button>Order Food</button>
+                  </Link>
+                )) :
+                <Link to={"/signup"}>
+                  <button>Sign Up</button>
+                </Link>
+            ) : null}
+          </div> */}
           <div>
             <Link to={"/signup"}>
               <button>Sign Up</button>
