@@ -28,11 +28,13 @@ export default function PantryPreview() {
 
   return (
     <div className="uk-flex uk-flex-center">
-      <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
-        <h4 style={{ textAlign: "center" }}>Pantry Preview</h4>
+      <div className="uk-card uk-card-default uk-width-3-4">
+        <div className="uk-card-header">
+          <h4 style={{ textAlign: "center" }}>Pantry Preview</h4>
+        </div>
         <ul>
           {foodBank.foodList.map((pantryList) => (
-            <li>
+            <li style={{ textAlign: "center" }}>
               {pantryList.Stock.stockName} Portion Available:{" "}
               {pantryList.notClaimed}
             </li>
@@ -40,18 +42,33 @@ export default function PantryPreview() {
         </ul>
 
         <div className="uk-card-footer" style={{ textAlign: "center" }}>
-          <Link to={"/signup"}>
-            <button>Sign Up</button>
-          </Link>
-
-          <div className="uk-card-footer" style={{ textAlign: "center" }}>
+          {/* <div>
+            {getUserProfile.users != undefined ? (
+              userSignIn.isLoggedIn ?
+                getUserProfile.users.map((data =>
+                  <Link to={"/customerorder/" + foodBank.FoodBankId}>
+                    <button>Order Food</button>
+                  </Link>
+                )) :
+                <Link to={"/signup"}>
+                  <button>Sign Up</button>
+                </Link>
+            ) : null}
+          </div> */}
+          <div>
+            <Link to={"/signup"}>
+              <button>Sign Up</button>
+            </Link>
+          </div>
+          <div>
             <Link to={"/customerorder/" + foodBank.FoodBankId}>
               <button>Order Food</button>
             </Link>
           </div>
         </div>
-       
       </div>
+
     </div>
+
   );
 }

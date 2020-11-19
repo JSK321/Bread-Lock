@@ -1,9 +1,38 @@
-import React from "react";
-import Background from '../../images/background.jpg'
+import background from '../../images/background.jpg'
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import API from "../../utils/API";
+
+let sectionStyle = {
+  backgroundImage: "url(" + background + ")",
+  width: "100%"
+};
 
 export default function NavBar() {
+  const { id } = useParams()
+
+  const [userSignIn, setUserSignIn] = useState({
+    email: "",
+    password: "",
+    isLoggedIn: false
+  })
+
+  const [getUserProfile, setUserProfile] = useState({})
+
+  function loadAllUserProfile() {
+    API.getAllProfiles().then(res => {
+      setUserProfile({
+        users: res
+      })
+    })
+  }
+
+  useEffect(() => {
+    loadAllUserProfile()
+  }, [])
+
   return (
-    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={{Background}}>
+    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={sectionStyle}>
       <div className="uk-navbar-left">
         <ul className="uk-navbar-nav">
           <li>
@@ -12,7 +41,7 @@ export default function NavBar() {
           <li>
             <a href="/map">Map</a>
           </li>
-          <li>
+          {/* <li>
             <a href="#">View Pantry</a>
             <div className="uk-navbar-dropdown">
               <ul className="uk-nav uk-navbar-dropdown-nav">
@@ -27,23 +56,7 @@ export default function NavBar() {
                 </li>
               </ul>
             </div>
-          </li>
-          <li>
-            <a href="#">Profile</a>
-            <div className="uk-navbar-dropdown">
-              <ul className="uk-nav uk-navbar-dropdown-nav">
-                <li>
-                  <a href="/profile">Profile Page</a>
-                </li>
-                <li>
-                  <a href="/foodbank">Food Bank Profile</a>
-                </li>
-                <li>
-                  <a href="/pantry">Food Bank Pantry</a>
-                </li>
-              </ul>
-            </div>
-          </li>
+          </li> */}
           <li>
             <a href="#">Sign Up</a>
             <div className="uk-navbar-dropdown">
@@ -59,6 +72,18 @@ export default function NavBar() {
                 </li>
               </ul>
             </div>
+          </li>
+        </ul>
+      </div>
+      <div className="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+          <li>
+            {getUserProfile.users != undefined ? (
+              userSignIn.isLoggedIn ?
+                getUserProfile.users.map((data =>
+                  <Link to={"/userprofile/" + data.id}>My Profile</Link>
+                )) : <a href="/signin">Sign In</a>
+            ) : null}
           </li>
         </ul>
       </div>

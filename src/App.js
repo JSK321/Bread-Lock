@@ -4,7 +4,8 @@ import NavBar from './components/NavBar';
 //User pages
 import Home from './pages/User/Home';
 import SignUp from './pages/User/SignUp';
-import Profile from './pages/User/Profile';
+import SignIn from './pages/User/SignIn';
+import UserProfile from './pages/User/UserProfile';
 import CustomerOrder from './pages/User/CustomerOrder';
 //Food Bank Pages
 import Map from './pages/FoodBank//Map';
@@ -14,7 +15,7 @@ import PantryPreview from './pages/FoodBank/PantryPreview';
 import FoodBankQueue from './pages/Admin/FoodBankQueue/'
 //Admin Pages
 import AdminHome from './pages/Admin/AdminHome';
-// import CustomerQueue from './pages/Admin/FoodBankQueue';
+import CustomerQueue from './pages/User/CustomerQueue';
 import PantryData from './pages/Admin/PantryData';
 //No Matches Page
 import NoMatch from './pages/NoMatch';
@@ -32,8 +33,11 @@ function App() {
         <Route exact path="/signup">
           <SignUp />
         </Route>
-        <Route exact path="/profile">
-          <Profile />
+        <Route exact path="/signin">
+          <SignIn />
+        </Route>
+        <Route exact path="/userprofile/:id">
+          <UserProfile />
         </Route>
         <Route exact path="/map">
           <Map />
@@ -56,9 +60,9 @@ function App() {
         <Route exact path="/adminhome">
           <AdminHome />
         </Route>
-        {/* <Route exact path="/customerqueue/:id">
+        <Route exact path="/customerqueue/:id">
           <CustomerQueue />
-        </Route> */}
+        </Route>
         <Route exact path="/foodbankqueue/:id">
           <FoodBankQueue />
         </Route>

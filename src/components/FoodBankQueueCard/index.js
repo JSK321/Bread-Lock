@@ -11,7 +11,6 @@ export default function FoodBankQueueCard() {
     function loadFoodBankQueue() {
         // API Call to retrieve customer information
         API.getFBOrders(id).then(res => {
-            console.log(res)
             setFoodBankQueueCard({
                 customerInfo: res
             })
@@ -23,6 +22,26 @@ export default function FoodBankQueueCard() {
         loadFoodBankQueue()
     }, [])
 
+    const handleSelectClick = event => {
+        event.preventDefault()
+        let customerOrderId = event.target.id
+        let customerRecieved = event.target.value
+        let setRecievedPointer;
+        if (customerRecieved === "true"){
+            setRecievedPointer = false 
+        } else {
+            setRecievedPointer = true
+        }
+        // console.log(customerOrderId)
+        // console.log(customerRecieved)
+        // console.log(setRecievedPointer)
+        API.putFBOrders(setRecievedPointer, customerOrderId).then(res => {
+            // console.log("im here")
+            loadFoodBankQueue()
+        })
+
+    }
+    
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
@@ -33,22 +52,30 @@ export default function FoodBankQueueCard() {
 
                             foodBankQueueCard.customerInfo.map((data =>
                                 <li>
-                                    Name: {data.Customer.firstName} {data.Customer.lastName}
+                                    <label className="uk-text-muted">Click Button to change Order Status</label>
                                     <br></br>
-                                    Date: {data.orderDate}
+                                    <button className="uk-button uk-button-default" id={data.id} value={data.recieved} type="button" onClick={handleSelectClick}>{data.recieved === false ? "Order Pending" : "Order Complete"}</button>
                                     <br></br>
-                                    Pick Up Time: {data.orderTime}
-                                    <br></br>
+                                    Name: <strong>{data.Customer.firstName} {data.Customer.lastName}</strong>
+                                    <div style={{display: `${data.recieved === false ? "block" : "none"}`}}>
+                                    Pick Up Date: <strong>{data.orderDate}</strong>
+                                        <br></br>
+                                    Pick Up Time: <strong>{data.orderTime}</strong>
 
-                                    {/* <button className="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-close-default">Default</button>
-
-                                    <div id="modal-close-default" uk-modal>
-                                        <div className="uk-modal-dialog uk-modal-body">
-                                            <button className="uk-modal-close-default" type="button" uk-close></button>
-                                            <h2 className="uk-modal-title">Default</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <br></br>
+                                        <button href="#toggle-animation" className="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">View Order</button>
+                                        <div id="toggle-animation" className="uk-card uk-card-default uk-card-body uk-margin-small">
+                                            <ul>
+                                                {foodBankQueueCard.customerInfo != undefined ? (
+                                                    foodBankQueueCard.customerInfo.map((data =>
+                                                        data.OrderItems.map((stockObj =>
+                                                            <li style={{ display: "inline-block", margin: "2px" }}>{stockObj.Stock.stockName},</li>
+                                                        ))
+                                                    ))) : null
+                                                }
+                                            </ul>
                                         </div>
-                                    </div> */}
+                                    </div>
                                 </li>
                             ))
                         ) : null
