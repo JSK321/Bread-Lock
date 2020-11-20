@@ -1,7 +1,9 @@
-const URL_PREFIX = "http://localhost:8080"
+import {URL_PREFIX, URL_REDIRECT} from "./urlPointer"
+//const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
 const API = {
+    
     // login:function(userData){
     //     console.log(userData)
     //     return fetch(`${URL_PREFIX}/api/users/login`,{
@@ -54,6 +56,11 @@ const API = {
     // used in /pages/admin/pantrydata && /pages/user/customerorder
     getOneFBPantry: function (id) {
         return fetch(`${URL_PREFIX}/api/pantry/get/${id}`)
+            .then(res => res.json()).catch(err => null)
+    },
+
+    isPantryEmpty: function (id) {
+        return fetch(`${URL_PREFIX}/api/pantry/isEmpty/${id}`)
             .then(res => res.json()).catch(err => null)
     },
     // used in /pages/user/customerorder
@@ -128,4 +135,5 @@ const API = {
     // },
 };
 
-module.exports = API;
+//module.exports = API;
+export default API;

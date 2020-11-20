@@ -4,11 +4,11 @@ import CustomerOrderForm from '../../../components/CustomerOrderForm'
 import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
 // import foods from '../../../foods.json';
 // import FoodBank from '../../FoodBank/FoodBankDetails';
-import API, { postOneOrderItem, putOnePantryItem } from "../../../utils/API"
-
-const URL_PREFIX = "http://localhost:8080"
+import API from "../../../utils/API"
+import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
+// const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
-const URL_REDIRECT = "http://localhost:3000"
+// const URL_REDIRECT = "http://localhost:3000"
 // const URL_REDIRECT = "https://breadlock.herokuapp.com"
 
 export default function CustomerOrder() {
@@ -89,7 +89,7 @@ export default function CustomerOrder() {
             if (parseInt(customerOrder.foodList[j].id) === parseInt(id)) {
                 let newClaimed = parseInt(customerOrder.foodList[j].claimed) + 1;
                 let newNotClaimed = parseInt(customerOrder.foodList[j].notClaimed) - 1;
-                putOnePantryItem(newClaimed, newNotClaimed, id);
+                API.putOnePantryItem(newClaimed, newNotClaimed, id);
             }
         }
     }
@@ -171,7 +171,7 @@ export default function CustomerOrder() {
                             const lastMade = user.id;
                             // Fix the order ids
                             stockArray.forEach(element => {
-                                postOneOrderItem(1, lastMade, element);
+                                API.postOneOrderItem(1, lastMade, element);
                             });
                             afterOrder();
                             window.location.href = `${URL_REDIRECT}/`;
