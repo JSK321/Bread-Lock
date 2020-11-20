@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import homepageImg from "../../../images/homepageImage.jpg";
+import homepageImg from "../../../images/CoverImgIcon.png";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
           width="100%"
         />
         <div style={{ padding: "5%" }}>
-          <h3>Welcome to BreadLock</h3>
+          <h1>Welcome to BreadLock</h1>
           <h5 style={{ textAlign: "left" }}>
             Bread Lock is an application that connects food banks with the
             receivers in the Seattle area. Food banks in the Seattle area are
