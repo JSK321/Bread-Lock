@@ -1,6 +1,7 @@
 import React from "react";
-import Open from "../../images/dropPin-Food.png";
-import Closed from "../../images/dropPin-NoFood.png";
+import Open from "../../images/IconOpen.png";
+import Closed from "../../images/IconClosed.png";
+import API from "../../utils/API"
 
 export default function AdminHomePageCard(props) {
   return (
@@ -112,8 +113,9 @@ export default function AdminHomePageCard(props) {
           <img src={Open} alt="Open" class="toggle" style= {{width:"40px", margin:"10px"}}/>
           <img src={Closed} alt="Closed" class="toggle" style= {{width:"40px" , margin:"10px"}} hidden />
           <br />
-          <button>
-          <a href="/foodbankqueue/:id" className="uk-button uk-button-text">
+          <button class="uk-button uk-button-default"
+            type="button">
+          <a href="/foodbankqueue/{:id}" className="uk-button uk-button-text">
             Incoming Orders
           </a>
           </button>
