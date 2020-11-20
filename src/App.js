@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import API from "./utils/API";
 //Components
 import NavBar from './components/NavBar';
 //User pages
@@ -23,9 +26,38 @@ import NoMatch from './pages/NoMatch';
 import Footer from './components/Footer'
 
 function App() {
+  
+  const [userSignIn, setUserSignIn] = useState({
+    email: "",
+    password: "",
+    isLoggedIn: false
+  })
+
+  const [getUserProfile, setUserProfile] = useState({})
+
+  function loadAllUserProfile() {
+    // needs turnary operation, 
+    // if logged in, pull the information of logged in user,
+    // if not logged in, don't
+    API.getAllProfiles().then(res => {
+      setUserProfile({
+        users: res
+      })
+    })
+  }
+
+  useEffect(() => {
+    loadAllUserProfile()
+  }, [])
+
   return (
     <Router>
-      <NavBar />
+      <NavBar 
+        email={userSignIn.email}
+        password={userSignIn.password}
+        isLoggedIn={userSignIn.isLoggedIn}
+        users={getUserProfile}
+      />
       <Switch>
         <Route exact path="/">
           <Home />
