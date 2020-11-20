@@ -23,8 +23,6 @@ export default function CustomerSignUp(props) {
 
                             <input className="uk-input uk-form-width-1-2" value={props.phone} name="phone" onChange={props.handleInputChange} type="text" placeholder="Phone" />
 
-                            <input className="uk-input uk-form-width-1-2" value={props.email} name="email" onChange={props.handleInputChange} type="text" placeholder="Email" />
-
                             <input className="uk-input uk-form-width-1-2" value={props.address} name="address" onChange={props.handleInputChange} type="text" placeholder="Street Address" />
 
                             <input className="uk-input uk-form-width-1-2" value={props.cityName} name="cityName" onChange={props.handleInputChange} type="text" placeholder="City" />
@@ -32,6 +30,11 @@ export default function CustomerSignUp(props) {
                             <input className="uk-input uk-form-width-1-2" value={props.stateAbr} name="stateAbr" onChange={props.handleInputChange} type="text" placeholder="State" />
 
                             <input className="uk-input uk-form-width-1-2" value={props.zipCode} name="zipCode" onChange={props.handleInputChange} type="text" placeholder="ZipCode" />
+
+                            <input className="uk-input uk-form-width-1-2" value={props.email} name="email" onChange={props.handleInputChange} type="text" placeholder="Email" />
+
+                            <input className="uk-input uk-form-width-1-2" value={props.password} name="password" onChange={props.handleInputChange} type="password" placeholder="Password" />
+
                             <div style={{ textAlign: "center" }}>
                                 <br></br>
                                 <button onClick={props.handleFormSubmit}>Sign Up</button>
