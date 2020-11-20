@@ -1,35 +1,12 @@
 import background from '../../images/background.jpg'
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import API from "../../utils/API";
+import { Link,} from "react-router-dom";
 
 let sectionStyle = {
   backgroundImage: "url(" + background + ")",
   width: "100%"
 };
 
-export default function NavBar() {
-  const { id } = useParams()
-
-  const [userSignIn, setUserSignIn] = useState({
-    email: "",
-    password: "",
-    isLoggedIn: false
-  })
-
-  const [getUserProfile, setUserProfile] = useState({})
-
-  function loadAllUserProfile() {
-    API.getAllProfiles().then(res => {
-      setUserProfile({
-        users: res
-      })
-    })
-  }
-
-  useEffect(() => {
-    loadAllUserProfile()
-  }, [])
+export default function NavBar(props) {
 
   return (
     <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={sectionStyle}>
@@ -78,9 +55,9 @@ export default function NavBar() {
       <div className="uk-navbar-right">
         <ul class="uk-navbar-nav">
           <li>
-            {getUserProfile.users != undefined ? (
-              userSignIn.isLoggedIn ?
-                getUserProfile.users.map((data =>
+            {props.users != undefined ? (
+              props.isLoggedIn ?
+                props.users.map((data =>
                   <Link to={"/userprofile/" + data.id}>My Profile</Link>
                 )) : <a href="/signin">Sign In</a>
             ) : null}
