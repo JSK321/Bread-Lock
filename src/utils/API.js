@@ -53,6 +53,23 @@ const API = {
         return fetch(`${URL_PREFIX}/api/customer/get/${customerId}`, {
         }).then(res => res.json()).catch(err => null)
     },
+    postCustomer: function(firstName, lastName, phone, email, password, address, cityName, stateAbr, zipCode){
+        return fetch(`${URL_PREFIX}/api/orderitem/post`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                firstName,
+                lastName,
+                phone,
+                email,
+                password,
+                address,
+                cityName,
+                stateAbr,
+                zipCode
+            })
+        }).then(res => res).catch(err => null)
+    },
     // used in /pages/admin/pantrydata && /pages/user/customerorder
     getOneFBPantry: function (id) {
         return fetch(`${URL_PREFIX}/api/pantry/get/${id}`)
