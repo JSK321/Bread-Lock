@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 
@@ -23,7 +23,7 @@ export default function UserSignIn(props) {
 
                             <div style={{ textAlign: "center" }}>
                                 <br></br>
-                                <input type="submit" value="Sign In" />
+                                <Link to="/customerprofile"><input type="submit" value="Sign In" /></Link>
                             </div>
                         </form>
                     </div>

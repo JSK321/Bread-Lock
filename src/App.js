@@ -39,6 +39,10 @@ function App() {
     isLoggedIn: false
   })
 
+  // const [userProfile, setUserProfile] = useState({
+  //   user: ""
+  // })
+
   useEffect(() => {
     // use token here
     const token = localStorage.getItem("token")
@@ -130,7 +134,7 @@ function App() {
             handleFormSubmit={handleFormSubmit}
           />
         </Route>
-        <Route exact path="/userprofile">
+        <Route exact path="/customerprofile">
           <UserProfile
             id={profileState.id}
             token={profileState.token}
