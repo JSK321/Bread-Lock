@@ -1,4 +1,4 @@
-import {URL_PREFIX, URL_REDIRECT} from "./urlPointer"
+import {URL_PREFIX} from "./urlPointer"
 //const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 

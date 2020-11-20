@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import FoodBankSignUp from "../../../components/FoodBankSignUp";
 import FoodBankSignUpInfo from "../../../components/FoodBankSignUpInfo";
-import API from "../../../utils/API";
+import {URL_PREFIX} from "../../../utils/urlPointer"
+// import API from "../../../utils/API";
 import axios from 'axios'
 // import './styles.css'
 
@@ -82,7 +83,7 @@ export default class FbSignUp extends Component {
               longitude: coords.long,
             }),
           };
-          fetch("http://localhost:8080/api/foodbank/post", requestOptions)
+          fetch(`${URL_PREFIX}/api/foodbank/post`, requestOptions)
             .then(async (response) => {
               const data = await response.json();
               console.log(response);
