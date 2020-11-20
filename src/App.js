@@ -34,6 +34,7 @@ function App() {
   const [profileState, setProfileState] = useState({
     id: "",
     email: "",
+    token:"",
     userOrder: [],
     isLoggedIn: false
   })
@@ -47,6 +48,7 @@ function App() {
         setProfileState({
           id: profileData.id,
           email: profileData.email,
+          token: token,
           // userOrder: profileData.orders,
           isLoggedIn: true
         })
@@ -70,6 +72,9 @@ function App() {
     API.login(signInFormState).then(loggedInData => {
       localStorage.setItem("token", loggedInData.token)
       // console.log(loggedInData)
+      setProfileState({
+        token: loggedInData.token,
+      })
       API.getProfile(loggedInData.token).then(profileData => {
         // console.log(profileData)
         setProfileState({
@@ -128,6 +133,7 @@ function App() {
         <Route exact path="/userprofile">
           <UserProfile
             id={profileState.id}
+            token={profileState.token}
             isLoggedIn={profileState.isLoggedIn}
             // users={getUserProfile}
             handleInputChange={handleInputChange}
