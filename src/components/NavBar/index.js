@@ -58,17 +58,15 @@ export default function NavBar(props) {
         </div>
         <div className="uk-navbar-right">
           <ul class="uk-navbar-nav">
-            <li>
-              {props.users != undefined ? (
-                props.isLoggedIn ? (
-                  props.users.map((data) => (
-                    <Link to={"/userprofile/" + data.id}>My Profile</Link>
-                  ))
-                ) : (
-                  <a href="/signin">Sign In</a>
-                )
-              ) : null}
-            </li>
+            {props.isLoggedIn ? <li><Link to="/userprofile">My Profile</Link></li> : <li><Link to="/signin">Sign In</Link></li>}
+            {/* <li>
+            {props.users != undefined ? (
+              props.isLoggedIn ?
+                props.users.map((data =>
+                  <Link to={"/userprofile/" + data.id}>My Profile</Link>
+                )) : <a href="/signin">Sign In</a>
+            ) : null}
+          </li> */}
           </ul>
         </div>
       </nav>

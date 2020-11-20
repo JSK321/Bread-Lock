@@ -29,53 +29,58 @@ function App() {
   const [signInFormState, setSignInFormState] = useState({
     email: "",
     password: ""
-})
+  })
 
-const [profileState, setProfileState] = useState({
+  const [profileState, setProfileState] = useState({
+    id: "",
     email: "",
     userOrder: [],
     isLoggedIn: false
-})
+  })
 
-useEffect(() => {
+  useEffect(() => {
     // use token here
-    // const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token")
     // API route to get one profile with token
-    // API.getOneProfile().then(profileData => {
-    //     if(profileData){
-    //         setProfileState({
-    //             name: profileData.name,
-    //             email: profileData.email,
-    //             userOrder: profileData.
-    //         })
-    //     }
-    // })
-}, [])
+    API.getProfile(token).then(profileData => {
+      if (profileData) {
+        setProfileState({
+          id: profileData.id,
+          email: profileData.email,
+          // userOrder: profileData.orders,
+          isLoggedIn: true
+        })
+      }
+    }
+    )
+  }, [])
 
-const handleInputChange = event => {
+  const handleInputChange = event => {
     const { name, value } = event.target;
     setSignInFormState({
-        ...signInFormState,
-        [name]: value
+      ...signInFormState,
+      [name]: value
     })
 
-}
+  }
 
-const handleFormSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
     //API call to log in with token
-    API.login(signInFormState).then(loggedInData=> {
-        // console.log(loggedInData)
-        API.getProfile(loggedInData.token).then(profileData=> {
-            console.log(profileData)
-            // setProfileState({
-            //     email: profileData.email,
-            //     userOrder: profileData.orders,
-            //     isLoggedIn: true
-            // })
+    API.login(signInFormState).then(loggedInData => {
+      localStorage.setItem("token", loggedInData.token)
+      // console.log(loggedInData)
+      API.getProfile(loggedInData.token).then(profileData => {
+        // console.log(profileData)
+        setProfileState({
+          id: profileData.id,
+          email: profileData.email,
+          // userOrder: profileData.orders,
+          isLoggedIn: true
         })
+      })
     })
-}
+  }
 
   // const [userSignIn, setUserSignIn] = useState({
   //   email: "",
@@ -111,17 +116,23 @@ const handleFormSubmit = event => {
           <SignUp />
         </Route>
         <Route exact path="/signin">
-          <SignIn 
+          <SignIn
             email={signInFormState.email}
             password={signInFormState.password}
-            isLoggedIn={signInFormState.isLoggedIn}
+            isLoggedIn={profileState.isLoggedIn}
             // users={getUserProfile}
             handleInputChange={handleInputChange}
             handleFormSubmit={handleFormSubmit}
           />
         </Route>
-        <Route exact path="/userprofile/:id">
-          <UserProfile />
+        <Route exact path="/userprofile">
+          <UserProfile
+            id={profileState.id}
+            isLoggedIn={profileState.isLoggedIn}
+            // users={getUserProfile}
+            handleInputChange={handleInputChange}
+            handleFormSubmit={handleFormSubmit}
+          />
         </Route>
         <Route exact path="/map">
           <Map />

@@ -2,28 +2,33 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CustomerSignUpInfo from '../../../components/CustomerSignUpInfo'
 import API from "../../../utils/API";
+import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer";
 
-export default function Profile() {
-    const { id } = useParams()
+export default function UserProfile(props) {
 
     const [userProfile, setUserProfile] = useState({})
 
     function loadUserProfile(id) {
-        API.getOneProfile(id).then(res=> {
+        API.getOneProfile(id).then(res => {
             setUserProfile({
                 userInfo: res
             })
         })
     }
 
-    useEffect(()=> {
-       loadUserProfile(id)
+    useEffect(() => {
+        console.log(props)
+        // if (props.isLoggedIn) {
+        //     loadUserProfile(props.id)
+        // } else {
+        //     window.location.href=`${URL_REDIRECT}/signin`
+        // }
     }, [])
 
     return (
         <div>
             {userProfile.userInfo != undefined ? (
-                <CustomerSignUpInfo 
+                <CustomerSignUpInfo
                     firstName={userProfile.userInfo.firstName}
                     lastName={userProfile.userInfo.lastName}
                     phone={userProfile.userInfo.phone}
@@ -34,7 +39,7 @@ export default function Profile() {
                     zipCode={userProfile.userInfo.zipCode}
                 />
             ) : null
-        }
+            }
         </div>
     )
 }
