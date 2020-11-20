@@ -58,7 +58,7 @@ export default function NavBar(props) {
         </div>
         <div className="uk-navbar-right">
           <ul class="uk-navbar-nav">
-            <li><Link to="/signin">Sign In</Link></li>
+            {props.isLoggedIn ? <li><Link to="/userprofile">My Profile</Link></li> : <li><Link to="/signin">Sign In</Link></li>}
             {/* <li>
             {props.users != undefined ? (
               props.isLoggedIn ?

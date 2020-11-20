@@ -32,6 +32,7 @@ function App() {
   })
 
   const [profileState, setProfileState] = useState({
+    id: "",
     email: "",
     userOrder: [],
     isLoggedIn: false
@@ -44,6 +45,7 @@ function App() {
     API.getProfile(token).then(profileData => {
       if (profileData) {
         setProfileState({
+          id: profileData.id,
           email: profileData.email,
           // userOrder: profileData.orders,
           isLoggedIn: true
@@ -71,6 +73,7 @@ function App() {
       API.getProfile(loggedInData.token).then(profileData => {
         // console.log(profileData)
         setProfileState({
+          id: profileData.id,
           email: profileData.email,
           // userOrder: profileData.orders,
           isLoggedIn: true
@@ -116,14 +119,20 @@ function App() {
           <SignIn
             email={signInFormState.email}
             password={signInFormState.password}
-            isLoggedIn={signInFormState.isLoggedIn}
+            isLoggedIn={profileState.isLoggedIn}
             // users={getUserProfile}
             handleInputChange={handleInputChange}
             handleFormSubmit={handleFormSubmit}
           />
         </Route>
-        <Route exact path="/userprofile/:id">
-          <UserProfile />
+        <Route exact path="/userprofile">
+          <UserProfile
+            id={profileState.id}
+            isLoggedIn={profileState.isLoggedIn}
+            // users={getUserProfile}
+            handleInputChange={handleInputChange}
+            handleFormSubmit={handleFormSubmit}
+          />
         </Route>
         <Route exact path="/map">
           <Map />
