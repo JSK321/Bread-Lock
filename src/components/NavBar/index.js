@@ -17,39 +17,39 @@ export default function NavBar(props) {
         <div className="uk-navbar-left">
           <ul className="uk-navbar-nav">
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/map">Map</a>
+              <Link to="/map">Map</Link>
             </li>
             {/* <li>
-            <a href="#">View Pantry</a>
+            <Link to="#">View Pantry</Link>
             <div className="uk-navbar-dropdown">
               <ul className="uk-nav uk-navbar-dropdown-nav">
                 <li>
-                  <a href="/customerorder">Order Page</a>
+                  <Link to="/customerorder">Order Page</Link>
                 </li>
                 <li>
-                  <a href="/pantrydata">Available Food</a>
+                  <Link to="/pantrydata">Available Food</Link>
                 </li>
                 <li>
-                  <a href="/customerqueue">Recipient Queue List</a>
+                  <Link to="/customerqueue">Recipient Queue List</Link>
                 </li>
               </ul>
             </div>
           </li> */}
             <li>
-              <a href="#">Sign Up</a>
+              <Link to="#">Sign Up</Link>
               <div className="uk-navbar-dropdown">
                 <ul className="uk-nav uk-navbar-dropdown-nav">
                   <li>
-                    <a href="/adminhome">Admin Home Page</a>
+                    <Link to="/adminhome">Admin Home Page</Link>
                   </li>
                   <li>
-                    <a href="/fbsignup">Register Food Bank</a>
+                    <Link to="/fbsignup">Register Food Bank</Link>
                   </li>
                   <li>
-                    <a href="/signup">Register as Recipient</a>
+                    <Link to="/signup">Register as Recipient</Link>
                   </li>
                 </ul>
               </div>

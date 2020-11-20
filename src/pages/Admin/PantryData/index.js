@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import API from "../../../utils/API";
-// import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
+import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
 // const URL_PREFIX = "http://localhost:8080";
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
