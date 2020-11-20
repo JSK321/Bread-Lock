@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import API from "../../../utils/API";
-// import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
+import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
 // const URL_PREFIX = "http://localhost:8080";
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
@@ -58,7 +58,6 @@ export default function PantryPreview() {
         <div className="uk-flex uk-flex-center uk-flex-around">
           <div className="uk-card uk-card-default uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
             <ul>
-              {customerQueueCard.foodBankInfo != undefined ? (
               <h5>Available Portions</h5>
               {foodBank.foodList.map((pantryList) => (
                 <li>
@@ -66,7 +65,6 @@ export default function PantryPreview() {
                   {pantryList.notClaimed}
                 </li>
               ))}
-              )} : null
             </ul>
           </div>
           <div className="uk-card uk-card-default uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
