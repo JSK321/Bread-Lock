@@ -39,11 +39,11 @@ function App() {
     // needs turnary operation, 
     // if logged in, pull the information of logged in user,
     // if not logged in, don't
-    API.getAllProfiles().then(res => {
-      setUserProfile({
-        users: res
-      })
-    })
+    // API.getProfile(token).then(res => {
+    //   setUserProfile({
+    //     users: res
+    //   })
+    // })
   }
 
   useEffect(() => {

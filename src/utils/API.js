@@ -1,26 +1,26 @@
 import {URL_PREFIX, URL_REDIRECT} from "./urlPointer"
-//const URL_PREFIX = "http://localhost:8080"
+// const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
 const API = {
     
-    // login:function(userData){
-    //     console.log(userData)
-    //     return fetch(`${URL_PREFIX}/api/users/login`,{
-    //         method:"POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //           },
-    //         body:JSON.stringify(userData)
-    //     }).then(res=> res.json()).catch(err=>null)
-    // },
-    // getProfile:function(token){
-    //     return fetch(`${URL_PREFIX}/api/users/secretProfile`,{
-    //         headers:{
-    //             "authorization": `Bearer ${token}`
-    //         }
-    //     }).then(res=>res.json()).catch(err=>null)
-    // },
+    login:function(userData){
+        // console.log(userData)
+        return fetch(`${URL_PREFIX}/api/users/login`,{
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body:JSON.stringify(userData)
+        }).then(res=> res.json()).catch(err=>null)
+    },
+    getProfile:function(token){
+        return fetch(`${URL_PREFIX}/api/users/secretProfile`,{
+            headers:{
+                "authorization": `Bearer ${token}`
+            }
+        }).then(res=>res.json()).catch(err=>null)
+    },
     // getAllFoodBanks:function(){
     //     return fetch(`${URL_PREFIX}/api/foodbank/get/all`,{
     //     }).then(res=>res.json()).catch(err=>null)

@@ -41,15 +41,16 @@ export default function UserSignIn() {
     const handleFormSubmit = event => {
         event.preventDefault();
         //API call to log in with token
-        // API.function(signInFormState).then(newToken=> {
-        //     API.getOneProfile(newToken.token).then(profileData=> {
-        //         setProfileState({
-        //             email: profileData.email,
-        //             userOrder: profileData.orders,
-        //             isLoggedIn: true
-        //         })
-        //     })
-        // })
+        API.login(signInFormState).then(loggedInData=> {
+            console.log(loggedInData)
+            // API.getOneProfile(newToken.token).then(profileData=> {
+            //     setProfileState({
+            //         email: profileData.email,
+            //         userOrder: profileData.orders,
+            //         isLoggedIn: true
+            //     })
+            // })
+        })
     }
 
     return (
