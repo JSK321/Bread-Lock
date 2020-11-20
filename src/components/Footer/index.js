@@ -7,6 +7,7 @@ export default function Footer() {
     width: "100%"
     };
   return (
+    
     <nav className="uk-navbar-container uk-background-cover" uk-navbar="true" style={sectionStyle}>
       <div className="uk-navbar-center"  >
         <img className="uk-padding-small" src={logo} alt="logo" width="200px"/>

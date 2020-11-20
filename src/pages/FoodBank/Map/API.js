@@ -1,5 +1,5 @@
 //const express = require("express");
-import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
+import {URL_PREFIX} from "../../../utils/urlPointer"
 const axios = require("axios");
 
 //const db = require("./node_modules")// what's the path to database to get foodbank address
