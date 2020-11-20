@@ -106,7 +106,7 @@ export default function Map() {
                 center={[47.6, -122.3]}
                 zoom={12}
                 scrollWheelZoom={false}
-                style={{ height: "50vh", width: "50vh" }}
+                style={{ height: "65vh", width: "55vh" }}
               >
                 <TileLayer
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

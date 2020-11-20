@@ -5,10 +5,10 @@ import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
 // import foods from '../../../foods.json';
 // import FoodBank from '../../FoodBank/FoodBankDetails';
 import API from "../../../utils/API"
-
-const URL_PREFIX = "http://localhost:8080"
+import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
+// const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
-const URL_REDIRECT = "http://localhost:3000"
+// const URL_REDIRECT = "http://localhost:3000"
 // const URL_REDIRECT = "https://breadlock.herokuapp.com"
 
 export default function CustomerOrder() {
