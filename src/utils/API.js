@@ -49,8 +49,12 @@ const API = {
         return fetch(`${URL_PREFIX}/api/customer/get/all`, {
         }).then(res => res.json()).catch(err => null)
     },
-    getOneProfile: function (customerId) {
+    getOneProfile: function (customerId, token) {
+        console.log(token);
         return fetch(`${URL_PREFIX}/api/customer/get/${customerId}`, {
+            headers:{
+                "authorization": `Bearer ${token}`
+            }
         }).then(res => res.json()).catch(err => null)
     },
     postCustomer: function(firstName, lastName, phone, email, password, address, cityName, stateAbr, zipCode){

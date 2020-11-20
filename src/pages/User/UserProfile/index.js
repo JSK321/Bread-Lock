@@ -8,22 +8,32 @@ export default function UserProfile(props) {
 
     const [userProfile, setUserProfile] = useState({})
 
-    function loadUserProfile(id) {
-        API.getOneProfile(id).then(res => {
+    function loadUserProfile(id, token) {
+        API.getOneProfile(id, token).then(res => {
             setUserProfile({
                 userInfo: res
             })
         })
     }
 
-    useEffect(() => {
+    function rerenderPage() {
         console.log(props)
-        // if (props.isLoggedIn) {
-        //     loadUserProfile(props.id)
-        // } else {
+        if (props.isLoggedIn) {
+            console.log("yes");
+            console.log(props.token);
+            loadUserProfile(props.id, props.token)
+        } else{
+            console.log("why are you here");
+            // rerenderPage()
+        }
+        //  else {
         //     window.location.href=`${URL_REDIRECT}/signin`
         // }
-    }, [])
+    }
+
+    useEffect(() => {
+        rerenderPage()
+    }, [props.id, props.isLoggedIn])
 
     return (
         <div>
@@ -37,6 +47,9 @@ export default function UserProfile(props) {
                     cityName={userProfile.userInfo.cityName}
                     stateAbr={userProfile.userInfo.stateAbr}
                     zipCode={userProfile.userInfo.zipCode}
+                    id={props.id}
+                    token={props.token}
+                    isLoggedIn={props.isLoggedIn}
                 />
             ) : null
             }
