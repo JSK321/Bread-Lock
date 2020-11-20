@@ -26,38 +26,83 @@ import NoMatch from './pages/NoMatch';
 import Footer from './components/Footer'
 
 function App() {
-  
-  const [userSignIn, setUserSignIn] = useState({
+  const [signInFormState, setSignInFormState] = useState({
     email: "",
-    password: "",
+    password: ""
+})
+
+const [profileState, setProfileState] = useState({
+    email: "",
+    userOrder: [],
     isLoggedIn: false
-  })
+})
 
-  const [getUserProfile, setUserProfile] = useState({})
-
-  function loadAllUserProfile() {
-    // needs turnary operation, 
-    // if logged in, pull the information of logged in user,
-    // if not logged in, don't
-    // API.getProfile(token).then(res => {
-    //   setUserProfile({
-    //     users: res
-    //   })
+useEffect(() => {
+    // use token here
+    // const token = localStorage.getItem("token")
+    // API route to get one profile with token
+    // API.getOneProfile().then(profileData => {
+    //     if(profileData){
+    //         setProfileState({
+    //             name: profileData.name,
+    //             email: profileData.email,
+    //             userOrder: profileData.
+    //         })
+    //     }
     // })
-  }
+}, [])
 
-  useEffect(() => {
-    loadAllUserProfile()
-  }, [])
+const handleInputChange = event => {
+    const { name, value } = event.target;
+    setSignInFormState({
+        ...signInFormState,
+        [name]: value
+    })
+
+}
+
+const handleFormSubmit = event => {
+    event.preventDefault();
+    //API call to log in with token
+    API.login(signInFormState).then(loggedInData=> {
+        // console.log(loggedInData)
+        API.getProfile(loggedInData.token).then(profileData=> {
+            console.log(profileData)
+            // setProfileState({
+            //     email: profileData.email,
+            //     userOrder: profileData.orders,
+            //     isLoggedIn: true
+            // })
+        })
+    })
+}
+
+  // const [userSignIn, setUserSignIn] = useState({
+  //   email: "",
+  //   password: "",
+  //   isLoggedIn: false
+  // })
+
+  // const [getUserProfile, setUserProfile] = useState({})
+
+  // function loadAllUserProfile() {
+  //   // needs turnary operation, 
+  //   // if logged in, pull the information of logged in user,
+  //   // if not logged in, don't
+  //   // API.getProfile(token).then(res => {
+  //   //   setUserProfile({
+  //   //     users: res
+  //   //   })
+  //   // })
+  // }
+
+  // useEffect(() => {
+  //   loadAllUserProfile()
+  // }, [])
 
   return (
     <Router>
-      <NavBar 
-        email={userSignIn.email}
-        password={userSignIn.password}
-        isLoggedIn={userSignIn.isLoggedIn}
-        users={getUserProfile}
-      />
+      <NavBar />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -66,7 +111,14 @@ function App() {
           <SignUp />
         </Route>
         <Route exact path="/signin">
-          <SignIn />
+          <SignIn 
+            email={signInFormState.email}
+            password={signInFormState.password}
+            isLoggedIn={signInFormState.isLoggedIn}
+            // users={getUserProfile}
+            handleInputChange={handleInputChange}
+            handleFormSubmit={handleFormSubmit}
+          />
         </Route>
         <Route exact path="/userprofile/:id">
           <UserProfile />

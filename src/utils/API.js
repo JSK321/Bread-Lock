@@ -4,18 +4,18 @@ import {URL_PREFIX, URL_REDIRECT} from "./urlPointer"
 
 const API = {
     
-    login:function(userData){
+    login:function(email, password){
         // console.log(userData)
-        return fetch(`${URL_PREFIX}/api/users/login`,{
+        return fetch(`${URL_PREFIX}/api/customer/login`,{
             method:"POST",
             headers: {
                 'Content-Type': 'application/json'
               },
-            body:JSON.stringify(userData)
+            body:JSON.stringify(email, password)
         }).then(res=> res.json()).catch(err=>null)
     },
     getProfile:function(token){
-        return fetch(`${URL_PREFIX}/api/users/secretProfile`,{
+        return fetch(`${URL_PREFIX}/api/customer/secrets`,{
             headers:{
                 "authorization": `Bearer ${token}`
             }
@@ -54,7 +54,7 @@ const API = {
         }).then(res => res.json()).catch(err => null)
     },
     postCustomer: function(firstName, lastName, phone, email, password, address, cityName, stateAbr, zipCode){
-        return fetch(`${URL_PREFIX}/api/orderitem/post`, {
+        return fetch(`${URL_PREFIX}/api/customer/post`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
