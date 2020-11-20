@@ -58,6 +58,7 @@ export default function PantryPreview() {
         <div className="uk-flex uk-flex-center uk-flex-around">
           <div className="uk-card uk-card-default uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
             <ul>
+              {customerQueueCard.foodBankInfo != undefined ? (
               <h5>Available Portions</h5>
               {foodBank.foodList.map((pantryList) => (
                 <li>
@@ -65,6 +66,7 @@ export default function PantryPreview() {
                   {pantryList.notClaimed}
                 </li>
               ))}
+              )} : null
             </ul>
           </div>
           <div className="uk-card uk-card-default uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
