@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CustomerOrderForm from '../../../components/CustomerOrderForm'
 import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
 // import foods from '../../../foods.json';
@@ -215,7 +215,7 @@ export default function CustomerOrder() {
                     />
                 ))}
                 <div className="uk-card-footer" style={{ textAlign: "center" }}>
-                    <button className="addBtn" onClick={handleFormSubmit}>Order Basket!</button>
+                    <Link to="/customerqueue"><button className="addBtn" onClick={handleFormSubmit}>Order Basket!</button></Link>
                 </div>
             </div>
         </div>
