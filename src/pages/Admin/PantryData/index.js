@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import API from "../../../utils/API";
-import {URL_PREFIX, URL_REDIRECT} from "../../../utils/urlPointer"
+import { URL_PREFIX, URL_REDIRECT } from "../../../utils/urlPointer"
 // const URL_PREFIX = "http://localhost:8080";
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
@@ -11,6 +11,8 @@ export default function PantryPreview() {
   const [foodBank, setFoodBank] = useState({
     foodList: [],
     FoodBankId: id,
+    foodItem: "",
+    foodAmount: ""
   });
 
   const [foodBankProfile, setFoodBankProfile] = useState({})
@@ -28,15 +30,19 @@ export default function PantryPreview() {
     })
   }
 
-  function updatePantry() {
-    API.putOnePantryItem(id).then(res => {
+  // function updatePantry() {
+  //   API.putOnePantryItem(id).then(res => {
 
-    })
-  }
+  //   })
+  // }
 
   useEffect(() => {
     loadPantry();
   }, []);
+
+  const handleFormSubmit = event => {
+    event.preventDefault();
+  }
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -57,24 +63,26 @@ export default function PantryPreview() {
         </div>
         <div className="uk-flex uk-flex-center uk-flex-around">
           <div className="uk-card uk-card-default uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
-            <ul>
+            <ul style={{ textAlign: "center" }}>
               <h5>Available Portions</h5>
               {foodBank.foodList.map((pantryList) => (
-                <li>
-                  {pantryList.Stock.stockName} Portion Available:{" "}
-                  {pantryList.notClaimed}
-                </li>
+                <form>
+                  <input className="uk-input" type="text" value={foodBank.foodItem} placeholder={pantryList.Stock.stockName} onChange={handleInputChange} disabled/>
+                  <input className="uk-input" type="number" value={foodBank.foodAmount} placeholder={pantryList.notClaimed} onChange={handleInputChange}/>
+                </form>
               ))}
+              <br></br>
+              <input type="submit" value="Update" />
             </ul>
           </div>
           <div className="uk-card uk-card-default uk-card-body" style={{ textAlign: "justify", margin: "0 auto", width: "30em" }}>
-            <h5>Update Portions</h5>
+            <h5>Add Food</h5>
             <form>
               <input className="uk-input" type="text" onChange={handleInputChange} placeholder="Food name" />
               <input className="uk-input" type="text" onChange={handleInputChange} placeholder="Amount" />
               <div style={{ textAlign: "center" }}>
                 <br></br>
-                <input type="submit" value="Update" />
+                <input type="submit" value="Add" />
               </div>
             </form>
           </div>
