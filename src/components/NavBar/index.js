@@ -62,7 +62,7 @@ export default function NavBar(props) {
               <li><Link to="/customerprofile">My Profile</Link></li> : null}
             {props.isLoggedIn ?
               <li>
-                <Link to="/" onClick={props.handleClearLocalStorage}>Sign Out</Link>
+                <Link to="/" onClick={props.onClick}>Sign Out</Link>
               </li> :
               <li>
                 <Link to="/signin">Sign In</Link>

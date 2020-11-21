@@ -34,8 +34,7 @@ function App() {
   const [profileState, setProfileState] = useState({
     id: "",
     email: "",
-    token:"",
-    userOrder: [],
+    token: "",
     isLoggedIn: false
   })
 
@@ -82,21 +81,31 @@ function App() {
           token: token,
           isLoggedIn: true
         })
+        window.location.href="/"
       })
+    }).catch(err=> {
+      if(err){
+        alert("Incorrect email/password")
+      }
     })
   }
 
   const handleClearLocalStorage = event => {
     event.preventDefault();
-    console.log("hello")
-    // localStorage.clear()
+    localStorage.clear()
+    setProfileState({
+      id: "",
+      email: "",
+      token: "",
+      isLoggedIn: false
+    })
   }
 
   return (
     <Router>
-      <NavBar 
-      isLoggedIn={profileState.isLoggedIn}
-      onClick={handleClearLocalStorage}
+      <NavBar
+        isLoggedIn={profileState.isLoggedIn}
+        onClick={handleClearLocalStorage}
       />
       <Switch>
         <Route exact path="/">
@@ -141,10 +150,10 @@ function App() {
           <CustomerOrder />
         </Route>
         <Route exact path="/customerorder/:id">
-          <CustomerOrder  
+          <CustomerOrder
             id={profileState.id}
             token={profileState.token}
-            isLoggedIn={profileState.isLoggedIn}/>
+            isLoggedIn={profileState.isLoggedIn} />
         </Route>
         <Route exact path="/adminhome">
           <AdminHome />
