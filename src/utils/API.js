@@ -27,6 +27,28 @@ const API = {
     // },
 
     // used in pages/foodbank/map
+    putFoodBank: function(bankName, phone, email, address, cityName, stateAbr, zipCode, latitude, longitude, availabilty){
+        return fetch(`${URL_PREFIX}/api/foodbank/put/:id`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                bankName,
+                phone,
+                email,
+                address,
+                cityName,
+                stateAbr,
+                zipCode,
+                latitude,
+                longitude,
+                availabilty
+            })
+        }).then(res => res).catch(err => {
+            if(err){
+                alert("Please Fill Out All Fields")
+            }
+        })
+    },
     getFoodbanks: function () {
         return fetch(`${URL_PREFIX}/api/foodbank/get/all`, {})
             .then((res) => res.json())
