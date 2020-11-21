@@ -21,7 +21,7 @@ export default function CustomerQueueCard(props) {
 
     return (
         <div className="uk-flex uk-flex-center">
-            <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
+            <div className="uk-card uk-card-default uk-width-expand">
                 <h4 style={{ textAlign: "center" }}>My Orders</h4>
                 <ul>
                     {

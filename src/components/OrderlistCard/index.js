@@ -6,7 +6,8 @@ export default function OrderlistCard(props) {
 
     const [orderlist, setOrderlist] = useState({
         id: 0,
-        stuff: []
+        stuff: [],
+        loaded: false,
     })
 
     function loadOrder() {
@@ -16,24 +17,26 @@ export default function OrderlistCard(props) {
             console.log(res)
             setOrderlist({
                 id: props.id,
-                stuff: res
+                stuff: res,
+                loaded:true
             })
         })
     }
 
     useEffect(() => {
         loadOrder()
-    }, [props.token])
+    }, [props.token, props.id, orderlist.loaded])
 
     return (
         <div>
-            <p>I'm Here a card :D</p>
-            {orderlist.stuff.map((stockObj =>
-                <li style={{ display: "inline-block", margin: "2px" }}>
-                    <p>{stockObj.Stock.stockName},</p>
-                </li>
-            ))
-            }
+            {/* <p>I'm Here a card :D</p> */}
+            {orderlist.stuff != undefined ? (
+                orderlist.stuff.map((stockObj =>
+                    <li style={{ display: "inline-block", margin: "2px" }}>
+                        <p>{stockObj.Stock.stockName},</p>
+                    </li>
+                ))
+            ) : null}
         </div>
     )
 }
