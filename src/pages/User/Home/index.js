@@ -13,27 +13,16 @@ export default function Home() {
           width="100%"
         />
         <div style={{ padding: "5%" }}>
-          <h1>Welcome to BreadLock</h1>
+          <h1 style={{textAlign:"center"}}>Welcome to BreadLock</h1>
           <h5 style={{ textAlign: "left" }}>
-            Bread Lock is an application that connects food banks with the
-            receivers in the Seattle area. Food banks in the Seattle area are
-            mostly independent from each other. Each bank has their own website
-            but is limited in information of their amount of food in their
-            pantry. Bread Lock aims to gather information on the availability of
-            food each bank has in their pantry and be able to distribute them to
-            people who are in need. Receivers will be able to sign up to secure
-            their share of food from the food bank and schedule a timeframe to
-            pick it up. This will help reduce waste as the food bank will be
-            able to measure how much food to distribute depending on the amount
-            of receivers signed up. It will also help reduce contact between
-            people during this ongoing pandemic as people will not need to wait
-            in lines to receive their share. With the latest technology of
-            React, Bread Lock functions on a real time basis, allowing receivers
-            to feel assured as they know their share of food will be secured for
-            them!
+            Bread Lock is an application that connects food banks with those in need within the Seattle area.
+            With the latest technology of React, Bread Lock functions on a real time basis.
+            It assures receivers to feel secured as their share of food will be locked for them!
             <br />
-            Main goal is to aid in our community through uniformity and
-            connectivity while maintaining social distancing.
+            <br></br>
+            <div style={{textAlign:"center"}}>
+              Our main goal is to unite our community!
+            </div>
           </h5>
         </div>
         <div style={{ textAlign: "center" }}>
