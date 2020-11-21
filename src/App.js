@@ -160,7 +160,10 @@ function App() {
           <CustomerOrder />
         </Route>
         <Route exact path="/customerorder/:id">
-          <CustomerOrder />
+          <CustomerOrder  
+            id={profileState.id}
+            token={profileState.token}
+            isLoggedIn={profileState.isLoggedIn}/>
         </Route>
         <Route exact path="/adminhome">
           <AdminHome />
