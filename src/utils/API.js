@@ -43,7 +43,11 @@ const API = {
                 longitude,
                 availabilty
             })
-        }).then(res => res).catch(err => null)
+        }).then(res => res).catch(err => {
+            if(err){
+                alert("Please Fill Out All Fields")
+            }
+        })
     },
     getFoodbanks: function () {
         return fetch(`${URL_PREFIX}/api/foodbank/get/all`, {})
