@@ -53,7 +53,6 @@ function App() {
           id: profileData.id,
           email: profileData.email,
           token: token,
-          // userOrder: profileData.orders,
           isLoggedIn: true
         })
       }
