@@ -170,7 +170,10 @@ function App() {
           />
         </Route>
         <Route exact path="/foodbankqueue/:id">
-          <FoodBankQueue />
+          <FoodBankQueue
+          token={profileState.token}
+          isLoggedIn={profileState.isLoggedIn}
+           />
         </Route>
         <Route exact path="/pantrydata/:id">
           <PantryData />

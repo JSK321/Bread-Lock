@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../utils/API";
 import CustomerOrderCard from '../CustomerQueueCard'
+import OrderlistCard from "../OrderlistCard";
 
 
-export default function FoodBankQueueCard() {
+export default function FoodBankQueueCard(props) {
     const { id } = useParams()
 
     const [foodBankQueueCard, setFoodBankQueueCard] = useState({})
@@ -64,6 +65,11 @@ export default function FoodBankQueueCard() {
                                         <br></br>
                                     Pick Up Time: <strong>{data.orderTime}</strong>
                                         <br></br>
+                                        <OrderlistCard
+                                             id = {data.id}
+                                             isLoggedIn={props.isLoggedIn}
+                                             token={props.token}
+                                        /> 
                                         {/* So Here Instead Use a button that's id is set to data.id send me to that page */}
                                         <button href="#toggle-animation" className="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-animation; animation: uk-animation-fade">View Order</button>
                                         {/* Send it to the unique page or /order/:id */}
@@ -71,13 +77,14 @@ export default function FoodBankQueueCard() {
                                         {/* The second to go back to the foodbank, the data for both of those are found in their objects that you will get with the get request */}
                                         <div id="toggle-animation" className="uk-card uk-card-default uk-card-body uk-margin-small">
                                             <ul>
-                                                {foodBankQueueCard.customerInfo != undefined ? (
+                                        {/* {foodBankQueueCard.customerInfo != undefined ? (
                                                     foodBankQueueCard.customerInfo.map((data =>
                                                         data.OrderItems.map((stockObj =>
                                                             <li style={{ display: "inline-block", margin: "2px" }}>{stockObj.Stock.stockName},</li>
                                                         ))
                                                     ))) : null
-                                                }
+                                                } */}
+                                                                       
                                             </ul>
                                         </div>
                                     </div>
