@@ -220,9 +220,7 @@ export default function CustomerOrder(props) {
                     />
                 ))}
                 <div className="uk-card-footer" style={{ textAlign: "center" }}>
-                    <Link to="/customerqueue">
-                        <button className="addBtn" onClick={handleOrderFormSubmit}>Order Basket!</button>
-                    </Link>
+                    <button className="addBtn" onClick={handleOrderFormSubmit}>Order Basket!</button>
                 </div>
             </div>
         </div>
