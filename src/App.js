@@ -39,10 +39,6 @@ function App() {
     isLoggedIn: false
   })
 
-  // const [userProfile, setUserProfile] = useState({
-  //   user: ""
-  // })
-
   useEffect(() => {
     // use token here
     const token = localStorage.getItem("token")
@@ -91,32 +87,18 @@ function App() {
     })
   }
 
-  // const [userSignIn, setUserSignIn] = useState({
-  //   email: "",
-  //   password: "",
-  //   isLoggedIn: false
-  // })
-
-  // const [getUserProfile, setUserProfile] = useState({})
-
-  // function loadAllUserProfile() {
-  //   // needs turnary operation, 
-  //   // if logged in, pull the information of logged in user,
-  //   // if not logged in, don't
-  //   // API.getProfile(token).then(res => {
-  //   //   setUserProfile({
-  //   //     users: res
-  //   //   })
-  //   // })
-  // }
-
-  // useEffect(() => {
-  //   loadAllUserProfile()
-  // }, [])
+  const handleClearLocalStorage = event => {
+    event.preventDefault();
+    console.log("hello")
+    // localStorage.clear()
+  }
 
   return (
     <Router>
-      <NavBar />
+      <NavBar 
+      isLoggedIn={profileState.isLoggedIn}
+      onClick={handleClearLocalStorage}
+      />
       <Switch>
         <Route exact path="/">
           <Home />
