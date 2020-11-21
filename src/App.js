@@ -80,10 +80,10 @@ function App() {
           token: token,
           isLoggedIn: true
         })
-        window.location.href="/"
+        window.location.href = "/"
       })
-    }).catch(err=> {
-      if(err){
+    }).catch(err => {
+      if (err) {
         alert("Incorrect email/password")
       }
     })
@@ -143,8 +143,8 @@ function App() {
           <FbSignUp />
         </Route>
         <Route exact path="/pantry/:id">
-          <PantryPreview 
-          isLoggedIn={profileState.isLoggedIn}
+          <PantryPreview
+            isLoggedIn={profileState.isLoggedIn}
           />
         </Route>
         <Route exact path="/customerorder">
@@ -154,13 +154,18 @@ function App() {
           <CustomerOrder
             id={profileState.id}
             token={profileState.token}
-            isLoggedIn={profileState.isLoggedIn} />
+            isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
         <Route exact path="/adminhome">
           <AdminHome />
         </Route>
         <Route exact path="/customerqueue/:id">
-          <CustomerQueue />
+          <CustomerQueue
+            id={profileState.id}
+            token={profileState.token}
+            isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
         <Route exact path="/foodbankqueue/:id">
           <FoodBankQueue />
