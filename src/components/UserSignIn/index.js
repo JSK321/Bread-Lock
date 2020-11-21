@@ -23,7 +23,9 @@ export default function UserSignIn(props) {
 
                             <div style={{ textAlign: "center" }}>
                                 <br></br>
-                                <Link to="/customerprofile"><input type="submit" value="Sign In" /></Link>
+                                {/* <Link to="/customerprofile"> */}
+                                    <input type="submit" value="Sign In" />
+                                    {/* </Link> */}
                             </div>
                         </form>
                     </div>
