@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FoodBankSignUp from "../../../components/FoodBankSignUp";
-import FoodBankSignUpInfo from "../../../components/FoodBankSignUpInfo";
 import {URL_PREFIX} from "../../../utils/urlPointer"
+import {Redirect} from 'react-router-dom'
 // import API from "../../../utils/API";
 import axios from 'axios'
 // import './styles.css'
@@ -120,7 +120,10 @@ export default class FbSignUp extends Component {
               this.setState({ errorMessage: error.toString() });
               console.error("There was an error!", error);
             });
-        });
+            
+            //take in the new added ID
+            // Redirect to adminHome page with new food Bank id
+          });
 
 
       // ----------------------------------------------------------------------------------------------------------------------
@@ -151,6 +154,9 @@ export default class FbSignUp extends Component {
     }
   };
 
+
+
+
   render() {
     return (
       <div>
@@ -166,7 +172,8 @@ export default class FbSignUp extends Component {
           email={this.state.email}
           // operationHours={this.state.operationHours}
         />
-        <br></br>
+       
+
         {/* <FoodBankSignUpInfo
           showData={this.state.showData}
           bankName={this.state.currentLog.bankName}

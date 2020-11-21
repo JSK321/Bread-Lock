@@ -15,7 +15,7 @@ export default function Footer() {
         <img className="uk-padding-small" src={logo} alt="logo" width="200px"/>        
       </div>
       <div className="uk-navbar-right"  >
-        <Link to="/fbsignup" className="uk-padding-small">Admin Page</Link>
+        <Link to="/fbsignup" className="uk-padding-small">Admin Portalnpm</Link>
       </div>
     </nav>
   );

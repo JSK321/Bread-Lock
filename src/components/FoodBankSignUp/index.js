@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+
 
 export default function FoodBankSignUp(props) {
     return (
@@ -35,7 +37,7 @@ export default function FoodBankSignUp(props) {
 
                             <div style={{ textAlign: "center" }}>
                                 <br></br>
-                                <button onClick={props.handleFormSubmit}>Sign Up</button>
+                               <button onClick={props.handleFormSubmit}>Sign Up</button>
                             </div>
                             <br></br>
                         </form>
