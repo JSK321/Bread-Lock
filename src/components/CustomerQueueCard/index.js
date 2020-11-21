@@ -19,8 +19,6 @@ export default function CustomerQueueCard(props) {
         loadCustomerQueue()
     }, [props.token])
 
-   
-    
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
@@ -31,26 +29,20 @@ export default function CustomerQueueCard(props) {
 
                             customerQueueCard.foodBankInfo.map((data =>
                                 <li>
-                                    <label className="uk-text-muted">Order Lists</label>
-                                    <br></br>
-                                    <div style={{display: `${data.recieved === false ? "block" : "none"}`}}>
-                                    Pick Up Date: <strong>{data.orderDate}</strong>
-                                        <br></br>
-                                    Pick Up Time: <strong>{data.orderTime}</strong>
-
-                                        <br></br>
-
-                                        <div id="toggle-animation" className="uk-card uk-card-default uk-card-body uk-margin-small">
-                                            <ul>
-                                                {customerQueueCard.foodBankInfo != undefined ? (
-                                                    customerQueueCard.foodBankInfo.map((data =>
-                                                        data.OrderItems.map((stockObj =>
-                                                            <li style={{ display: "inline-block", margin: "2px" }}>{stockObj.Stock.stockName},</li>
-                                                        ))
-                                                    ))) : null
-                                                }
-                                            </ul>
-                                        </div>
+                                    <label className="uk-text-muted">Order Information</label>
+                                    <div>
+                                        <p>Pick Up Date: <strong>{data.orderDate}</strong><br />Pick Up Time: <strong>{data.orderTime}</strong></p>
+                                        <p>My Basket:
+                                            <strong>{customerQueueCard.foodBankInfo != undefined ? (
+                                                customerQueueCard.foodBankInfo.map((data =>
+                                                    data.OrderItems.map((stockObj =>
+                                                        <li style={{ display: "inline-block", margin: "2px" }}>
+                                                            <p>{stockObj.Stock.stockName},</p>
+                                                        </li>
+                                                    ))
+                                                ))) : null
+                                            }</strong>
+                                        </p>
                                     </div>
                                 </li>
                             ))
