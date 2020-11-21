@@ -34,14 +34,9 @@ function App() {
   const [profileState, setProfileState] = useState({
     id: "",
     email: "",
-    token:"",
-    userOrder: [],
+    token: "",
     isLoggedIn: false
   })
-
-  // const [userProfile, setUserProfile] = useState({
-  //   user: ""
-  // })
 
   useEffect(() => {
     // use token here
@@ -85,36 +80,32 @@ function App() {
           token: token,
           isLoggedIn: true
         })
+        window.location.href="/"
       })
+    }).catch(err=> {
+      if(err){
+        alert("Incorrect email/password")
+      }
     })
   }
 
-  // const [userSignIn, setUserSignIn] = useState({
-  //   email: "",
-  //   password: "",
-  //   isLoggedIn: false
-  // })
-
-  // const [getUserProfile, setUserProfile] = useState({})
-
-  // function loadAllUserProfile() {
-  //   // needs turnary operation, 
-  //   // if logged in, pull the information of logged in user,
-  //   // if not logged in, don't
-  //   // API.getProfile(token).then(res => {
-  //   //   setUserProfile({
-  //   //     users: res
-  //   //   })
-  //   // })
-  // }
-
-  // useEffect(() => {
-  //   loadAllUserProfile()
-  // }, [])
+  const handleClearLocalStorage = event => {
+    event.preventDefault();
+    localStorage.clear()
+    setProfileState({
+      id: "",
+      email: "",
+      token: "",
+      isLoggedIn: false
+    })
+  }
 
   return (
     <Router>
-      <NavBar />
+      <NavBar
+        isLoggedIn={profileState.isLoggedIn}
+        onClick={handleClearLocalStorage}
+      />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -152,16 +143,18 @@ function App() {
           <FbSignUp />
         </Route>
         <Route exact path="/pantry/:id">
-          <PantryPreview />
+          <PantryPreview 
+          isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
         <Route exact path="/customerorder">
           <CustomerOrder />
         </Route>
         <Route exact path="/customerorder/:id">
-          <CustomerOrder  
+          <CustomerOrder
             id={profileState.id}
             token={profileState.token}
-            isLoggedIn={profileState.isLoggedIn}/>
+            isLoggedIn={profileState.isLoggedIn} />
         </Route>
         <Route exact path="/adminhome">
           <AdminHome />

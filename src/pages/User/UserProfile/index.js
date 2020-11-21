@@ -17,10 +17,10 @@ export default function UserProfile(props) {
     }
 
     function rerenderPage() {
-        console.log(props)
+        // console.log(props)
         if (props.isLoggedIn) {
-            console.log("yes");
-            console.log(props.token);
+            // console.log("yes");
+            // console.log(props.token);
             loadUserProfile(props.id, props.token)
         } else{
             console.log("why are you here");
