@@ -144,11 +144,11 @@ function App() {
         <Route exact path="/fbsignup">
           <FbSignUp />
         </Route>
-        <Route exact path="/pantry/:id">
+        {/* <Route exact path="/pantry/:id">
           <PantryPreview
             isLoggedIn={profileState.isLoggedIn}
           />
-        </Route>
+        </Route> */}
         <Route exact path="/customerorder">
           <CustomerOrder />
         </Route>
@@ -171,6 +171,7 @@ function App() {
         </Route>
         <Route exact path="/foodbankqueue/:id">
           <FoodBankQueue
+          id={profileState.id}
           token={profileState.token}
           isLoggedIn={profileState.isLoggedIn}
            />
