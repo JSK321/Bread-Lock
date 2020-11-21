@@ -93,7 +93,6 @@ export default function Map() {
                     <p>map</p>
                   )}
                 </select>
-
                 <Link to={"/foodbank/" + bankState.selectedFoodBankId}>
                   {" "}
                   <button>View Food Bank</button>{" "}

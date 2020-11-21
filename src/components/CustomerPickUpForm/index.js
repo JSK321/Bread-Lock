@@ -10,7 +10,7 @@ export default function CustomerPickUpForm(props) {
                         <select value={props.orderDate} onChange={props.handleSelectDay}>
                             <option value="">Please select Day...</option>
                             <option value="Monday">Monday</option>
-                            <option value="Tuesaday">Tuesday</option>
+                            <option value="Tuesday">Tuesday</option>
                             <option value="Wednesday">Wednesday</option>
                             <option value="Thursday">Thursday</option>
                             <option value="Friday">Friday</option>
