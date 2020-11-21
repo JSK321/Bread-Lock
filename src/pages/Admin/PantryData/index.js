@@ -42,6 +42,7 @@ export default function PantryPreview() {
 
   const handleFormSubmit = event => {
     event.preventDefault();
+    
   }
 
   const handleInputChange = event => {

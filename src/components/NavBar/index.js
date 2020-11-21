@@ -39,8 +39,8 @@ export default function NavBar(props) {
             </div>
           </li> */}
             <li>
-              {props.isLoggedIn ? null : <Link to="#">Sign Up</Link>}
-              <div className="uk-navbar-dropdown">
+              {props.isLoggedIn ? null : <Link to="/signup">Sign Up</Link>}
+              {/* <div className="uk-navbar-dropdown">
                 <ul className= "uk-nav uk-navbar-dropdown-nav">
                   <li>
                     <Link to="/adminhome">Admin Home Page</Link>
@@ -52,7 +52,7 @@ export default function NavBar(props) {
                     <Link to="/signup">Register as Recipient</Link>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </li>
           </ul>
         </div>

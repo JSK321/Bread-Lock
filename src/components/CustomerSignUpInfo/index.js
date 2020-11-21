@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 export default function CustomerSignUpInfo(props) {
     return (
@@ -33,6 +34,9 @@ export default function CustomerSignUpInfo(props) {
                             <br></br>
                             <li>ZipCode: <strong>{props.zipCode}</strong></li>
                         </ul>
+                        <div className="uk-card-footer" style={{ textAlign: "center" }}>
+                            <Link to="/customerqueue"><button>My Order</button></Link>
+                        </div>
                     </div>
                 </div>
             </div>

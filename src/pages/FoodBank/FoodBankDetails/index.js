@@ -41,7 +41,7 @@ export default function FoodBank() {
         </div>
         <div className="uk-card-footer" style={{ textAlign: "center" }}>
           <Link to={'/pantry/' + id}>
-            <button>View Pantry</button>
+            <button>Order Food</button>
           </Link>
           <br></br>
           <Link to={'/foodbankqueue/' + id}>
