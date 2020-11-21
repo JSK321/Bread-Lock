@@ -72,18 +72,20 @@ function App() {
 
   const handleFormSubmit = event => {
     event.preventDefault();
+    console.log("I'm in the form submit");
     //API call to log in with token
     API.login(signInFormState).then(loggedInData => {
+      console.log("In sign in");
       localStorage.setItem("token", loggedInData.token)
       // console.log(loggedInData)
-      setProfileState({
-        token: loggedInData.token,
-      })
+      const token = loggedInData.token
       API.getProfile(loggedInData.token).then(profileData => {
-        // console.log(profileData)
+        console.log(profileData)
+        console.log(token);
         setProfileState({
           id: profileData.id,
           email: profileData.email,
+          token: token,
           // userOrder: profileData.orders,
           isLoggedIn: true
         })
