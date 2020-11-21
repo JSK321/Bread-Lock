@@ -6,7 +6,8 @@ export default function OrderlistCard(props) {
 
     const [orderlist, setOrderlist] = useState({
         id: 0,
-        stuff: []
+        stuff: [],
+        loaded: false,
     })
 
     function loadOrder() {
@@ -16,14 +17,15 @@ export default function OrderlistCard(props) {
             console.log(res)
             setOrderlist({
                 id: props.id,
-                stuff: res
+                stuff: res,
+                loaded:true
             })
         })
     }
 
     useEffect(() => {
         loadOrder()
-    }, [props.token])
+    }, [props.token, props.id, orderlist.loaded])
 
     return (
         <div>

@@ -43,14 +43,14 @@ export default function FoodBank(props) {
             <h4>{foodBank.bankName}</h4>
             {props.isLoggedIn ? null : <h5 className="uk-text-muted">Sign in to order food!</h5>}
             {props.isLoggedIn ?
-            <Link to={"/customerorder/" + foodBankPantry.FoodBankPantryId}>
+            <Link to={"/customerorder/" + id}>
               <button>Order Form</button>
             </Link> :
             <Link to={"/signin"}>
               <button>Sign In</button>
             </Link>}
           {props.isLoggedIn ? null : <Link to="/signup"><button>Sign Up</button></Link>}
-          <Link to={'/foodbankqueue/' + foodBankPantry.foodBankPantryId}>
+          <Link to={'/foodbankqueue/' + id}>
             <button>View Customer Queue</button>
           </Link>
           </div>
