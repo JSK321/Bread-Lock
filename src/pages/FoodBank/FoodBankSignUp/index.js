@@ -167,7 +167,7 @@ export default class FbSignUp extends Component {
           // operationHours={this.state.operationHours}
         />
         <br></br>
-        <FoodBankSignUpInfo
+        {/* <FoodBankSignUpInfo
           showData={this.state.showData}
           bankName={this.state.currentLog.bankName}
           streetAddress={this.state.currentLog.streetAddress}
@@ -177,7 +177,7 @@ export default class FbSignUp extends Component {
           phone={this.state.currentLog.phone}
           email={this.state.currentLog.email}
           // operationHours={this.state.currentLog.operationHours}
-        />
+        /> */}
       </div>
     );
   }
