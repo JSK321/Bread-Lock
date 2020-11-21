@@ -19,8 +19,6 @@ export default function CustomerQueueCard(props) {
         loadCustomerQueue()
     }, [props.token])
 
-
-
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
