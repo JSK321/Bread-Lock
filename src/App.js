@@ -171,7 +171,6 @@ function App() {
         </Route>
         <Route exact path="/foodbankqueue/:id">
           <FoodBankQueue
-          id={profileState.id}
           token={profileState.token}
           isLoggedIn={profileState.isLoggedIn}
            />

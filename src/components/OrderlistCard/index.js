@@ -27,13 +27,14 @@ export default function OrderlistCard(props) {
 
     return (
         <div>
-            <p>I'm Here a card :D</p>
-            {orderlist.stuff.map((stockObj =>
-                <li style={{ display: "inline-block", margin: "2px" }}>
-                    <p>{stockObj.Stock.stockName},</p>
-                </li>
-            ))
-            }
+            {/* <p>I'm Here a card :D</p> */}
+            {orderlist.stuff != undefined ? (
+                orderlist.stuff.map((stockObj =>
+                    <li style={{ display: "inline-block", margin: "2px" }}>
+                        <p>{stockObj.Stock.stockName},</p>
+                    </li>
+                ))
+            ) : null}
         </div>
     )
 }
