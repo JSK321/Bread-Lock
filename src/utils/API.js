@@ -158,7 +158,11 @@ const API = {
         }).then(response => response.json())
             .catch(err => null);
     },
-
+    getOneOrdersItems: function (id) {
+        return fetch(`${URL_PREFIX}/api/orderitem/get/all/${id}`, {})
+            .then((res) => res.json())
+            .catch((err) => null);
+    },
 
     // createFish:function(token,fishData){
     //     return fetch(`${URL_PREFIX}/api/fishes`,{
