@@ -51,10 +51,12 @@ export default function PantryPreview(props) {
             </Link>}
             <br></br>
             {props.isLoggedIn ? null : <Link to="/signup"><button>Sign Up</button></Link>}
+            <br></br>
+            <Link to={'/foodbank/' + id}>
+            <button>Foodbank Information</button>
+          </Link>
         </div>
       </div>
-
     </div>
-
   );
 }

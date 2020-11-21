@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import API from "../../../utils/API";
 
 
-export default function FoodBank() {
+export default function FoodBank(props) {
   const [foodBank, setFoodBank] = useState({});
 
   const { id } = useParams();
@@ -41,8 +41,19 @@ export default function FoodBank() {
         </div>
         <div className="uk-card-footer" style={{ textAlign: "center" }}>
           <Link to={'/pantry/' + id}>
-            <button>Order Food</button>
+            <button>View Pantry</button>
           </Link>
+          <br></br>
+          <br></br>
+          {props.isLoggedIn ? 
+          <Link to={"/customerorder/" + foodBank.FoodBankId}>
+              <button>Order Form</button>
+            </Link> : 
+            <Link to={"/signin"}>
+              <button>Sign In</button>
+            </Link>}
+            <br></br>
+            {props.isLoggedIn ? null : <Link to="/signup"><button>Sign Up</button></Link>}
           <br></br>
           <Link to={'/foodbankqueue/' + id}>
             <button>View Customer Queue</button>

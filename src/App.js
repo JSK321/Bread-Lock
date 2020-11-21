@@ -137,7 +137,9 @@ function App() {
           <Map />
         </Route>
         <Route exact path="/foodbank/:id">
-          <FoodBank />
+          <FoodBank
+            isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
         <Route exact path="/fbsignup">
           <FbSignUp />
