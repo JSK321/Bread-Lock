@@ -80,7 +80,7 @@ function App() {
           token: token,
           isLoggedIn: true
         })
-        window.location.href = "/"
+        window.location.href = "/map"
       })
     }).catch(err => {
       if (err) {

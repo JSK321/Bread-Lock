@@ -44,12 +44,13 @@ export default function PantryPreview(props) {
         <div className="uk-card-footer" style={{ textAlign: "center" }}>
           {props.isLoggedIn ? 
           <Link to={"/customerorder/" + foodBank.FoodBankId}>
-              <button>Order Food</button>
+              <button>Order Form</button>
             </Link> : 
             <Link to={"/signin"}>
               <button>Sign In</button>
             </Link>}
-
+            <br></br>
+            {props.isLoggedIn ? null : <Link to="/signup"><button>Sign Up</button></Link>}
         </div>
       </div>
 
