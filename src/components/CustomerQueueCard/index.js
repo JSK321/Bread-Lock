@@ -19,8 +19,8 @@ export default function CustomerQueueCard(props) {
         loadCustomerQueue()
     }, [props.token])
 
-   
-    
+
+
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-margin-left uk-width-expand">
@@ -33,8 +33,8 @@ export default function CustomerQueueCard(props) {
                                 <li>
                                     <label className="uk-text-muted">Order Lists</label>
                                     <br></br>
-                                    <div style={{display: `${data.recieved === false ? "block" : "none"}`}}>
-                                    Pick Up Date: <strong>{data.orderDate}</strong>
+                                    <div style={{ display: `${data.recieved === false ? "block" : "none"}` }}>
+                                        Pick Up Date: <strong>{data.orderDate}</strong>
                                         <br></br>
                                     Pick Up Time: <strong>{data.orderTime}</strong>
 
@@ -46,8 +46,8 @@ export default function CustomerQueueCard(props) {
                                                     customerQueueCard.foodBankInfo.map((data =>
                                                         data.OrderItems.map((stockObj =>
                                                             <li style={{ display: "inline-block", margin: "2px" }}>{stockObj.Stock.stockName},</li>
-                                                            ))
-                                                        ))) : null
+                                                        ))
+                                                    ))) : null
                                                 }
                                             </ul>
                                         </div>
