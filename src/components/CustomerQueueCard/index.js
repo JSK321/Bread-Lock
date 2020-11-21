@@ -17,6 +17,8 @@ export default function CustomerQueueCard(props) {
 
     useEffect(() => {
         loadCustomerQueue()
+        // customerQueueCard.foodBankInfo.map((stockObj => console.log(stockObj.name)))
+
     }, [props.token])
 
    
@@ -45,9 +47,11 @@ export default function CustomerQueueCard(props) {
                                                 {customerQueueCard.foodBankInfo != undefined ? (
                                                     customerQueueCard.foodBankInfo.map((data =>
                                                         data.OrderItems.map((stockObj =>
+                                                             // customerQueueCard.foodBankInfo.OrderItems.map((stockObj =>
                                                             <li style={{ display: "inline-block", margin: "2px" }}>{stockObj.Stock.stockName},</li>
+                                                            ))
                                                         ))
-                                                    ))) : null
+                                                    ) : null
                                                 }
                                             </ul>
                                         </div>
