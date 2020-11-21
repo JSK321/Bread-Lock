@@ -198,13 +198,6 @@ export default function CustomerOrder(props) {
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-card-body" uk-grid>
-                <div className="uk-card-header">
-                    <div className="uk-grid-small uk-flex-middle">
-                        <div className="uk-width-expand">
-                            <h1 className="uk-card-title uk-margin-remove-bottom" style={{ textAlign: "center" }}>Basket</h1>
-                        </div>
-                    </div>
-                </div>
                 <CustomerPickUpForm
                     handleSelectDay={handleSelectDay}
                     handleSelectTime={handleSelectTime}
