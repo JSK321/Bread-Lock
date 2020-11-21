@@ -144,7 +144,9 @@ function App() {
           <FbSignUp />
         </Route>
         <Route exact path="/pantry/:id">
-          <PantryPreview />
+          <PantryPreview 
+          isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
         <Route exact path="/customerorder">
           <CustomerOrder />
