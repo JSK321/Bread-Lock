@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import API from "../../utils/API";
 
 
-export default function CustomerQueueCard() {
-    const { id } = useParams()
-
+export default function CustomerQueueCard(props) {
     const [customerQueueCard, setCustomerQueueCard] = useState({})
 
     function loadCustomerQueue() {
         // API Call to retrieve customer order information
-        API.getCustomerOrders(id).then(res => {
+        API.getCustomerOrders(props.token).then(res => {
+            console.log(res)
             setCustomerQueueCard({
                 foodBankInfo: res
             })
-
         })
     }
 
     useEffect(() => {
         loadCustomerQueue()
-    }, [])
+    }, [props.token])
 
    
     

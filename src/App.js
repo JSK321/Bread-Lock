@@ -160,7 +160,7 @@ function App() {
         <Route exact path="/adminhome">
           <AdminHome />
         </Route>
-        <Route exact path="/customerqueue/:id">
+        <Route exact path="/customerqueue">
           <CustomerQueue
             id={profileState.id}
             token={profileState.token}
