@@ -94,27 +94,8 @@ export default class FbSignUp extends Component {
                 const error = (data && data.message) || response.status;
                 return Promise.reject(error);
               }
-              this.setState({
-                bankName: "",
-                streetAddress: "",
-                cityName: "",
-                stateAbr: "",
-                zipCode: "",
-                phone: "",
-                email: "",
-                // operationHours: "",
-                showData: true,
-                currentLog: {
-                  bankName: this.state.bankName,
-                  streetAddress: this.state.streetAddress,
-                  cityName: this.state.cityName,
-                  stateAbr: this.state.stateAbr,
-                  zipCode: this.state.zipCode,
-                  phone: this.state.phone,
-                  email: this.state.email,
-                  // operationHours: this.state.operationHours
-                },
-              });
+              
+              this.setState({ redirect: "/adminhome/"+data.id });
             })
             .catch((error) => {
               this.setState({ errorMessage: error.toString() });
@@ -158,6 +139,9 @@ export default class FbSignUp extends Component {
 
 
   render() {
+    if (this.state.redirect) {
+        return <Redirect to={this.state.redirect} />
+    }
     return (
       <div>
         <FoodBankSignUp

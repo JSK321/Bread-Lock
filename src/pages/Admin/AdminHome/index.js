@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState} from 'react';
 import {withRouter} from "react-router";
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AdminHomePageCard from '../../../components/AdminHomePageCard';
 import AdminWebsiteInfo from '../../../components/AdminWebsiteInfo';
 import API from "../../../utils/API"
@@ -117,30 +117,7 @@ class AdminHome extends Component {
                       const error = (data && data.message) || response.status;
                       return Promise.reject(error);
                     }
-                    this.setState({
-                      bankName: "",
-                      streetAddress: "",
-                      cityName: "",
-                      stateAbr: "",
-                      zipCode: "",
-                      phone: "",
-                      email: "",
-                      // operationHours: "",
-                      showData: true,
-                      currentLog: {
-                        bankName: this.state.bankName,
-                        streetAddress: this.state.streetAddress,
-                        cityName: this.state.cityName,
-                        stateAbr: this.state.stateAbr,
-                        zipCode: this.state.zipCode,
-                        phone: this.state.phone,
-                        email: this.state.email,
-                        latitude: coords.lat,
-                        longitude: coords.long,
-                        availability:this.state.availability
-                        // operationHours: this.state.operationHours
-                      },
-                    });
+                 alert ("Update Successful!")
                   })
                   .catch((error) => {
                     this.setState({ errorMessage: error.toString() });
@@ -161,6 +138,7 @@ class AdminHome extends Component {
                     handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
                     
+                    bankName={this.state.bankName}
                     streetAddress={this.state.streetAddress}
                     cityName={this.state.cityName}
                     stateAbr={this.state.stateAbr}
@@ -170,6 +148,12 @@ class AdminHome extends Component {
                     availability={this.state.availability}
                 />
                 <hr />
+
+                <button class="uk-button uk-button-default" type="button">
+            <Link to={'/foodbankqueue/' + this.state.FoodBankId} className="uk-button uk-button-text">
+              View Customer Cue
+            </Link>
+          </button>
                 {/* <AdminWebsiteInfo
                     showData={foodBank.showData}
                     streetAddress={foodBank.streetAddress}

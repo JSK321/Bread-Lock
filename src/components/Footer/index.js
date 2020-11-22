@@ -7,7 +7,7 @@ export default function Footer() {
     let sectionStyle = {
     backgroundImage: "url(" +  background  + ")",
     width: "100%",
-    padding: "4%"
+    padding: "3%"
    
     };
   return (
@@ -16,6 +16,7 @@ export default function Footer() {
       <div className="uk-navbar-center"  >
         <img className="uk-padding-small" src={logo} alt="logo" width="180px"/>        
       </div>
+      
       <div className="uk-navbar-right" style={{fontWeight: `bold`}}  >
         <button className="uk-button uk-button-text uk-button-small" style={{color:"black"}}><Link to="/fbsignup" >Admin</Link></button>
       </div>

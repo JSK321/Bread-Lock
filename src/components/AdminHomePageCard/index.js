@@ -1,9 +1,7 @@
 import React from "react";
-import Open from "../../images/IconOpen.png";
-import Closed from "../../images/IconClosed.png";
-import API from "../../utils/API"
 
 export default function AdminHomePageCard(props) {
+
   return (
     <div className="uk-flex uk-flex-center">
       <div className="uk-card uk-card-default uk-width-1-2@m">
@@ -22,7 +20,7 @@ export default function AdminHomePageCard(props) {
                 className="uk-card-title uk-margin-remove-bottom"
                 style={{ textAlign: "center" }}
               >
-                Update Website Information
+                Food bank Information
               </h1>
             </div>
           </div>
@@ -30,6 +28,16 @@ export default function AdminHomePageCard(props) {
         <div class="uk-flex uk-flex-center">
           <div class="uk-card uk-card-default uk-width-expand">
             <form>
+              <h5>FoodBank Name:</h5>
+              <input
+                className="uk-input uk-form-width-1-2"
+                value={props.bankName}
+                name="bankName"
+                onChange={props.handleInputChange}
+                type="text"
+                placeholder="Foodbank Name"
+              />
+              <h5>Street:</h5>
               <input
                 className="uk-input uk-form-width-1-2"
                 value={props.streetAddress}
@@ -38,7 +46,7 @@ export default function AdminHomePageCard(props) {
                 type="text"
                 placeholder="Street Address"
               />
-
+              <h5>City:</h5>
               <input
                 className="uk-input uk-form-width-1-2"
                 value={props.cityName}
@@ -47,7 +55,7 @@ export default function AdminHomePageCard(props) {
                 type="text"
                 placeholder="City"
               />
-
+              <h5>State:</h5>
               <input
                 className="uk-input uk-form-width-1-2"
                 value={props.stateAbr}
@@ -56,7 +64,7 @@ export default function AdminHomePageCard(props) {
                 type="text"
                 placeholder="State"
               />
-
+              <h5>Zip Code:</h5>
               <input
                 className="uk-input uk-form-width-1-2"
                 value={props.zipCode}
@@ -65,7 +73,7 @@ export default function AdminHomePageCard(props) {
                 type="text"
                 placeholder="ZipCode"
               />
-
+              <h5>Phone:</h5>
               <input
                 className="uk-input uk-form-width-1-2"
                 value={props.phone}
@@ -74,7 +82,7 @@ export default function AdminHomePageCard(props) {
                 type="text"
                 placeholder="Phone"
               />
-
+              <h5>E-mail:</h5>
               <input
                 className="uk-input uk-form-width-1-2"
                 value={props.email}
@@ -83,15 +91,15 @@ export default function AdminHomePageCard(props) {
                 type="text"
                 placeholder="Email"
               />
-
-              <select 
+              <h5>Availability:</h5>
+              <select
                 className="uk-input uk-form-width-1-2"
                 value={props.availability}
                 name="availability"
                 onChange={props.handleInputChange}
-              > 
-              <option value="true">Open</option>
-              <option value="false">Closed</option>
+              >
+                <option value="true">Open</option>
+                <option value="false">Closed</option>
               </select>
 
               <div style={{ textAlign: "center" }}>
@@ -103,7 +111,7 @@ export default function AdminHomePageCard(props) {
           </div>
         </div>
         <div className="uk-card-footer" style={{ textAlign: "center" }}>
-          <button
+          {/* <button
             class="uk-button uk-button-default"
             type="button"
             uk-toggle="target: .toggle"
@@ -111,15 +119,20 @@ export default function AdminHomePageCard(props) {
             Availablity
           </button>
           <br />
-          <img src={Open} alt="Open" class="toggle" style= {{width:"40px", margin:"10px"}}/>
-          <img src={Closed} alt="Closed" class="toggle" style= {{width:"40px" , margin:"10px"}} hidden />
-          <br />
-          <button class="uk-button uk-button-default"
-            type="button">
-          <a href="/foodbankqueue/{:id}" className="uk-button uk-button-text">
-            Incoming Orders
-          </a>
-          </button>
+          <img
+            src={Open}
+            alt="Open"
+            class="toggle"
+            style={{ width: "40px", margin: "10px" }}
+          />
+          <img
+            src={Closed}
+            alt="Closed"
+            class="toggle"
+            style={{ width: "40px", margin: "10px" }}
+            hidden
+          /> */}
+
         </div>
       </div>
     </div>
