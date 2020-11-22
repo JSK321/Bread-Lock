@@ -1,30 +1,54 @@
-const URL_PREFIX = "http://localhost:8080"
+import { URL_PREFIX } from "./urlPointer"
+//const URL_PREFIX = "http://localhost:8080"
 // const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 
 const API = {
-    // login:function(userData){
-    //     console.log(userData)
-    //     return fetch(`${URL_PREFIX}/api/users/login`,{
-    //         method:"POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //           },
-    //         body:JSON.stringify(userData)
-    //     }).then(res=> res.json()).catch(err=>null)
-    // },
-    // getProfile:function(token){
-    //     return fetch(`${URL_PREFIX}/api/users/secretProfile`,{
-    //         headers:{
-    //             "authorization": `Bearer ${token}`
-    //         }
-    //     }).then(res=>res.json()).catch(err=>null)
-    // },
+
+    login: function (email, password) {
+        // console.log(userData)
+        return fetch(`${URL_PREFIX}/api/customer/login`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(email, password)
+        }).then(res => res.json()).catch(err => null)
+    },
+    getProfile: function (token) {
+        return fetch(`${URL_PREFIX}/api/customer/secrets`, {
+            headers: {
+                "authorization": `Bearer ${token}`
+            }
+        }).then(res => res.json()).catch(err => null)
+    },
     // getAllFoodBanks:function(){
     //     return fetch(`${URL_PREFIX}/api/foodbank/get/all`,{
     //     }).then(res=>res.json()).catch(err=>null)
     // },
 
     // used in pages/foodbank/map
+    putFoodBank: function (bankName, phone, email, address, cityName, stateAbr, zipCode, latitude, longitude, availabilty) {
+        return fetch(`${URL_PREFIX}/api/foodbank/put/:id`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                bankName,
+                phone,
+                email,
+                address,
+                cityName,
+                stateAbr,
+                zipCode,
+                latitude,
+                longitude,
+                availabilty
+            })
+        }).then(res => res).catch(err => {
+            if (err) {
+                alert("Please Fill Out All Fields")
+            }
+        })
+    },
     getFoodbanks: function () {
         return fetch(`${URL_PREFIX}/api/foodbank/get/all`, {})
             .then((res) => res.json())
@@ -47,13 +71,39 @@ const API = {
         return fetch(`${URL_PREFIX}/api/customer/get/all`, {
         }).then(res => res.json()).catch(err => null)
     },
-    getOneProfile: function (customerId) {
+    getOneProfile: function (customerId, token) {
+        console.log(token);
         return fetch(`${URL_PREFIX}/api/customer/get/${customerId}`, {
+            headers: {
+                "authorization": `Bearer ${token}`
+            }
         }).then(res => res.json()).catch(err => null)
+    },
+    postCustomer: function (firstName, lastName, phone, email, password, address, cityName, stateAbr, zipCode) {
+        return fetch(`${URL_PREFIX}/api/customer/post`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                firstName,
+                lastName,
+                phone,
+                email,
+                password,
+                address,
+                cityName,
+                stateAbr,
+                zipCode
+            })
+        }).then(res => res).catch(err => null)
     },
     // used in /pages/admin/pantrydata && /pages/user/customerorder
     getOneFBPantry: function (id) {
         return fetch(`${URL_PREFIX}/api/pantry/get/${id}`)
+            .then(res => res.json()).catch(err => null)
+    },
+
+    isPantryEmpty: function (id) {
+        return fetch(`${URL_PREFIX}/api/pantry/isEmpty/${id}`)
             .then(res => res.json()).catch(err => null)
     },
     // used in /pages/user/customerorder
@@ -85,8 +135,10 @@ const API = {
             .then((res) => res.json())
             .catch((err) => null);
     },
-    getCustomerOrders: function (CustomerId) {
-        return fetch(`${URL_PREFIX}/api/order/get/all/customer/${CustomerId}`, {})
+    getCustomerOrders: function (token) {
+        return fetch(`${URL_PREFIX}/api/order/get/all/customer/`, {
+            headers: { "authorization": `Bearer ${token}` }
+        })
             .then((res) => res.json())
             .catch((err) => null);
     },
@@ -106,7 +158,11 @@ const API = {
         }).then(response => response.json())
             .catch(err => null);
     },
-
+    getOneOrdersItems: function (id) {
+        return fetch(`${URL_PREFIX}/api/orderitem/get/all/${id}`, {})
+            .then((res) => res.json())
+            .catch((err) => null);
+    },
 
     // createFish:function(token,fishData){
     //     return fetch(`${URL_PREFIX}/api/fishes`,{
@@ -128,4 +184,5 @@ const API = {
     // },
 };
 
-module.exports = API;
+//module.exports = API;
+export default API;

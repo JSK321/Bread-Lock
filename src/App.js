@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import API from "./utils/API";
 //Components
 import NavBar from './components/NavBar';
 //User pages
@@ -23,9 +26,86 @@ import NoMatch from './pages/NoMatch';
 import Footer from './components/Footer'
 
 function App() {
+  const [signInFormState, setSignInFormState] = useState({
+    email: "",
+    password: ""
+  })
+
+  const [profileState, setProfileState] = useState({
+    id: "",
+    email: "",
+    token: "",
+    isLoggedIn: false
+  })
+
+  useEffect(() => {
+    // use token here
+    const token = localStorage.getItem("token")
+    // API route to get one profile with token
+    API.getProfile(token).then(profileData => {
+      if (profileData) {
+        setProfileState({
+          id: profileData.id,
+          email: profileData.email,
+          token: token,
+          isLoggedIn: true
+        })
+      }
+    }
+    )
+  }, [])
+
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setSignInFormState({
+      ...signInFormState,
+      [name]: value
+    })
+
+  }
+
+  const handleFormSubmit = event => {
+    event.preventDefault();
+    //API call to log in with token
+    API.login(signInFormState).then(loggedInData => {
+      localStorage.setItem("token", loggedInData.token)
+      // console.log(loggedInData)
+      const token = loggedInData.token
+      API.getProfile(loggedInData.token).then(profileData => {
+        // console.log(profileData)
+        // console.log(token);
+        setProfileState({
+          id: profileData.id,
+          email: profileData.email,
+          token: token,
+          isLoggedIn: true
+        })
+        window.location.href = "/map"
+      })
+    }).catch(err => {
+      if (err) {
+        alert("Incorrect email/password")
+      }
+    })
+  }
+
+  const handleClearLocalStorage = event => {
+    event.preventDefault();
+    localStorage.clear()
+    setProfileState({
+      id: "",
+      email: "",
+      token: "",
+      isLoggedIn: false
+    })
+  }
+
   return (
     <Router>
-      <NavBar />
+      <NavBar
+        isLoggedIn={profileState.isLoggedIn}
+        onClick={handleClearLocalStorage}
+      />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -34,37 +114,66 @@ function App() {
           <SignUp />
         </Route>
         <Route exact path="/signin">
-          <SignIn />
+          <SignIn
+            email={signInFormState.email}
+            password={signInFormState.password}
+            isLoggedIn={profileState.isLoggedIn}
+            // users={getUserProfile}
+            handleInputChange={handleInputChange}
+            handleFormSubmit={handleFormSubmit}
+          />
         </Route>
-        <Route exact path="/userprofile/:id">
-          <UserProfile />
+        <Route exact path="/customerprofile">
+          <UserProfile
+            id={profileState.id}
+            token={profileState.token}
+            isLoggedIn={profileState.isLoggedIn}
+            // users={getUserProfile}
+            handleInputChange={handleInputChange}
+            handleFormSubmit={handleFormSubmit}
+          />
         </Route>
         <Route exact path="/map">
           <Map />
         </Route>
         <Route exact path="/foodbank/:id">
-          <FoodBank />
+          <FoodBank
+            isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
         <Route exact path="/fbsignup">
           <FbSignUp />
         </Route>
-        <Route exact path="/pantry/:id">
-          <PantryPreview />
-        </Route>
+        {/* <Route exact path="/pantry/:id">
+          <PantryPreview
+            isLoggedIn={profileState.isLoggedIn}
+          />
+        </Route> */}
         <Route exact path="/customerorder">
           <CustomerOrder />
         </Route>
         <Route exact path="/customerorder/:id">
-          <CustomerOrder />
+          <CustomerOrder
+            id={profileState.id}
+            token={profileState.token}
+            isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
-        <Route exact path="/adminhome">
+        <Route exact path="/adminhome/:id">
           <AdminHome />
         </Route>
-        <Route exact path="/customerqueue/:id">
-          <CustomerQueue />
+        <Route exact path="/customerqueue">
+          <CustomerQueue
+            id={profileState.id}
+            token={profileState.token}
+            isLoggedIn={profileState.isLoggedIn}
+          />
         </Route>
         <Route exact path="/foodbankqueue/:id">
-          <FoodBankQueue />
+          <FoodBankQueue
+          token={profileState.token}
+          isLoggedIn={profileState.isLoggedIn}
+           />
         </Route>
         <Route exact path="/pantrydata/:id">
           <PantryData />
