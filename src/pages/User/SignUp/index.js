@@ -122,6 +122,7 @@ export default class UserSignUp extends Component {
                     //     zipCode: this.state.zipCode,
                     // }
                 })
+                alert("Singup Successful. Please Signin.")
             }
         }
     }

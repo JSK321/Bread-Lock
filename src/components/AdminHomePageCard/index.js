@@ -1,20 +1,11 @@
 import React from "react";
 
 export default function AdminHomePageCard(props) {
-
   return (
     <div className="uk-flex uk-flex-center">
       <div className="uk-card uk-card-default uk-width-1-2@m">
         <div className="uk-card-header">
           <div className="uk-grid-small uk-flex-middle">
-            <div className="uk-width-auto" style={{ textAlign: "center" }}>
-              <img
-                className="uk-border-circle"
-                width="40"
-                height="40"
-                src="https://via.placeholder.com/150"
-              />
-            </div>
             <div className="uk-width-expand">
               <h1
                 className="uk-card-title uk-margin-remove-bottom"
@@ -132,7 +123,6 @@ export default function AdminHomePageCard(props) {
             style={{ width: "40px", margin: "10px" }}
             hidden
           /> */}
-
         </div>
       </div>
     </div>

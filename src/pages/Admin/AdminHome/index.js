@@ -26,29 +26,44 @@ class AdminHome extends Component {
        }
        this.id = this.props.match.params.id
        console.log(this.id)
-       this.loadFoodBank();
+      //  this.loadFoodBank();
     }
 
-    loadFoodBank() {
-         API.getOneFoodBank(this.id).then((res) => {
-             this.setState({
-                bankName: res.bankName,
-                streetAddress: res.address,
-                cityName: res.cityName,
-                stateAbr: res.stateAbr,
-                zipCode: res.zipCode,
-                phone: res.phone,
-                email: res.email,
-                availability: res.availability,
-                FoodBankId: this.id,
-                showData: true
-             });
-         })
-     }
+  //  loadFoodBank() {
+  //        API.getOneFoodBank(this.id).then((res) => {
+  //          console.log(res)
+          //  this.setState({
+            //     bankName: res.bankName,
+            //     streetAddress: res.address,
+            //     cityName: res.cityName,
+            //     stateAbr: res.stateAbr,
+            //     zipCode: res.zipCode,
+            //     phone: res.phone,
+            //     email: res.email,
+            //     availability: res.availability,
+            //     FoodBankId: this.id,
+            //     showData: true
+            //  });
+    //      })
+    //  }
 
 
     componentDidMount() {
-       
+      API.getOneFoodBank(this.id).then((res) => {
+        console.log(res)
+        this.setState({
+             bankName: res.bankName,
+             streetAddress: res.address,
+             cityName: res.cityName,
+             stateAbr: res.stateAbr,
+             zipCode: res.zipCode,
+             phone: res.phone,
+             email: res.email,
+             availability: res.availability,
+             FoodBankId: this.id,
+             showData: true
+          });
+      })
     }
     componentDidUpdate() {
      
@@ -90,7 +105,16 @@ class AdminHome extends Component {
               .then((coords) => {
                   console.log(coords)
                   console.log(this.state.streetAddress)
-                const requestOptions = {
+                  let newAvailability;
+                  console.log(this.state.availability)
+                  if (this.state.availability==="true"){
+                    newAvailability = true
+                  } else {
+                    newAvailability = false
+                  }
+
+                  console.log(newAvailability)
+                  const requestOptions = {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
@@ -103,9 +127,10 @@ class AdminHome extends Component {
                     zipCode: this.state.zipCode,
                     latitude: coords.lat,
                     longitude: coords.long,
-                    availability:this.state.availability
-                  }),
+                    availability: newAvailability
+                  }),          
                 };
+                console.log(requestOptions.body)
                 fetch(`${URL_PREFIX}/api/foodbank/put/${this.id}`, requestOptions)
                   .then(async (response) => {
                     const data = await response.json();
@@ -137,7 +162,6 @@ class AdminHome extends Component {
                 <AdminHomePageCard
                     handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
-                    
                     bankName={this.state.bankName}
                     streetAddress={this.state.streetAddress}
                     cityName={this.state.cityName}
