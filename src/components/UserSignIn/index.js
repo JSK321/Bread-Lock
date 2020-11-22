@@ -1,56 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
-export default function UserSignIn() {
-    const [signInFormState, setSignInFormState] = useState({
-        email: "",
-        password: ""
-    })
 
-    const [profileState, setProfileState] = useState({
-        email: "",
-        userOrder: [],
-        isLoggedIn: false
-    })
-
-    useEffect(() => {
-        // use token here
-        // const token = localStorage.getItem("token")
-        // API route to get one profile with token
-        // API.getOneProfile().then(profileData => {
-        //     if(profileData){
-        //         setProfileState({
-        //             name: profileData.name,
-        //             email: profileData.email,
-        //             userOrder: profileData.
-        //         })
-        //     }
-        // })
-    }, [])
-
-    const handleInputChange = event => {
-        const { name, value } = event.target;
-        setSignInFormState({
-            ...signInFormState,
-            [name]: value
-        })
-
-    }
-
-    const handleFormSubmit = event => {
-        event.preventDefault();
-        //API call to log in with token
-        // API.function(signInFormState).then(newToken=> {
-        //     API.getOneProfile(newToken.token).then(profileData=> {
-        //         setProfileState({
-        //             email: profileData.email,
-        //             userOrder: profileData.orders,
-        //             isLoggedIn: true
-        //         })
-        //     })
-        // })
-    }
+export default function UserSignIn(props) {
 
     return (
         <div className="uk-flex uk-flex-center">
@@ -64,13 +17,15 @@ export default function UserSignIn() {
                 </div>
                 <div className="uk-flex uk-flex-center">
                     <div className="uk-card-body uk-width-expand">
-                        <form onSubmit={handleFormSubmit}>
-                            <input class="uk-input" type="text" name="email" value={signInFormState.email} onChange={handleInputChange} placeholder="Username" />
-                            <input class="uk-input" type="password" name="password" value={signInFormState.password} onChange={handleInputChange} placeholder="Password" />
+                        <form onSubmit={props.handleFormSubmit}>
+                            <input class="uk-input" type="text" name="email" value={props.email} onChange={props.handleInputChange} placeholder="Email" />
+                            <input class="uk-input" type="password" name="password" value={props.password} onChange={props.handleInputChange} placeholder="Password" />
 
                             <div style={{ textAlign: "center" }}>
                                 <br></br>
-                                <input type="submit" value="Sign In" />
+                                {/* <Link to="/customerprofile"> */}
+                                    <input type="submit" value="Sign In" />
+                                    {/* </Link> */}
                             </div>
                         </form>
                     </div>

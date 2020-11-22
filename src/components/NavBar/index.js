@@ -1,92 +1,75 @@
-import background from '../../images/background.jpg'
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import API from "../../utils/API";
+import background from "../../images/background.jpg";
+import { Link } from "react-router-dom";
 
 let sectionStyle = {
   backgroundImage: "url(" + background + ")",
-  width: "100%"
+  width: "100%",
 };
 
-export default function NavBar() {
-  const { id } = useParams()
-
-  const [userSignIn, setUserSignIn] = useState({
-    email: "",
-    password: "",
-    isLoggedIn: false
-  })
-
-  const [getUserProfile, setUserProfile] = useState({})
-
-  function loadAllUserProfile() {
-    API.getAllProfiles().then(res => {
-      setUserProfile({
-        users: res
-      })
-    })
-  }
-
-  useEffect(() => {
-    loadAllUserProfile()
-  }, [])
-
+export default function NavBar(props) {
   return (
-    <nav className="uk-navbar-container" uk-navbar="dropbar:true" style={sectionStyle}>
-      <div className="uk-navbar-left">
-        <ul className="uk-navbar-nav">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/map">Map</a>
-          </li>
-          {/* <li>
-            <a href="#">View Pantry</a>
+    <div uk-sticky="bottom: #offset">
+      <nav
+        className="uk-navbar-container"
+        uk-navbar="dropbar:true"
+        style={sectionStyle}
+      >
+        <div className="uk-navbar-left">
+          <ul className="uk-navbar-nav" style={{fontWeight: `bold`}}>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/map">Map</Link>
+            </li>
+            {/* <li>
+            <Link to="#">View Pantry</Link>
             <div className="uk-navbar-dropdown">
               <ul className="uk-nav uk-navbar-dropdown-nav">
                 <li>
-                  <a href="/customerorder">Order Page</a>
+                  <Link to="/customerorder">Order Page</Link>
                 </li>
                 <li>
-                  <a href="/pantrydata">Available Food</a>
+                  <Link to="/pantrydata">Available Food</Link>
                 </li>
                 <li>
-                  <a href="/customerqueue">Recipient Queue List</a>
+                  <Link to="/customerqueue">Recipient Queue List</Link>
                 </li>
               </ul>
             </div>
           </li> */}
-          <li>
-            <a href="#">Sign Up</a>
-            <div className="uk-navbar-dropdown">
-              <ul className="uk-nav uk-navbar-dropdown-nav">
-                <li>
-                  <a href="/adminhome">Admin Home Page</a>
-                </li>
-                <li>
-                  <a href="/fbsignup">Register Food Bank</a>
-                </li>
-                <li>
-                  <a href="/signup">Register as Recipient</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div className="uk-navbar-right">
-        <ul class="uk-navbar-nav">
-          <li>
-            {getUserProfile.users != undefined ? (
-              userSignIn.isLoggedIn ?
-                getUserProfile.users.map((data =>
-                  <Link to={"/userprofile/" + data.id}>My Profile</Link>
-                )) : <a href="/signin">Sign In</a>
-            ) : null}
-          </li>
-        </ul>
-      </div>
-    </nav>
+            <li>
+              {props.isLoggedIn ? null : <Link to="/signup">Sign Up</Link>}
+              {/* <div className="uk-navbar-dropdown">
+                <ul className= "uk-nav uk-navbar-dropdown-nav">
+                  <li>
+                    <Link to="/adminhome">Admin Home Page</Link>
+                  </li>
+                  <li>
+                    <Link to="/fbsignup">Register Food Bank</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Register as Recipient</Link>
+                  </li>
+                </ul>
+              </div> */}
+            </li>
+          </ul>
+        </div>
+        <div className="uk-navbar-right" style={{fontWeight: `bold`}}>
+          <ul class="uk-navbar-nav">
+            {props.isLoggedIn ? 
+              <li><Link to="/customerprofile">My Profile</Link></li> : null}
+            {props.isLoggedIn ?
+              <li>
+                <Link to="/" onClick={props.onClick}>Sign Out</Link>
+              </li> :
+              <li>
+                <Link to="/signin">Sign In</Link>
+              </li>}
+          </ul>
+        </div>
+      </nav>
+    </div>
   );
 }

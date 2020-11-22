@@ -1,17 +1,17 @@
 import React, { Component, useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CustomerOrderForm from '../../../components/CustomerOrderForm'
 import CustomerPickUpForm from '../../../components/CustomerPickUpForm';
 // import foods from '../../../foods.json';
 // import FoodBank from '../../FoodBank/FoodBankDetails';
-import API, { postOneOrderItem, putOnePantryItem } from "../../../utils/API"
-
+import API from "../../../utils/API"
+import { URL_PREFIX, URL_REDIRECT } from "../../../utils/urlPointer"
 // const URL_PREFIX = "http://localhost:8080"
-const URL_PREFIX = "https://breadlockapi.herokuapp.com"
+// const URL_PREFIX = "https://breadlockapi.herokuapp.com"
 // const URL_REDIRECT = "http://localhost:3000"
-const URL_REDIRECT = "https://breadlock.herokuapp.com"
+// const URL_REDIRECT = "https://breadlock.herokuapp.com"
 
-export default function CustomerOrder() {
+export default function CustomerOrder(props) {
     const { id } = useParams();
 
     const [customerOrder, setCustomerOrder] = useState({
@@ -21,7 +21,7 @@ export default function CustomerOrder() {
         selectedStock: [],
         orderDate: "",
         orderTime: "",
-        CustomerId: 1, // change to specific customer order, 
+        CustomerId: 0, // change to specific customer order, 
         FoodBankId: id,
         availablePointer: true,
         lastOrder: 0
@@ -36,7 +36,7 @@ export default function CustomerOrder() {
                 selectedStock: [],
                 orderDate: "",
                 orderTime: "",
-                CustomerId: 1, // change to specific customer order, 
+                CustomerId: props.id,
                 FoodBankId: id,
                 availablePointer: true,
                 lastOrder: 0
@@ -53,7 +53,7 @@ export default function CustomerOrder() {
                 selectedStock: [],
                 orderDate: "",
                 orderTime: "",
-                CustomerId: 1, // change to specific customer order, 
+                CustomerId: props.id, // change to specific customer order, 
                 FoodBankId: id,
                 availablePointer: true,
                 lastOrder: 0
@@ -63,7 +63,7 @@ export default function CustomerOrder() {
 
     useEffect(() => {
         loadPantry()
-    }, [])
+    }, [props.id, props.token])
 
     const handleSelectDay = event => {
         let day = event.target.value
@@ -89,7 +89,7 @@ export default function CustomerOrder() {
             if (parseInt(customerOrder.foodList[j].id) === parseInt(id)) {
                 let newClaimed = parseInt(customerOrder.foodList[j].claimed) + 1;
                 let newNotClaimed = parseInt(customerOrder.foodList[j].notClaimed) - 1;
-                putOnePantryItem(newClaimed, newNotClaimed, id);
+                API.putOnePantryItem(newClaimed, newNotClaimed, id);
             }
         }
     }
@@ -115,7 +115,9 @@ export default function CustomerOrder() {
 
     const handleSelectClick = event => {
         let pantryId = event.target.id
+        console.log(pantryId);
         let stocker = event.target.value
+        console.log()
         let cartArray = customerOrder.selectedFood
         let stockArray = customerOrder.selectedStock
         // check if the item is already in my selectedFood array
@@ -138,7 +140,7 @@ export default function CustomerOrder() {
         })
     }
 
-    const handleFormSubmit = event => {
+    const handleOrderFormSubmit = event => {
         event.preventDefault();
         let cartArray = customerOrder.selectedFood
         let stockArray = customerOrder.selectedStock
@@ -151,34 +153,37 @@ export default function CustomerOrder() {
             cartArray.forEach(element => {
                 checkForAvailable(element)
             });
-                if (!customerOrder.availablePointer) {
-                    return alert('That foodbank does not have one of your order')
-                } else {
-                    cartArray.forEach(element => {
-                        changeClaimedPantry(element)
-                    });
-                    fetch(`${URL_PREFIX}/api/order/post`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            orderDate: customerOrder.orderDate,
-                            orderTime: customerOrder.orderTime,
-                            FoodBankId: customerOrder.FoodBankId,
-                            CustomerId: customerOrder.CustomerId
-                        })
-                    }).then((response) => response.json())
-                        .then((user) => {
-                            const lastMade = user.id;
-                            // Fix the order ids
-                            stockArray.forEach(element => {
-                                postOneOrderItem(1, lastMade, element);
-                            });
-                            afterOrder();
-                            window.location.href = `${URL_REDIRECT}/`;
-                            // after login
-                            // window.location.href= `${URL_REDIRECT}/profile/${customerOrder.CustomerId}`
-                        }).catch(err => null)
-                }
+            if (!customerOrder.availablePointer) {
+                return alert('That foodbank does not have one of your order')
+            } else {
+                cartArray.forEach(element => {
+                    changeClaimedPantry(element)
+                });
+                fetch(`${URL_PREFIX}/api/order/post`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "authorization": `Bearer ${props.token}`
+                    },
+                    body: JSON.stringify({
+                        orderDate: customerOrder.orderDate,
+                        orderTime: customerOrder.orderTime,
+                        FoodBankId: customerOrder.FoodBankId,
+                        CustomerId: customerOrder.CustomerId
+                    })
+                }).then((response) => response.json())
+                    .then((user) => {
+                        const lastMade = user.id;
+                        // Fix the order ids
+                        stockArray.forEach(element => {
+                            API.postOneOrderItem(1, lastMade, element);
+                        });
+                        afterOrder();
+                        // window.location.href = `${URL_REDIRECT}/`;
+                        // after login
+                        // window.location.href= `${URL_REDIRECT}/profile/${customerOrder.CustomerId}`
+                    }).catch(err => null)
+            }
         }
 
         // individually check every item in the basket with the stock database
@@ -193,13 +198,6 @@ export default function CustomerOrder() {
     return (
         <div className="uk-flex uk-flex-center">
             <div className="uk-card uk-card-default uk-card-body" uk-grid>
-                <div className="uk-card-header">
-                    <div className="uk-grid-small uk-flex-middle">
-                        <div className="uk-width-expand">
-                            <h1 className="uk-card-title uk-margin-remove-bottom" style={{ textAlign: "center" }}>Basket</h1>
-                        </div>
-                    </div>
-                </div>
                 <CustomerPickUpForm
                     handleSelectDay={handleSelectDay}
                     handleSelectTime={handleSelectTime}
@@ -215,7 +213,7 @@ export default function CustomerOrder() {
                     />
                 ))}
                 <div className="uk-card-footer" style={{ textAlign: "center" }}>
-                    <button className="addBtn" onClick={handleFormSubmit}>Order Basket!</button>
+                    <button className="addBtn" onClick={handleOrderFormSubmit}>Order Basket!</button>
                 </div>
             </div>
         </div>
