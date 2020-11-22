@@ -65,6 +65,15 @@ export default function FoodBankQueueCard(props) {
                                         <br></br>
                                     Pick Up Time: <strong>{data.orderTime}</strong>
                                         <br></br>
+                                        {/* <strong>{foodBankQueueCard.customerInfo != undefined ? (
+                                                foodBankQueueCard.customerInfo.map((data =>
+                                                    data.OrderItems.map((stockObj =>
+                                                        <li style={{ display: "inline-block", margin: "2px" }}>
+                                                            <p>{stockObj.Stock.stockName},</p>
+                                                        </li>
+                                                    ))
+                                                ))) : null
+                                        }</strong> */}
                                         <OrderlistCard
                                             id={data.id}
                                             isLoggedIn={props.isLoggedIn}
