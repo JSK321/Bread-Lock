@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
+import OrderlistCard from "../OrderlistCard";
 
 
 export default function CustomerQueueCard(props) {
@@ -33,7 +34,13 @@ export default function CustomerQueueCard(props) {
                                     <div>
                                         <p>Pick Up Date: <strong>{data.orderDate}</strong><br />Pick Up Time: <strong>{data.orderTime}</strong></p>
                                         <p>My Basket:
-                                            <strong>{customerQueueCard.foodBankInfo != undefined ? (
+                                        <OrderlistCard
+                                            id={data.id}
+                                            isLoggedIn={props.isLoggedIn}
+                                            token={props.token}
+                                        />
+                                        </p>
+                                            {/* <strong>{customerQueueCard.foodBankInfo != undefined ? (
                                                 customerQueueCard.foodBankInfo.map((data =>
                                                     data.OrderItems.map((stockObj =>
                                                         <li style={{ display: "inline-block", margin: "2px" }}>
@@ -41,8 +48,7 @@ export default function CustomerQueueCard(props) {
                                                         </li>
                                                     ))
                                                 ))) : null
-                                            }</strong>
-                                        </p>
+                                            }</strong> */}
                                     </div>
                                 </li>
                             ))
