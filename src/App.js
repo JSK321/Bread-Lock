@@ -159,7 +159,7 @@ function App() {
             isLoggedIn={profileState.isLoggedIn}
           />
         </Route>
-        <Route exact path="/adminhome">
+        <Route exact path="/adminhome/:id">
           <AdminHome />
         </Route>
         <Route exact path="/customerqueue">

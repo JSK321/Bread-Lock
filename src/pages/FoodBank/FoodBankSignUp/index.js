@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FoodBankSignUp from "../../../components/FoodBankSignUp";
-import FoodBankSignUpInfo from "../../../components/FoodBankSignUpInfo";
 import {URL_PREFIX} from "../../../utils/urlPointer"
+import {Redirect} from 'react-router-dom'
 // import API from "../../../utils/API";
 import axios from 'axios'
 // import './styles.css'
@@ -94,33 +94,17 @@ export default class FbSignUp extends Component {
                 const error = (data && data.message) || response.status;
                 return Promise.reject(error);
               }
-              this.setState({
-                bankName: "",
-                streetAddress: "",
-                cityName: "",
-                stateAbr: "",
-                zipCode: "",
-                phone: "",
-                email: "",
-                // operationHours: "",
-                showData: true,
-                currentLog: {
-                  bankName: this.state.bankName,
-                  streetAddress: this.state.streetAddress,
-                  cityName: this.state.cityName,
-                  stateAbr: this.state.stateAbr,
-                  zipCode: this.state.zipCode,
-                  phone: this.state.phone,
-                  email: this.state.email,
-                  // operationHours: this.state.operationHours
-                },
-              });
+              
+              this.setState({ redirect: "/adminhome/"+data.id });
             })
             .catch((error) => {
               this.setState({ errorMessage: error.toString() });
               console.error("There was an error!", error);
             });
-        });
+            
+            //take in the new added ID
+            // Redirect to adminHome page with new food Bank id
+          });
 
 
       // ----------------------------------------------------------------------------------------------------------------------
@@ -151,7 +135,13 @@ export default class FbSignUp extends Component {
     }
   };
 
+
+
+
   render() {
+    if (this.state.redirect) {
+        return <Redirect to={this.state.redirect} />
+    }
     return (
       <div>
         <FoodBankSignUp
@@ -166,8 +156,9 @@ export default class FbSignUp extends Component {
           email={this.state.email}
           // operationHours={this.state.operationHours}
         />
-        <br></br>
-        <FoodBankSignUpInfo
+       
+
+        {/* <FoodBankSignUpInfo
           showData={this.state.showData}
           bankName={this.state.currentLog.bankName}
           streetAddress={this.state.currentLog.streetAddress}
@@ -177,7 +168,7 @@ export default class FbSignUp extends Component {
           phone={this.state.currentLog.phone}
           email={this.state.currentLog.email}
           // operationHours={this.state.currentLog.operationHours}
-        />
+        /> */}
       </div>
     );
   }
