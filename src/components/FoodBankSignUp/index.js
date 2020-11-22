@@ -40,14 +40,6 @@ export default function FoodBankSignUp(props) {
       <div className="uk-card uk-card-default uk-width-1-2@m">
         <div className="uk-card-header">
           <div className="uk-grid-small uk-flex-middle">
-            <div className="uk-width-auto" style={{ textAlign: "center" }}>
-              <img
-                className="uk-border-circle"
-                width="40"
-                height="40"
-                src="https://via.placeholder.com/150"
-              />
-            </div>
             <div className="uk-width-expand">
               <h1
                 className="uk-card-title uk-margin-remove-bottom"
@@ -135,7 +127,7 @@ export default function FoodBankSignUp(props) {
             <br></br>
             <div className="uk-margin" style={{ textAlign: "center" }}>
               <div className="uk-form-controls">
-                <label>Select Food Bank</label>
+                <h3>Select Food Bank</h3>
                 <select
                   className="uk-select"
                   id="form-stacked-select"
@@ -150,7 +142,7 @@ export default function FoodBankSignUp(props) {
                 </select>
                 <Link to={"/adminhome/" + bankState.selectedFoodBankId}>
                   {" "}
-                  <button>View Food Bank</button>{" "}
+                  <button className="uk-button uk-button-primary uk-button-small uk-width-1-1" style={{background: "#998e7d"}}>View Food Bank</button>{" "}
                 </Link>
               </div>
             </div>

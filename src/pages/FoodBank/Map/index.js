@@ -79,7 +79,7 @@ export default function Map() {
           <div className="uk-card uk-card-default">
             <div className="uk-margin" style={{ textAlign: "center" }}>
               <div className="uk-form-controls">
-                <label>Select Food Bank</label>
+                <h4>Select Food Bank</h4>
                 <select
                   className="uk-select"
                   id="form-stacked-select"
@@ -95,7 +95,7 @@ export default function Map() {
                 </select>
                 <Link to={"/foodbank/" + bankState.selectedFoodBankId}>
                   {" "}
-                  <button>View Food Bank</button>{" "}
+                  <button className="uk-button uk-button-primary uk-button-small uk-width-1-1" style={{background: "#998e7d"}}>View Food Bank</button>{" "}
                 </Link>
               </div>
             </div>

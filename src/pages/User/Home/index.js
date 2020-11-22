@@ -14,7 +14,7 @@ export default function Home() {
         />
         <div style={{ padding: "5%" }}>
           <h1 style={{textAlign:"center"}}>Welcome to BreadLock</h1>
-          <h5 style={{ textAlign: "left" }}>
+          <h4 style={{ textAlign: "left" }}>
             Bread Lock is an application that connects food banks with those in need within the Seattle area.
             With the latest technology of React, Bread Lock functions on a real time basis.
             It assures receivers to feel secured as their share of food will be locked for them!
@@ -23,7 +23,7 @@ export default function Home() {
             <div style={{textAlign:"center"}}>
               Our main goal is to unite our community!
             </div>
-          </h5>
+          </h4>
         </div>
         <div style={{ textAlign: "center" }}>
           <Link to={"/map"}>
