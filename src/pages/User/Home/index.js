@@ -27,13 +27,13 @@ export default function Home() {
         </div>
         <div style={{ textAlign: "center" }}>
           <Link to={"/map"}>
-            <button>Foodbanks near me</button>
+            <button className="uk-button uk-button-primary uk-button-large uk-width-1-1" style={{background: "#998e7d"}}>Foodbanks near me</button>
           </Link>
         </div>
         <br />
         <div style={{ textAlign: "center" }}>
           <Link to={"/signup"}>
-            <button>Sign Up</button>
+            <button  className="uk-button uk-button-primary uk-button-large uk-width-1-1"  style={{background: "#998e7d"}}>Sign Up</button>
           </Link>
         </div>
         <br />

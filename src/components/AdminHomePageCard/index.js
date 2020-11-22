@@ -84,14 +84,15 @@ export default function AdminHomePageCard(props) {
                 placeholder="Email"
               />
 
-              <input
+              <select 
                 className="uk-input uk-form-width-1-2"
-                value={props.operationHours}
-                name="operationHours"
+                value={props.availability}
+                name="availability"
                 onChange={props.handleInputChange}
-                type="text"
-                placeholder="Operation Hours"
-              />
+              > 
+              <option value="true">Open</option>
+              <option value="false">Closed</option>
+              </select>
 
               <div style={{ textAlign: "center" }}>
                 <br></br>

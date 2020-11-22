@@ -6,16 +6,18 @@ import { Link } from "react-router-dom"
 export default function Footer() {
     let sectionStyle = {
     backgroundImage: "url(" +  background  + ")",
-    width: "100%"
+    width: "100%",
+    padding: "4%"
+   
     };
   return (
     
     <nav className="uk-navbar-container uk-background-cover" uk-navbar="true" style={sectionStyle}>
       <div className="uk-navbar-center"  >
-        <img className="uk-padding-small" src={logo} alt="logo" width="200px"/>        
+        <img className="uk-padding-small" src={logo} alt="logo" width="180px"/>        
       </div>
-      <div className="uk-navbar-right"  >
-        <Link to="/fbsignup" className="uk-padding-small">Admin Portalnpm</Link>
+      <div className="uk-navbar-right" style={{fontWeight: `bold`}}  >
+        <button className="uk-button uk-button-text uk-button-small" style={{color:"black"}}><Link to="/fbsignup" >Admin</Link></button>
       </div>
     </nav>
   );

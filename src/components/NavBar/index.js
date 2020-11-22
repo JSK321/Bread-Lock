@@ -15,7 +15,7 @@ export default function NavBar(props) {
         style={sectionStyle}
       >
         <div className="uk-navbar-left">
-          <ul className="uk-navbar-nav">
+          <ul className="uk-navbar-nav" style={{fontWeight: `bold`}}>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -56,7 +56,7 @@ export default function NavBar(props) {
             </li>
           </ul>
         </div>
-        <div className="uk-navbar-right">
+        <div className="uk-navbar-right" style={{fontWeight: `bold`}}>
           <ul class="uk-navbar-nav">
             {props.isLoggedIn ? 
               <li><Link to="/customerprofile">My Profile</Link></li> : null}
